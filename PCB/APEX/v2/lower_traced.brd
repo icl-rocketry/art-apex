@@ -188,10 +188,12 @@
 </layers>
 <board>
 <plain>
-<wire x1="0" y1="0" x2="160" y2="0" width="0" layer="20"/>
-<wire x1="160" y1="0" x2="160" y2="100" width="0" layer="20"/>
-<wire x1="160" y1="100" x2="0" y2="100" width="0" layer="20"/>
-<wire x1="0" y1="100" x2="0" y2="0" width="0" layer="20"/>
+<wire x1="43.18" y1="52.07" x2="104.12" y2="52.07" width="0" layer="20"/>
+<wire x1="104.12" y1="52.07" x2="104.12" y2="80.95" width="0" layer="20"/>
+<wire x1="104.12" y1="80.95" x2="43.18" y2="80.95" width="0" layer="20"/>
+<wire x1="43.18" y1="80.95" x2="43.18" y2="52.07" width="0" layer="20"/>
+<dimension x1="43.18" y1="80.95" x2="43.18" y2="52.07" x3="39.37" y3="66.51" textsize="1.778" layer="1"/>
+<dimension x1="43.18" y1="52.07" x2="104.12" y2="52.07" x3="73.65" y3="48.26" textsize="1.778" layer="1"/>
 </plain>
 <libraries>
 <library name="microbuilder">
@@ -770,10 +772,10 @@ design rules under a new name.</description>
 <attribute name="POPULARITY" value="98" x="50.8" y="76.2" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" x="53.34" y="79.375" size="1.27" layer="27" rot="R180"/>
 </element>
-<element name="EXTV+" library="wirepad" library_urn="urn:adsk.eagle:library:412" package="SMD2,54-5,08" package3d_urn="urn:adsk.eagle:package:30841/1" value="" x="46.99" y="77.47" smashed="yes">
-<attribute name="NAME" x="45.49" y="74.97" size="1.27" layer="25" rot="R90"/>
-<attribute name="POPULARITY" value="21" x="46.99" y="77.47" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="46.99" y="77.47" size="0.0254" layer="27"/>
+<element name="EXTV+" library="wirepad" library_urn="urn:adsk.eagle:library:412" package="SMD2,54-5,08" package3d_urn="urn:adsk.eagle:package:30841/1" value="" x="46.99" y="76.2" smashed="yes">
+<attribute name="NAME" x="45.49" y="73.7" size="1.27" layer="25" rot="R90"/>
+<attribute name="POPULARITY" value="21" x="46.99" y="76.2" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="46.99" y="76.2" size="0.0254" layer="27"/>
 </element>
 <element name="EXTGND" library="wirepad" library_urn="urn:adsk.eagle:library:412" package="SMD2,54-5,08" package3d_urn="urn:adsk.eagle:package:30841/1" value="" x="54.61" y="57.15" smashed="yes" rot="R180">
 <attribute name="NAME" x="56.11" y="59.65" size="1.27" layer="25" rot="R270"/>
@@ -795,15 +797,14 @@ design rules under a new name.</description>
 <wire x1="48.53" y1="63.5" x2="45.72" y2="63.5" width="0.8128" layer="1"/>
 <wire x1="45.72" y1="63.5" x2="45.72" y2="72.39" width="0.8128" layer="1"/>
 <wire x1="45.72" y1="72.39" x2="48.26" y2="72.39" width="0.8128" layer="1"/>
-<wire x1="77.47" y1="80.01" x2="45.72" y2="80.01" width="0.8128" layer="1"/>
-<wire x1="45.72" y1="80.01" x2="45.72" y2="77.47" width="0.8128" layer="1"/>
-<wire x1="45.72" y1="77.47" x2="45.72" y2="76.2" width="0.8128" layer="1"/>
+<wire x1="77.47" y1="78.74" x2="45.72" y2="78.74" width="0.8128" layer="1"/>
+<wire x1="45.72" y1="78.74" x2="45.72" y2="76.2" width="0.8128" layer="1"/>
 <wire x1="45.72" y1="76.2" x2="45.72" y2="72.39" width="0.8128" layer="1"/>
-<wire x1="77.47" y1="71.12" x2="77.47" y2="80.01" width="0.8128" layer="1"/>
+<wire x1="77.47" y1="71.12" x2="77.47" y2="78.74" width="0.8128" layer="1"/>
 <contactref element="PICOPOWER" pad="2"/>
 <contactref element="EXTV+" pad="1"/>
-<wire x1="49.53" y1="76.2" x2="45.72" y2="76.2" width="0.8128" layer="1"/>
-<wire x1="46.99" y1="77.47" x2="45.72" y2="77.47" width="0.8128" layer="1"/>
+<wire x1="49.53" y1="76.2" x2="46.99" y2="76.2" width="0.8128" layer="1"/>
+<wire x1="46.99" y1="76.2" x2="45.72" y2="76.2" width="0.8128" layer="1"/>
 </signal>
 <signal name="GND">
 <contactref element="JP2" pad="1"/>
