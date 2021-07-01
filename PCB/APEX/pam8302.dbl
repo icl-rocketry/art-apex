@@ -4,7 +4,7 @@
 <designblock>
 <description></description>
 <attributes>
-<attribute name="BOARDSIZE" value="0.952 x 0.6 inch"/>
+<attribute name="BOARDSIZE" value="0.95 x 0.6 inch"/>
 <attribute name="LAYERS" value="0:"/>
 </attributes>
 <drawings>
@@ -262,19 +262,6 @@
 <rectangle x1="-5.334" y1="-0.254" x2="-4.826" y2="0.254" layer="51"/>
 <rectangle x1="4.826" y1="-0.254" x2="5.334" y2="0.254" layer="51"/>
 </package>
-<package name="TERMBLOCK_1X2-3.5MM">
-<wire x1="-3.4" y1="3.4" x2="-3.4" y2="-2.2" width="0.2032" layer="21"/>
-<wire x1="-3.4" y1="-2.2" x2="-3.4" y2="-3.6" width="0.2032" layer="21"/>
-<wire x1="-3.4" y1="-3.6" x2="3.6" y2="-3.6" width="0.2032" layer="21"/>
-<wire x1="3.6" y1="-3.6" x2="3.6" y2="-2.2" width="0.2032" layer="21"/>
-<wire x1="3.6" y1="-2.2" x2="3.6" y2="3.4" width="0.2032" layer="21"/>
-<wire x1="3.6" y1="3.4" x2="-3.4" y2="3.4" width="0.2032" layer="21"/>
-<wire x1="-3.4" y1="-2.2" x2="3.6" y2="-2.2" width="0.2032" layer="21"/>
-<pad name="1" x="1.8" y="0" drill="1" diameter="2.1844"/>
-<pad name="2" x="-1.7" y="0" drill="1" diameter="2.1844"/>
-<text x="-3" y="3.89" size="0.8128" layer="25" ratio="18">&gt;NAME</text>
-<text x="-3.048" y="-3.048" size="0.4064" layer="27" ratio="10">&gt;VALUE</text>
-</package>
 </packages>
 <symbols>
 <symbol name="VCC">
@@ -300,16 +287,6 @@
 <pin name="3" x="-2.54" y="0" visible="pad" length="short" direction="pas" function="dot"/>
 <pin name="4" x="-2.54" y="-2.54" visible="pad" length="short" direction="pas" function="dot"/>
 <pin name="5" x="-2.54" y="-5.08" visible="pad" length="short" direction="pas" function="dot"/>
-</symbol>
-<symbol name="1X2">
-<wire x1="-2.54" y1="5.08" x2="-2.54" y2="-2.54" width="0.254" layer="94"/>
-<wire x1="-2.54" y1="-2.54" x2="5.08" y2="-2.54" width="0.254" layer="94"/>
-<wire x1="5.08" y1="-2.54" x2="5.08" y2="5.08" width="0.254" layer="94"/>
-<wire x1="5.08" y1="5.08" x2="-2.54" y2="5.08" width="0.254" layer="94"/>
-<pin name="1" x="-5.08" y="2.54" visible="pin" length="middle" direction="pas"/>
-<pin name="2" x="-5.08" y="0" visible="pin" length="middle" direction="pas"/>
-<text x="-2.54" y="-5.08" size="1.27" layer="96">&gt;VALUE</text>
-<text x="-2.54" y="7.62" size="1.27" layer="95">&gt;NAME</text>
 </symbol>
 </symbols>
 <devicesets>
@@ -443,24 +420,6 @@
 </device>
 </devices>
 </deviceset>
-<deviceset name="TERMBLOCK_1X2" prefix="X" uservalue="yes">
-<description>3.5mm Terminal block
-&lt;p&gt;http://www.ladyada.net/library/pcb/eaglelibrary.html&lt;p&gt;</description>
-<gates>
-<gate name="G$1" symbol="1X2" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="TERMBLOCK_1X2-3.5MM">
-<connects>
-<connect gate="G$1" pin="1" pad="1"/>
-<connect gate="G$1" pin="2" pad="2"/>
-</connects>
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
 </devicesets>
 </library>
 </libraries>
@@ -479,26 +438,21 @@
 <part name="JP1" library="microbuilder" deviceset="HEADER-1X5" device="70MIL"/>
 <part name="P+2" library="microbuilder" deviceset="VCC" device=""/>
 <part name="U$9" library="microbuilder" deviceset="GND" device=""/>
-<part name="X1" library="microbuilder" deviceset="TERMBLOCK_1X2" device=""/>
 </parts>
 <sheets>
 <sheet>
 <plain>
 </plain>
 <instances>
-<instance part="JP1" gate="A" x="-45.72" y="109.22" smashed="yes" rot="R180">
-<attribute name="NAME" x="-39.37" y="100.965" size="1.778" layer="95" rot="R180"/>
-<attribute name="VALUE" x="-39.37" y="119.38" size="1.778" layer="96" rot="R180"/>
+<instance part="JP1" gate="A" x="-35.56" y="106.68" smashed="yes" rot="R180">
+<attribute name="NAME" x="-29.21" y="98.425" size="1.778" layer="95" rot="R180"/>
+<attribute name="VALUE" x="-29.21" y="116.84" size="1.778" layer="96" rot="R180"/>
 </instance>
-<instance part="P+2" gate="VCC" x="-27.94" y="111.76" smashed="yes">
-<attribute name="VALUE" x="-29.464" y="112.776" size="1.27" layer="96"/>
+<instance part="P+2" gate="VCC" x="-17.78" y="109.22" smashed="yes">
+<attribute name="VALUE" x="-19.304" y="110.236" size="1.27" layer="96"/>
 </instance>
-<instance part="U$9" gate="G$1" x="-27.94" y="99.06" smashed="yes">
-<attribute name="VALUE" x="-29.464" y="96.52" size="1.27" layer="96"/>
-</instance>
-<instance part="X1" gate="G$1" x="-43.18" y="73.66" smashed="yes">
-<attribute name="VALUE" x="-45.72" y="68.58" size="1.27" layer="96"/>
-<attribute name="NAME" x="-45.72" y="81.28" size="1.27" layer="95"/>
+<instance part="U$9" gate="G$1" x="-17.78" y="96.52" smashed="yes">
+<attribute name="VALUE" x="-19.304" y="93.98" size="1.27" layer="96"/>
 </instance>
 </instances>
 <busses>
@@ -508,49 +462,38 @@
 <segment>
 <pinref part="JP1" gate="A" pin="2"/>
 <pinref part="P+2" gate="VCC" pin="VCC"/>
-<wire x1="-43.18" y1="106.68" x2="-27.94" y2="106.68" width="0.1524" layer="91"/>
-<wire x1="-27.94" y1="106.68" x2="-27.94" y2="109.22" width="0.1524" layer="91"/>
+<wire x1="-33.02" y1="104.14" x2="-17.78" y2="104.14" width="0.1524" layer="91"/>
+<wire x1="-17.78" y1="104.14" x2="-17.78" y2="106.68" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="GND" class="0">
 <segment>
 <pinref part="JP1" gate="A" pin="1"/>
 <pinref part="U$9" gate="G$1" pin="GND"/>
-<wire x1="-43.18" y1="104.14" x2="-27.94" y2="104.14" width="0.1524" layer="91"/>
-<wire x1="-27.94" y1="104.14" x2="-27.94" y2="101.6" width="0.1524" layer="91"/>
+<wire x1="-33.02" y1="101.6" x2="-17.78" y2="101.6" width="0.1524" layer="91"/>
+<wire x1="-17.78" y1="101.6" x2="-17.78" y2="99.06" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="SD" class="0">
 <segment>
-<wire x1="-30.48" y1="109.22" x2="-43.18" y2="109.22" width="0.1524" layer="91"/>
+<wire x1="-20.32" y1="106.68" x2="-33.02" y2="106.68" width="0.1524" layer="91"/>
 <pinref part="JP1" gate="A" pin="3"/>
-<label x="-38.1" y="109.22" size="1.778" layer="95"/>
+<label x="-27.94" y="106.68" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="AIN+" class="0">
 <segment>
-<wire x1="-30.48" y1="114.3" x2="-43.18" y2="114.3" width="0.1524" layer="91"/>
+<wire x1="-20.32" y1="111.76" x2="-33.02" y2="111.76" width="0.1524" layer="91"/>
 <pinref part="JP1" gate="A" pin="5"/>
-<label x="-38.1" y="114.3" size="1.778" layer="95"/>
+<label x="-27.94" y="111.76" size="1.778" layer="95"/>
+<wire x1="-20.32" y1="111.76" x2="-20.32" y2="116.84" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="AIN-" class="0">
 <segment>
-<wire x1="-30.48" y1="111.76" x2="-43.18" y2="111.76" width="0.1524" layer="91"/>
+<wire x1="-20.32" y1="109.22" x2="-33.02" y2="109.22" width="0.1524" layer="91"/>
 <pinref part="JP1" gate="A" pin="4"/>
-<label x="-38.1" y="111.76" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="N$8" class="0">
-<segment>
-<pinref part="X1" gate="G$1" pin="1"/>
-<wire x1="-48.26" y1="76.2" x2="-50.8" y2="76.2" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$9" class="0">
-<segment>
-<pinref part="X1" gate="G$1" pin="2"/>
-<wire x1="-48.26" y1="73.66" x2="-50.8" y2="73.66" width="0.1524" layer="91"/>
+<label x="-27.94" y="109.22" size="1.778" layer="95"/>
 </segment>
 </net>
 </nets>
@@ -738,19 +681,6 @@
 <rectangle x1="-2.794" y1="-0.254" x2="-2.286" y2="0.254" layer="51"/>
 <rectangle x1="-5.334" y1="-0.254" x2="-4.826" y2="0.254" layer="51"/>
 <rectangle x1="4.826" y1="-0.254" x2="5.334" y2="0.254" layer="51"/>
-</package>
-<package name="TERMBLOCK_1X2-3.5MM">
-<wire x1="-3.4" y1="3.4" x2="-3.4" y2="-2.2" width="0.2032" layer="21"/>
-<wire x1="-3.4" y1="-2.2" x2="-3.4" y2="-3.6" width="0.2032" layer="21"/>
-<wire x1="-3.4" y1="-3.6" x2="3.6" y2="-3.6" width="0.2032" layer="21"/>
-<wire x1="3.6" y1="-3.6" x2="3.6" y2="-2.2" width="0.2032" layer="21"/>
-<wire x1="3.6" y1="-2.2" x2="3.6" y2="3.4" width="0.2032" layer="21"/>
-<wire x1="3.6" y1="3.4" x2="-3.4" y2="3.4" width="0.2032" layer="21"/>
-<wire x1="-3.4" y1="-2.2" x2="3.6" y2="-2.2" width="0.2032" layer="21"/>
-<pad name="1" x="1.8" y="0" drill="1" diameter="2.1844"/>
-<pad name="2" x="-1.7" y="0" drill="1" diameter="2.1844"/>
-<text x="-3" y="3.89" size="0.8128" layer="25" ratio="18">&gt;NAME</text>
-<text x="-3.048" y="-3.048" size="0.4064" layer="27" ratio="10">&gt;VALUE</text>
 </package>
 </packages>
 </library>
@@ -954,10 +884,6 @@ einem neuen Namen ab.</description>
 <element name="JP1" library="microbuilder" package="1X05_ROUND_70" value="" x="3.048" y="7.62" smashed="yes" rot="R90">
 <attribute name="VALUE" x="4.953" y="1.27" size="0.4064" layer="27" ratio="10" rot="R90"/>
 </element>
-<element name="X1" library="microbuilder" package="TERMBLOCK_1X2-3.5MM" value="" x="20.447" y="7.493" smashed="yes" rot="R90">
-<attribute name="NAME" x="21.003" y="11.383" size="0.8128" layer="25" ratio="18"/>
-<attribute name="VALUE" x="23.495" y="4.445" size="0.4064" layer="27" ratio="10" rot="R90"/>
-</element>
 </elements>
 <signals>
 <signal name="VCC">
@@ -974,12 +900,6 @@ einem neuen Namen ab.</description>
 </signal>
 <signal name="AIN-">
 <contactref element="JP1" pad="4"/>
-</signal>
-<signal name="N$8">
-<contactref element="X1" pad="1"/>
-</signal>
-<signal name="N$9">
-<contactref element="X1" pad="2"/>
 </signal>
 </signals>
 <mfgpreviewcolors>
