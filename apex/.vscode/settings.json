@@ -1,0 +1,18 @@
+{
+    "python.linting.enabled": true,
+    "python.jediEnabled": false,
+
+    // Loaded Stubs:  rp2-micropython-1.15.0 
+    "python.autoComplete.extraPaths": [".micropy\\micropy-cli\\frozen", ".micropy\\BradenM-micropy-stubs-7696565\\frozen", ".micropy\\micropy-cli\\stubs", ".micropy\\apex"],
+    "python.autoComplete.typeshedPaths":  [".micropy\\micropy-cli\\frozen", ".micropy\\BradenM-micropy-stubs-7696565\\frozen", ".micropy\\micropy-cli\\stubs", ".micropy\\apex"],
+    "python.analysis.typeshedPaths":  [".micropy\\micropy-cli\\frozen", ".micropy\\BradenM-micropy-stubs-7696565\\frozen", ".micropy\\micropy-cli\\stubs", ".micropy\\apex"],
+
+    "python.linting.pylintEnabled": true,
+    "python.languageServer": "Microsoft",
+    "python.analysis.extraPaths": [
+        ".micropy\\micropy-cli\\frozen",
+        ".micropy\\BradenM-micropy-stubs-7696565\\frozen",
+        ".micropy\\micropy-cli\\stubs",
+        ".micropy\\apex"
+    ]
+}
