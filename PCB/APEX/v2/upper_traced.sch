@@ -924,6 +924,8 @@
 <part name="SDA" library="wirepad" library_urn="urn:adsk.eagle:library:412" deviceset="3,17/1,1" device="" package3d_urn="urn:adsk.eagle:package:30832/1"/>
 <part name="GND" library="wirepad" library_urn="urn:adsk.eagle:library:412" deviceset="3,17/1,1" device="" package3d_urn="urn:adsk.eagle:package:30832/1"/>
 <part name="VCC" library="wirepad" library_urn="urn:adsk.eagle:library:412" deviceset="3,17/1,1" device="" package3d_urn="urn:adsk.eagle:package:30832/1"/>
+<part name="GND2" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
+<part name="P+5" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VCC" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -1006,6 +1008,12 @@
 <attribute name="NAME" x="39.497" y="6.9342" size="1.778" layer="95"/>
 <attribute name="VALUE" x="39.497" y="1.778" size="1.778" layer="96"/>
 </instance>
+<instance part="GND2" gate="1" x="142.24" y="-7.62" smashed="yes" rot="R90">
+<attribute name="VALUE" x="144.78" y="-10.16" size="1.778" layer="96" rot="R90"/>
+</instance>
+<instance part="P+5" gate="VCC" x="142.24" y="-17.78" smashed="yes" rot="R270">
+<attribute name="VALUE" x="139.7" y="-15.24" size="1.778" layer="96"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -1039,6 +1047,11 @@
 <pinref part="GND1" gate="1" pin="GND"/>
 <wire x1="43.18" y1="10.16" x2="48.26" y2="10.16" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="GND2" gate="1" pin="GND"/>
+<pinref part="GPSMOUNT" gate="A" pin="1"/>
+<wire x1="139.7" y1="-7.62" x2="121.92" y2="-7.62" width="0.1524" layer="91"/>
+</segment>
 </net>
 <net name="VCC" class="2">
 <segment>
@@ -1070,6 +1083,13 @@
 <pinref part="VCC" gate="1" pin="P"/>
 <pinref part="P+2" gate="VCC" pin="VCC"/>
 <wire x1="43.18" y1="5.08" x2="48.26" y2="5.08" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="P+5" gate="VCC" pin="VCC"/>
+<wire x1="139.7" y1="-17.78" x2="132.08" y2="-17.78" width="0.1524" layer="91"/>
+<wire x1="132.08" y1="-17.78" x2="132.08" y2="-12.7" width="0.1524" layer="91"/>
+<pinref part="GPSMOUNT" gate="A" pin="3"/>
+<wire x1="132.08" y1="-12.7" x2="121.92" y2="-12.7" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="SCL" class="0">
