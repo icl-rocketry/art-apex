@@ -1,12 +1,14 @@
 TEST_MODE = True
 if TEST_MODE:
     from unittest.mock import Mock  # Mock objects can do anything
-    from time import sleep
-
+    
+    I2C = Mock()
     UART = Mock()
-
-    def sleep_ms(x):
-        return sleep(x/1000)
+    GPS_GtopI2C = Mock()
 else:
-    from machine import UART, Pin
-    from utime import sleep_ms
+    from busio import I2C, UART
+    from adafruit_gps import GPS_GtopI2C
+
+from time import sleep
+
+sleep_ms = lambda m: sleep(m//1000)

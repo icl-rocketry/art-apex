@@ -1,12 +1,12 @@
-from external import UART, Pin
+from external import UART
 from external import sleep_ms
 
 OWNER_NUMBER = "0"
 SEND_DELAY_MS = 50
 
 class sms:
-    def __init__(self, rx: int, tx: int):
-        self._uart = UART(1, baudrate=9600, rx=Pin(rx), tx=Pin(tx))
+    def __init__(self, rx, tx):
+        self._uart = UART(baudrate=9600, rx=rx, tx=tx)
 
         # Perform self check
         if not self._check():
