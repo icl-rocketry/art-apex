@@ -12,7 +12,6 @@ class sms:
         if not self._check():
             ...  # TODO replace this with a buzz or something
 
-        self._send("AT+CMGF=1")  # Text message mode
         self._report()
 
         # TODO indicate sim setup complete
@@ -44,6 +43,16 @@ class sms:
         self.send_msg(rep)
 
     def send_msg(self, msg: str):
+        self._send("AT+CMGF=1") # Text message mode
         self._send("AT+CMGS=\"{OWNER_NUMBER}\"")
         self._send(msg)
         self._uart.write(bytes(chr(26)))
+
+    def recv_msg(self) -> str:
+        self._send("AT+CMGF=1") # Text message mode
+        self._send("AT+CNMI=1,2,0,0,0") #Send text message over uart
+        resp = ""
+        while "+CMT" not in resp:
+            resp = self._uart.read()
+            sleep_ms(100)
+        return resp #TODO once this works, remove the headers from the response
