@@ -28,7 +28,7 @@
 <layer number="18" name="Vias" color="2" fill="1" visible="no" active="yes"/>
 <layer number="19" name="Unrouted" color="6" fill="1" visible="no" active="yes"/>
 <layer number="20" name="Dimension" color="24" fill="1" visible="no" active="yes"/>
-<layer number="21" name="tPlace" color="7" fill="1" visible="no" active="yes"/>
+<layer number="21" name="tPlace" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="23" name="tOrigins" color="15" fill="1" visible="no" active="yes"/>
 <layer number="24" name="bOrigins" color="15" fill="1" visible="no" active="yes"/>
@@ -202,7 +202,6 @@
 <rectangle x1="29.34584375" y1="43.52691875" x2="31.54606875" y2="45.5717125" layer="1"/>
 <rectangle x1="29.33155625" y1="40.738565625" x2="32.217565625" y2="42.869153125" layer="1"/>
 <rectangle x1="39.404009375" y1="40.68136875" x2="41.70424375" y2="42.92635" layer="1"/>
-<rectangle x1="39.146840625" y1="43.412525" x2="42.0185625" y2="48.016884375" layer="1"/>
 <rectangle x1="39.432584375" y1="51.091221875" x2="41.76139375" y2="53.035921875" layer="1"/>
 <rectangle x1="39.504021875" y1="53.607890625" x2="41.575659375" y2="55.624084375" layer="1"/>
 <rectangle x1="57.40584375" y1="53.55069375" x2="59.391759375" y2="55.867171875" layer="1"/>
@@ -219,11 +218,11 @@
 <rectangle x1="76.322553125" y1="50.34509375" x2="76.8882875" y2="51.254840625" layer="1"/>
 <rectangle x1="76.442559375" y1="52.336240625" x2="78.431196875" y2="54.327384375" layer="1"/>
 <rectangle x1="76.373984375" y1="54.945328125" x2="78.5512" y2="56.7819875" layer="1"/>
-<text x="48.014109375" y="44.048275" size="1.016" layer="1">BNO</text>
-<text x="65.303140625" y="55.42514375" size="1.016" layer="1">BARO</text>
-<text x="15.328221875" y="54.2103625" size="1.016" layer="1">GPS</text>
 <rectangle x1="39.375215625" y1="48.5528" x2="41.8551125" y2="50.551709375" layer="1"/>
 <rectangle x1="29.386753125" y1="46.079096875" x2="31.56079375" y2="47.948734375" layer="1"/>
+<text x="16.51" y="44.45" size="1.4224" layer="21">GPS</text>
+<text x="50.8" y="54.61" size="1.4224" layer="21">BNO</text>
+<text x="63.5" y="54.61" size="1.4224" layer="21">BARO</text>
 </plain>
 <libraries>
 <library name="microbuilder">
@@ -558,12 +557,12 @@ design rules under a new name.</description>
 <wire x1="69.85" y1="46.99" x2="71.12" y2="45.72" width="0.8128" layer="1"/>
 <wire x1="71.12" y1="45.72" x2="77.47" y2="45.72" width="0.8128" layer="1"/>
 <wire x1="58.42" y1="46.99" x2="69.85" y2="46.99" width="0.8128" layer="1"/>
-<wire x1="35.56" y1="45.72" x2="34.29" y2="45.72" width="0.8128" layer="1"/>
 <wire x1="35.56" y1="45.72" x2="40.64" y2="45.72" width="0.8128" layer="1"/>
 <via x="34.29" y="45.72" extent="1-16" drill="0.35"/>
 <contactref element="GPSMOUNT" pad="1"/>
 <wire x1="35.56" y1="45.72" x2="31.75" y2="41.91" width="0.8128" layer="1"/>
 <wire x1="31.75" y1="41.91" x2="30.48" y2="41.91" width="0.8128" layer="1"/>
+<wire x1="35.56" y1="45.72" x2="34.29" y2="45.72" width="0" layer="19" extent="1-1"/>
 <wire x1="10.16" y1="46.99" x2="30.48" y2="41.91" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="VCC" class="2">
