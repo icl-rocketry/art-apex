@@ -186,11 +186,12 @@
 </layers>
 <board>
 <plain>
-<wire x1="0" y1="0" x2="160" y2="0" width="0" layer="20"/>
-<wire x1="160" y1="0" x2="160" y2="100" width="0" layer="20"/>
-<wire x1="160" y1="100" x2="0" y2="100" width="0" layer="20"/>
-<wire x1="0" y1="100" x2="0" y2="0" width="0" layer="20"/>
-<dimension x1="7.62" y1="38.1" x2="80.01" y2="38.1" x3="43.815" y3="29.21" textsize="1.778" layer="1"/>
+<wire x1="7.62" y1="36.83" x2="79.99" y2="36.83" width="0" layer="20"/>
+<wire x1="79.99" y1="36.83" x2="79.99" y2="60.63" width="0" layer="20"/>
+<wire x1="79.99" y1="60.63" x2="7.62" y2="60.63" width="0" layer="20"/>
+<wire x1="7.62" y1="60.63" x2="7.62" y2="36.83" width="0" layer="20"/>
+<dimension x1="7.62" y1="36.83" x2="79.99" y2="36.83" x3="43.805" y3="33.02" textsize="1.778" layer="1"/>
+<dimension x1="79.99" y1="36.83" x2="79.99" y2="60.63" x3="83.82" y3="48.73" textsize="1.778" layer="1"/>
 </plain>
 <libraries>
 <library name="microbuilder">
