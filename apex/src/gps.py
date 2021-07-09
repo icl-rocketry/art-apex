@@ -7,8 +7,7 @@ from external import I2C
 from external import GPS_GtopI2C
 
 class gps:
-    def __init__(self, sda, scl, frequency):
-        i2c = I2C(sda=sda, scl=scl)
+    def __init__(self, i2c, frequency):
         self._gps = GPS_GtopI2C(i2c, debug=False)
         self._gps.send_command(b"PMTK314,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0")
         self._gps.send_command(bytes(f"PMTK220,{1000//frequency}"))
