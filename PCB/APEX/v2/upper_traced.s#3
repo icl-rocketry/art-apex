@@ -1011,7 +1011,7 @@
 <part name="+3V1" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+3V3" device=""/>
 <part name="+3V2" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+3V3" device=""/>
 <part name="+3V3" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+3V3" device=""/>
-<part name="+3V4" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+3V3" device=""/>
+<part name="P+4" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VCC" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -1079,8 +1079,8 @@
 <instance part="+3V3" gate="G$1" x="144.78" y="55.88" smashed="yes" rot="R90">
 <attribute name="VALUE" x="149.86" y="53.34" size="1.778" layer="96" rot="R180"/>
 </instance>
-<instance part="+3V4" gate="G$1" x="58.42" y="45.72" smashed="yes" rot="R90">
-<attribute name="VALUE" x="63.5" y="43.18" size="1.778" layer="96" rot="R180"/>
+<instance part="P+4" gate="VCC" x="55.88" y="45.72" smashed="yes" rot="R90">
+<attribute name="VALUE" x="58.42" y="43.18" size="1.778" layer="96" rot="R180"/>
 </instance>
 </instances>
 <busses>
@@ -1141,6 +1141,13 @@
 <pinref part="INTERCONNECT" gate="A" pin="1"/>
 <wire x1="35.56" y1="10.16" x2="48.26" y2="10.16" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="BNOCON" gate="A" pin="4"/>
+<wire x1="73.66" y1="50.8" x2="66.04" y2="50.8" width="0.1524" layer="91"/>
+<wire x1="66.04" y1="45.72" x2="66.04" y2="50.8" width="0.1524" layer="91"/>
+<pinref part="P+4" gate="VCC" pin="VCC"/>
+<wire x1="66.04" y1="45.72" x2="58.42" y2="45.72" width="0.1524" layer="91"/>
+</segment>
 </net>
 <net name="SCL" class="0">
 <segment>
@@ -1197,13 +1204,6 @@
 <pinref part="+3V1" gate="G$1" pin="+3V3"/>
 <pinref part="BNOSIG" gate="A" pin="2"/>
 <wire x1="40.64" y1="55.88" x2="7.62" y2="55.88" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="BNOCON" gate="A" pin="4"/>
-<wire x1="73.66" y1="50.8" x2="66.04" y2="50.8" width="0.1524" layer="91"/>
-<pinref part="+3V4" gate="G$1" pin="+3V3"/>
-<wire x1="60.96" y1="45.72" x2="66.04" y2="45.72" width="0.1524" layer="91"/>
-<wire x1="66.04" y1="45.72" x2="66.04" y2="50.8" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="+3V2" gate="G$1" pin="+3V3"/>
