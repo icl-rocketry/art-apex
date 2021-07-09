@@ -1,6 +1,5 @@
 from external import (
     millis,
-    I2C,
     BNO08X_I2C,
     DPS310,
     Rate,
@@ -21,10 +20,7 @@ class sensors:
     _start = millis()
 
     # All sensors will share the same i2c bus
-    def __init__(self, sda, scl):
-        # arbitrary number - 10 seconds
-        i2c = I2C(sda=sda, scl=scl, timeout=10000)
-
+    def __init__(self, i2c):
         # Initialise barometer - TODO tweak the rate and samplecounts
         self._dps310 = DPS310(i2c)
         self._dps310.reset()
