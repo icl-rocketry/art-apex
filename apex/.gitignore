@@ -145,3 +145,7 @@ dmypy.json
 .micropy/
 !micropy.json
 !src/lib
+
+#Adafruit stuff
+Adafruit_CircuitPython_BNO08x/
+adafruit-circuitpython-bundle-6.x-mpy-20210707/
