@@ -8,23 +8,6 @@ import adafruit_gps
 from adafruit_bno08x import BNO_REPORT_ACCELEROMETER, BNO_REPORT_GYROSCOPE, BNO_REPORT_MAGNETOMETER, BNO_REPORT_ROTATION_VECTOR
 from adafruit_bno08x.i2c import BNO08X_I2C
 
-# initialise i2c
-i2c = busio.I2C(scl=board.GP27, sda=board.GP26)  # uses board.SCL and board.SDA
-i2c.try_lock()
-i2c.scan()
-#initialise boards
-dps310 = adafruit_dps310.DPS310(i2c)
-
-bno = BNO08X_I2C(i2c)
-bno.enable_feature(BNO_REPORT_ACCELEROMETER)
-bno.enable_feature(BNO_REPORT_GYROSCOPE)
-bno.enable_feature(BNO_REPORT_MAGNETOMETER)
-bno.enable_feature(BNO_REPORT_ROTATION_VECTOR)
-
-gps = adafruit_gps.GPS_GtopI2C(i2c)
-gps.send_command(b"PMTK314,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0")
-gps.send_command(b"PMTK220,1000")
-
 
 rled = pwmio.PWMOut(board.LED_R, frequency=1000)
 gled = pwmio.PWMOut(board.LED_G, frequency=1000)
@@ -38,7 +21,7 @@ bduty = 65535
 rled.duty_cycle = rduty
 gled.duty_cycle = gduty
 bled.duty_cycle = bduty
-f = 0.01
+f = 0.1
 
 def LED(r,g,b):
     rduty = int(65535 -(65535 * r/255))
@@ -48,23 +31,66 @@ def LED(r,g,b):
     gled.duty_cycle = gduty
     bled.duty_cycle = bduty
 
+
+# initialise i2c
+print("Initialising I2C")
+LED(255, 255, 255)
+i2c = busio.I2C(scl=board.GP27, sda=board.GP26, frequency=10000)  # uses board.SCL and board.SDA
+time.sleep(2)
+
+#initialise boards
+print("Initialising BARO")
+LED(255, 0, 0)
+dps310 = adafruit_dps310.DPS310(i2c)
+time.sleep(2)
+
+print("Initialising GPS")
+LED(0, 0, 255)
+gps = adafruit_gps.GPS_GtopI2C(i2c)
+time.sleep(1)
+gps.send_command(b"PMTK314,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0")
+time.sleep(1)
+gps.send_command(b"PMTK220,1000")
+time.sleep(1)
+
+# print("Initialising BNO")
+# LED(0, 20, 0)
+# bno = BNO08X_I2C(i2c)
+# time.sleep(1)
+# print("Enabling Acc")
+# LED(0, 40, 0)
+# bno.enable_feature(BNO_REPORT_ACCELEROMETER)
+# time.sleep(1)
+# print("Enabling Gyro")
+# LED(0, 80, 0)
+# bno.enable_feature(BNO_REPORT_GYROSCOPE)
+# time.sleep(1)
+# print("Enabling Magnet")
+# LED(0, 160, 0)
+# bno.enable_feature(BNO_REPORT_MAGNETOMETER)
+# time.sleep(1)
+# print("Enabling Rotation")
+# LED(0, 255, 0)
+# bno.enable_feature(BNO_REPORT_ROTATION_VECTOR)
+# time.sleep(1)
+
 last_print = time.monotonic()
+gps.update()
 
 while True:
     print("Temperature = %.2f *C" % dps310.temperature)
     print("Pressure = %.5f Pa" % (dps310.pressure*100))
     print("")
 
-    print("Acceleration:")
-    accel_x, accel_y, accel_z = bno.acceleration  # pylint:disable=no-member
-    print("X: %0.6f  Y: %0.6f Z: %0.6f  m/s^2" % (accel_x, accel_y, accel_z))
+    # print("Acceleration:")
+    # accel_x, accel_y, accel_z = bno.acceleration  # pylint:disable=no-member
+    # print("X: %0.6f  Y: %0.6f Z: %0.6f  m/s^2" % (accel_x, accel_y, accel_z))
 
-    print("Rotation Vector Quaternion:")
-    quat_i, quat_j, quat_k, quat_real = bno.quaternion  # pylint:disable=no-member
-    print("I: %0.6f  J: %0.6f K: %0.6f  Real: %0.6f" % (quat_i, quat_j, quat_k, quat_real))
-    print("")
+    # print("Rotation Vector Quaternion:")
+    # quat_i, quat_j, quat_k, quat_real = bno.quaternion  # pylint:disable=no-member
+    # print("I: %0.6f  J: %0.6f K: %0.6f  Real: %0.6f" % (quat_i, quat_j, quat_k, quat_real))
+    # print("")
 
-    gps.update()
     current = time.monotonic()
     if current - last_print >= 1.0:
         last_print = current
@@ -103,12 +129,21 @@ while True:
         if gps.height_geoid is not None:
             print("Height geo ID: {} meters".format(gps.height_geoid))
 
+    # for i in range(255):
+    #     r = sin(f*i)*127 + 128
+    #     g = sin((f*i)+2)*127 + 128
+    #     b = sin((f*i)+4)*127 + 128
+    #     LED(r, g, b)
+    #     #print(r, g, b)
+    #     time.sleep(0.01)
 
-    for i in range(800):
-        r = sin(f*i)*127 + 128
-        g = sin((f*i)+2)*127 + 128
-        b = sin((f*i)+4)*127 + 128
-        LED(r, g, b)
-        time.sleep(0.001)
-
+    for j in range(0, 250, 50):
+        gps.update()
+        for i in range(j, j+50):
+            r = sin(f*i)*127 + 128
+            g = sin((f*i)+2)*127 + 128
+            b = sin((f*i)+4)*127 + 128
+            LED(r, g, b)
+            #print(r, g, b)
+            time.sleep(0.005)
     #time.sleep(1.0)
