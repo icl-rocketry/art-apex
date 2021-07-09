@@ -7,7 +7,7 @@ import adafruit_dps310
 import adafruit_gps
 from adafruit_bno08x import BNO_REPORT_ACCELEROMETER, BNO_REPORT_GYROSCOPE, BNO_REPORT_MAGNETOMETER, BNO_REPORT_ROTATION_VECTOR
 from adafruit_bno08x.i2c import BNO08X_I2C
-
+import rtc
 
 rled = pwmio.PWMOut(board.LED_R, frequency=1000)
 gled = pwmio.PWMOut(board.LED_G, frequency=1000)
@@ -52,6 +52,19 @@ gps.send_command(b"PMTK314,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0")
 time.sleep(1)
 gps.send_command(b"PMTK220,1000")
 time.sleep(1)
+print("Set GPS as time source")
+rtc.set_time_source(gps)
+the_rtc = rtc.RTC()
+
+def _format_datetime(datetime):
+    return "{:02}/{:02}/{} {:02}:{:02}:{:02}".format(
+        datetime.tm_mon,
+        datetime.tm_mday,
+        datetime.tm_year,
+        datetime.tm_hour,
+        datetime.tm_min,
+        datetime.tm_sec,
+    )
 
 # print("Initialising BNO")
 # LED(0, 20, 0)
@@ -94,9 +107,24 @@ while True:
     current = time.monotonic()
     if current - last_print >= 1.0:
         last_print = current
+        
         if not gps.has_fix:
             # Try again if we don't have a fix yet.
             print("Waiting for fix...")
+            if not gps.timestamp_utc:
+                print("No time data from GPS yet")
+                print("RTC timestamp: {}".format(_format_datetime(the_rtc.datetime)))
+                continue
+            # Time & date from GPS informations
+            print("Fix timestamp: {}".format(_format_datetime(gps.timestamp_utc)))
+
+            # Time & date from internal RTC
+            print("RTC timestamp: {}".format(_format_datetime(the_rtc.datetime)))
+
+            # Time & date from time.localtime() function
+            local_time = time.localtime()
+
+            print("Local time: {}".format(_format_datetime(local_time)))
             continue
         # We have a fix! (gps.has_fix is true)
         # Print out details about the fix like location, date, etc.
