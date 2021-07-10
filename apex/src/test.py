@@ -9,10 +9,12 @@ from adafruit_bno08x import BNO_REPORT_ACCELEROMETER, BNO_REPORT_GYROSCOPE, BNO_
 from adafruit_bno08x.i2c import BNO08X_I2C
 import rtc
 
-rled = pwmio.PWMOut(board.LED_R, frequency=1000)
-gled = pwmio.PWMOut(board.LED_G, frequency=1000)
-bled = pwmio.PWMOut(board.LED_B, frequency=1000)
+rled = pwmio.PWMOut(board.LED_R, frequency=440)
+gled = pwmio.PWMOut(board.LED_G, frequency=440)
+bled = pwmio.PWMOut(board.LED_B, frequency=440)
 
+# speaker = pwmio.PWMOut(board.GP7, frequency = 440)
+# speaker.duty_cycle = 65535
 
 # Turn off
 rduty = 65535
@@ -35,7 +37,7 @@ def LED(r,g,b):
 # initialise i2c
 print("Initialising I2C")
 LED(255, 255, 255)
-i2c = busio.I2C(scl=board.GP27, sda=board.GP26, frequency=10000)  # uses board.SCL and board.SDA
+i2c = busio.I2C(scl=board.GP27, sda=board.GP26, frequency=100000, timeout=100000)  # uses board.SCL and board.SDA
 time.sleep(2)
 
 #initialise boards
@@ -52,9 +54,9 @@ gps.send_command(b"PMTK314,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0")
 time.sleep(1)
 gps.send_command(b"PMTK220,1000")
 time.sleep(1)
-print("Set GPS as time source")
-rtc.set_time_source(gps)
-the_rtc = rtc.RTC()
+# print("Set GPS as time source")
+# rtc.set_time_source(gps)
+# the_rtc = rtc.RTC()
 
 def _format_datetime(datetime):
     return "{:02}/{:02}/{} {:02}:{:02}:{:02}".format(
@@ -66,26 +68,26 @@ def _format_datetime(datetime):
         datetime.tm_sec,
     )
 
-# print("Initialising BNO")
-# LED(0, 20, 0)
-# bno = BNO08X_I2C(i2c)
-# time.sleep(1)
-# print("Enabling Acc")
-# LED(0, 40, 0)
-# bno.enable_feature(BNO_REPORT_ACCELEROMETER)
-# time.sleep(1)
-# print("Enabling Gyro")
-# LED(0, 80, 0)
-# bno.enable_feature(BNO_REPORT_GYROSCOPE)
-# time.sleep(1)
-# print("Enabling Magnet")
-# LED(0, 160, 0)
-# bno.enable_feature(BNO_REPORT_MAGNETOMETER)
-# time.sleep(1)
-# print("Enabling Rotation")
-# LED(0, 255, 0)
-# bno.enable_feature(BNO_REPORT_ROTATION_VECTOR)
-# time.sleep(1)
+print("Initialising BNO")
+LED(0, 20, 0)
+bno = BNO08X_I2C(i2c)
+time.sleep(1)
+print("Enabling Acc")
+LED(0, 40, 0)
+bno.enable_feature(BNO_REPORT_ACCELEROMETER)
+time.sleep(1)
+print("Enabling Gyro")
+LED(0, 80, 0)
+bno.enable_feature(BNO_REPORT_GYROSCOPE)
+time.sleep(1)
+print("Enabling Magnet")
+LED(0, 160, 0)
+bno.enable_feature(BNO_REPORT_MAGNETOMETER)
+time.sleep(1)
+print("Enabling Rotation")
+LED(0, 255, 0)
+bno.enable_feature(BNO_REPORT_ROTATION_VECTOR)
+time.sleep(1)
 
 last_print = time.monotonic()
 gps.update()
@@ -95,14 +97,14 @@ while True:
     print("Pressure = %.5f Pa" % (dps310.pressure*100))
     print("")
 
-    # print("Acceleration:")
-    # accel_x, accel_y, accel_z = bno.acceleration  # pylint:disable=no-member
-    # print("X: %0.6f  Y: %0.6f Z: %0.6f  m/s^2" % (accel_x, accel_y, accel_z))
+    print("Acceleration:")
+    accel_x, accel_y, accel_z = bno.acceleration  # pylint:disable=no-member
+    print("X: %0.6f  Y: %0.6f Z: %0.6f  m/s^2" % (accel_x, accel_y, accel_z))
 
-    # print("Rotation Vector Quaternion:")
-    # quat_i, quat_j, quat_k, quat_real = bno.quaternion  # pylint:disable=no-member
-    # print("I: %0.6f  J: %0.6f K: %0.6f  Real: %0.6f" % (quat_i, quat_j, quat_k, quat_real))
-    # print("")
+    print("Rotation Vector Quaternion:")
+    quat_i, quat_j, quat_k, quat_real = bno.quaternion  # pylint:disable=no-member
+    print("I: %0.6f  J: %0.6f K: %0.6f  Real: %0.6f" % (quat_i, quat_j, quat_k, quat_real))
+    print("")
 
     current = time.monotonic()
     if current - last_print >= 1.0:
@@ -111,20 +113,20 @@ while True:
         if not gps.has_fix:
             # Try again if we don't have a fix yet.
             print("Waiting for fix...")
-            if not gps.timestamp_utc:
-                print("No time data from GPS yet")
-                print("RTC timestamp: {}".format(_format_datetime(the_rtc.datetime)))
-                continue
-            # Time & date from GPS informations
-            print("Fix timestamp: {}".format(_format_datetime(gps.timestamp_utc)))
+            # if not gps.timestamp_utc:
+            #     print("No time data from GPS yet")
+            #     print("RTC timestamp: {}".format(_format_datetime(the_rtc.datetime)))
+            #     continue
+            # # Time & date from GPS informations
+            # print("Fix timestamp: {}".format(_format_datetime(gps.timestamp_utc)))
 
-            # Time & date from internal RTC
-            print("RTC timestamp: {}".format(_format_datetime(the_rtc.datetime)))
+            # # Time & date from internal RTC
+            # print("RTC timestamp: {}".format(_format_datetime(the_rtc.datetime)))
 
-            # Time & date from time.localtime() function
-            local_time = time.localtime()
+            # # Time & date from time.localtime() function
+            # local_time = time.localtime()
 
-            print("Local time: {}".format(_format_datetime(local_time)))
+            # print("Local time: {}".format(_format_datetime(local_time)))
             continue
         # We have a fix! (gps.has_fix is true)
         # Print out details about the fix like location, date, etc.
