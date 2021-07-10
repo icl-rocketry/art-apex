@@ -5,17 +5,22 @@
 #                 It also plays sounds over the speakers, in case the earlier method failed
 
 from sensors import sensors
+import board
 from gps import gps
 from sms import sms
 from external import sleep_ms
+import struct
 
 class state:
     def run(self):
         raise NotImplementedError("Not implemented")
 
+#FIXME these pins might be wrong
+i2c = I2C(sda=board.GP2, scl=board.GP3, timeout=10000)
+
 _sms = sms(0, 0)
-_gps = gps(0, 0, 1000)
-_sensors = sensors(0, 0)
+_sensors = sensors(i2c)
+_gps = gps(i2c, 1000)
 class preflight(state):
     def run(self):
         while "launch" not in _sms.recv_msg():
@@ -41,7 +46,8 @@ class flight(state):
         while i < self._flight_time:
             i += 1
             data = _sensors.get()
-            self._storage.write(data)
+            for reading in data:
+                self._storage.write(struct.pack("f", reading))
 
             if i % self._recordings_before_flush != 0:
                 sleep_ms(self._delay)
