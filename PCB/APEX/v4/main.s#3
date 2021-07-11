@@ -2127,29 +2127,29 @@ JST PH 2-pin thru-home side entry</description>
 <part name="GND6" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="GND7" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="GND8" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
-<part name="JP2" library="microbuilder" deviceset="HEADER-1X5" device="70MIL"/>
+<part name="AMP" library="microbuilder" deviceset="HEADER-1X5" device="70MIL"/>
 <part name="P+7" library="microbuilder" deviceset="VCC" device=""/>
 <part name="U$2" library="microbuilder" deviceset="GND" device=""/>
 <part name="U$3" library="microbuilder" deviceset="GND" device=""/>
 <part name="U$4" library="microbuilder" deviceset="3.3V" device=""/>
-<part name="JP4" library="microbuilder" deviceset="HEADER-1X6" device="70MIL"/>
+<part name="BNODAT" library="microbuilder" deviceset="HEADER-1X6" device="70MIL"/>
 <part name="P+8" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VCC" device=""/>
-<part name="JP5" library="microbuilder" deviceset="HEADER-1X6" device="70MIL"/>
+<part name="BNOCON" library="microbuilder" deviceset="HEADER-1X6" device="70MIL"/>
 <part name="U$7" library="microbuilder" deviceset="GND" device=""/>
 <part name="U$8" library="microbuilder" deviceset="3.3V" device=""/>
 <part name="P+10" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VCC" device=""/>
-<part name="JP7" library="microbuilder" deviceset="HEADER-1X7" device="70MIL"/>
+<part name="BARO" library="microbuilder" deviceset="HEADER-1X7" device="70MIL"/>
 <part name="U$13" library="microbuilder" deviceset="GND" device=""/>
 <part name="U$14" library="microbuilder" deviceset="3.3V" device=""/>
-<part name="JP10" library="microbuilder" deviceset="HEADER-1X6" device="70MIL"/>
+<part name="GPSDAT" library="microbuilder" deviceset="HEADER-1X6" device="70MIL"/>
 <part name="P+13" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VCC" device=""/>
-<part name="JP11" library="microbuilder" deviceset="HEADER-1X6" device="70MIL"/>
+<part name="GPSMOUNT" library="microbuilder" deviceset="HEADER-1X6" device="70MIL"/>
 <part name="U$15" library="microbuilder" deviceset="GND" device=""/>
 <part name="P+14" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VCC" device=""/>
-<part name="PAD1" library="wirepad" library_urn="urn:adsk.eagle:library:412" deviceset="3,17/1,3" device="" package3d_urn="urn:adsk.eagle:package:30833/1"/>
-<part name="PAD2" library="wirepad" library_urn="urn:adsk.eagle:library:412" deviceset="3,17/1,3" device="" package3d_urn="urn:adsk.eagle:package:30833/1"/>
-<part name="PAD3" library="wirepad" library_urn="urn:adsk.eagle:library:412" deviceset="3,17/1,3" device="" package3d_urn="urn:adsk.eagle:package:30833/1"/>
-<part name="PAD4" library="wirepad" library_urn="urn:adsk.eagle:library:412" deviceset="3,17/1,3" device="" package3d_urn="urn:adsk.eagle:package:30833/1"/>
+<part name="SENS-VCC" library="wirepad" library_urn="urn:adsk.eagle:library:412" deviceset="3,17/1,3" device="" package3d_urn="urn:adsk.eagle:package:30833/1"/>
+<part name="SENS-GND" library="wirepad" library_urn="urn:adsk.eagle:library:412" deviceset="3,17/1,3" device="" package3d_urn="urn:adsk.eagle:package:30833/1"/>
+<part name="SENS-SCL" library="wirepad" library_urn="urn:adsk.eagle:library:412" deviceset="3,17/1,3" device="" package3d_urn="urn:adsk.eagle:package:30833/1"/>
+<part name="SENS-SDA" library="wirepad" library_urn="urn:adsk.eagle:library:412" deviceset="3,17/1,3" device="" package3d_urn="urn:adsk.eagle:package:30833/1"/>
 <part name="P+6" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VCC" device=""/>
 <part name="GND9" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 </parts>
@@ -2255,7 +2255,7 @@ JST PH 2-pin thru-home side entry</description>
 <instance part="GND8" gate="1" x="10.16" y="60.96" smashed="yes">
 <attribute name="VALUE" x="7.62" y="58.42" size="1.778" layer="96"/>
 </instance>
-<instance part="JP2" gate="A" x="86.36" y="3.81" smashed="yes" rot="R180">
+<instance part="AMP" gate="A" x="86.36" y="3.81" smashed="yes" rot="R180">
 <attribute name="NAME" x="92.71" y="-4.445" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="92.71" y="13.97" size="1.778" layer="96" rot="R180"/>
 </instance>
@@ -2271,14 +2271,14 @@ JST PH 2-pin thru-home side entry</description>
 <instance part="U$4" gate="G$1" x="196.85" y="67.31" smashed="yes">
 <attribute name="VALUE" x="195.326" y="68.326" size="1.27" layer="96"/>
 </instance>
-<instance part="JP4" gate="A" x="214.63" y="52.07" smashed="yes">
+<instance part="BNODAT" gate="A" x="214.63" y="52.07" smashed="yes">
 <attribute name="NAME" x="208.28" y="62.865" size="1.778" layer="95"/>
 <attribute name="VALUE" x="208.28" y="41.91" size="1.778" layer="96"/>
 </instance>
 <instance part="P+8" gate="VCC" x="204.47" y="67.31" smashed="yes">
 <attribute name="VALUE" x="201.93" y="64.77" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="JP5" gate="A" x="247.65" y="52.07" smashed="yes">
+<instance part="BNOCON" gate="A" x="247.65" y="52.07" smashed="yes">
 <attribute name="NAME" x="241.3" y="62.865" size="1.778" layer="95"/>
 <attribute name="VALUE" x="241.3" y="41.91" size="1.778" layer="96"/>
 </instance>
@@ -2291,7 +2291,7 @@ JST PH 2-pin thru-home side entry</description>
 <instance part="P+10" gate="VCC" x="280.67" y="66.04" smashed="yes">
 <attribute name="VALUE" x="278.13" y="63.5" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="JP7" gate="A" x="290.83" y="50.8" smashed="yes">
+<instance part="BARO" gate="A" x="290.83" y="50.8" smashed="yes">
 <attribute name="NAME" x="284.48" y="61.595" size="1.778" layer="95"/>
 <attribute name="VALUE" x="284.48" y="38.1" size="1.778" layer="96"/>
 </instance>
@@ -2301,14 +2301,14 @@ JST PH 2-pin thru-home side entry</description>
 <instance part="U$14" gate="G$1" x="321.31" y="63.5" smashed="yes">
 <attribute name="VALUE" x="319.786" y="64.516" size="1.27" layer="96"/>
 </instance>
-<instance part="JP10" gate="A" x="339.09" y="48.26" smashed="yes">
+<instance part="GPSDAT" gate="A" x="339.09" y="48.26" smashed="yes">
 <attribute name="NAME" x="332.74" y="59.055" size="1.778" layer="95"/>
 <attribute name="VALUE" x="332.74" y="38.1" size="1.778" layer="96"/>
 </instance>
 <instance part="P+13" gate="VCC" x="328.93" y="63.5" smashed="yes">
 <attribute name="VALUE" x="326.39" y="60.96" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="JP11" gate="A" x="364.49" y="48.26" smashed="yes">
+<instance part="GPSMOUNT" gate="A" x="364.49" y="48.26" smashed="yes">
 <attribute name="NAME" x="358.14" y="59.055" size="1.778" layer="95"/>
 <attribute name="VALUE" x="358.14" y="38.1" size="1.778" layer="96"/>
 </instance>
@@ -2318,19 +2318,19 @@ JST PH 2-pin thru-home side entry</description>
 <instance part="P+14" gate="VCC" x="389.89" y="53.34" smashed="yes">
 <attribute name="VALUE" x="387.35" y="50.8" size="1.778" layer="96" rot="R90"/>
 </instance>
-<instance part="PAD1" gate="1" x="228.6" y="13.97" smashed="yes">
+<instance part="SENS-VCC" gate="1" x="228.6" y="13.97" smashed="yes">
 <attribute name="NAME" x="227.457" y="15.8242" size="1.778" layer="95"/>
 <attribute name="VALUE" x="227.457" y="10.668" size="1.778" layer="96"/>
 </instance>
-<instance part="PAD2" gate="1" x="228.6" y="7.62" smashed="yes">
+<instance part="SENS-GND" gate="1" x="228.6" y="7.62" smashed="yes">
 <attribute name="NAME" x="227.457" y="9.4742" size="1.778" layer="95"/>
 <attribute name="VALUE" x="227.457" y="4.318" size="1.778" layer="96"/>
 </instance>
-<instance part="PAD3" gate="1" x="228.6" y="1.27" smashed="yes">
+<instance part="SENS-SCL" gate="1" x="228.6" y="1.27" smashed="yes">
 <attribute name="NAME" x="227.457" y="3.1242" size="1.778" layer="95"/>
 <attribute name="VALUE" x="227.457" y="-2.032" size="1.778" layer="96"/>
 </instance>
-<instance part="PAD4" gate="1" x="228.6" y="-5.08" smashed="yes">
+<instance part="SENS-SDA" gate="1" x="228.6" y="-5.08" smashed="yes">
 <attribute name="NAME" x="227.457" y="-3.2258" size="1.778" layer="95"/>
 <attribute name="VALUE" x="227.457" y="-8.382" size="1.778" layer="96"/>
 </instance>
@@ -2346,7 +2346,7 @@ JST PH 2-pin thru-home side entry</description>
 <nets>
 <net name="VCC" class="0">
 <segment>
-<pinref part="JP2" gate="A" pin="2"/>
+<pinref part="AMP" gate="A" pin="2"/>
 <pinref part="P+7" gate="VCC" pin="VCC"/>
 <wire x1="88.9" y1="1.27" x2="104.14" y2="1.27" width="0.1524" layer="91"/>
 <wire x1="104.14" y1="1.27" x2="104.14" y2="3.81" width="0.1524" layer="91"/>
@@ -2380,9 +2380,9 @@ JST PH 2-pin thru-home side entry</description>
 <segment>
 <wire x1="212.09" y1="59.69" x2="204.47" y2="59.69" width="0.1524" layer="91"/>
 <wire x1="204.47" y1="59.69" x2="204.47" y2="63.5" width="0.1524" layer="91"/>
-<pinref part="JP4" gate="A" pin="1"/>
+<pinref part="BNODAT" gate="A" pin="1"/>
 <pinref part="P+8" gate="VCC" pin="VCC"/>
-<pinref part="JP5" gate="A" pin="4"/>
+<pinref part="BNOCON" gate="A" pin="4"/>
 <wire x1="204.47" y1="63.5" x2="204.47" y2="64.77" width="0.1524" layer="91"/>
 <wire x1="245.11" y1="52.07" x2="226.06" y2="52.07" width="0.1524" layer="91"/>
 <label x="229.87" y="52.07" size="1.778" layer="95"/>
@@ -2396,35 +2396,35 @@ JST PH 2-pin thru-home side entry</description>
 <wire x1="288.29" y1="58.42" x2="280.67" y2="58.42" width="0.1524" layer="91"/>
 <wire x1="280.67" y1="58.42" x2="280.67" y2="63.5" width="0.1524" layer="91"/>
 <pinref part="P+10" gate="VCC" pin="VCC"/>
-<pinref part="JP7" gate="A" pin="1"/>
+<pinref part="BARO" gate="A" pin="1"/>
 </segment>
 <segment>
 <wire x1="336.55" y1="55.88" x2="328.93" y2="55.88" width="0.1524" layer="91"/>
 <wire x1="328.93" y1="55.88" x2="328.93" y2="60.96" width="0.1524" layer="91"/>
-<pinref part="JP10" gate="A" pin="1"/>
+<pinref part="GPSDAT" gate="A" pin="1"/>
 <pinref part="P+13" gate="VCC" pin="VCC"/>
 </segment>
 <segment>
-<pinref part="JP11" gate="A" pin="3"/>
+<pinref part="GPSMOUNT" gate="A" pin="3"/>
 <wire x1="361.95" y1="50.8" x2="389.89" y2="50.8" width="0.1524" layer="91"/>
 <label x="369.57" y="50.8" size="1.778" layer="95"/>
 <pinref part="P+14" gate="VCC" pin="VCC"/>
 </segment>
 <segment>
-<pinref part="PAD1" gate="1" pin="P"/>
+<pinref part="SENS-VCC" gate="1" pin="P"/>
 <pinref part="P+6" gate="VCC" pin="VCC"/>
 <wire x1="231.14" y1="13.97" x2="242.57" y2="13.97" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="GND" class="0">
 <segment>
-<pinref part="JP2" gate="A" pin="1"/>
+<pinref part="AMP" gate="A" pin="1"/>
 <pinref part="U$2" gate="G$1" pin="GND"/>
 <wire x1="88.9" y1="-1.27" x2="101.6" y2="-1.27" width="0.1524" layer="91"/>
 <wire x1="101.6" y1="-1.27" x2="104.14" y2="-1.27" width="0.1524" layer="91"/>
 <wire x1="104.14" y1="-1.27" x2="104.14" y2="-3.81" width="0.1524" layer="91"/>
 <wire x1="101.6" y1="6.35" x2="88.9" y2="6.35" width="0.1524" layer="91"/>
-<pinref part="JP2" gate="A" pin="4"/>
+<pinref part="AMP" gate="A" pin="4"/>
 <label x="93.98" y="6.35" size="1.778" layer="95"/>
 <wire x1="101.6" y1="6.35" x2="101.6" y2="-1.27" width="0.1524" layer="91"/>
 <junction x="101.6" y="-1.27"/>
@@ -2478,12 +2478,12 @@ JST PH 2-pin thru-home side entry</description>
 <segment>
 <pinref part="U$3" gate="G$1" pin="GND"/>
 <wire x1="212.09" y1="54.61" x2="222.25" y2="54.61" width="0.1524" layer="91"/>
-<pinref part="JP4" gate="A" pin="3"/>
-<pinref part="JP5" gate="A" pin="3"/>
+<pinref part="BNODAT" gate="A" pin="3"/>
+<pinref part="BNOCON" gate="A" pin="3"/>
 <wire x1="245.11" y1="54.61" x2="222.25" y2="54.61" width="0.1524" layer="91"/>
 <label x="229.87" y="54.61" size="1.778" layer="95"/>
 <junction x="222.25" y="54.61"/>
-<pinref part="JP5" gate="A" pin="2"/>
+<pinref part="BNOCON" gate="A" pin="2"/>
 <wire x1="245.11" y1="57.15" x2="222.25" y2="57.15" width="0.1524" layer="91"/>
 <label x="229.87" y="57.15" size="1.778" layer="95"/>
 <wire x1="222.25" y1="57.15" x2="222.25" y2="54.61" width="0.1524" layer="91"/>
@@ -2491,20 +2491,20 @@ JST PH 2-pin thru-home side entry</description>
 <segment>
 <pinref part="U$7" gate="G$1" pin="GND"/>
 <wire x1="288.29" y1="53.34" x2="298.45" y2="53.34" width="0.1524" layer="91"/>
-<pinref part="JP7" gate="A" pin="3"/>
+<pinref part="BARO" gate="A" pin="3"/>
 </segment>
 <segment>
 <pinref part="U$13" gate="G$1" pin="GND"/>
 <wire x1="336.55" y1="50.8" x2="346.71" y2="50.8" width="0.1524" layer="91"/>
-<pinref part="JP10" gate="A" pin="3"/>
+<pinref part="GPSDAT" gate="A" pin="3"/>
 </segment>
 <segment>
-<pinref part="JP11" gate="A" pin="1"/>
+<pinref part="GPSMOUNT" gate="A" pin="1"/>
 <wire x1="361.95" y1="55.88" x2="384.81" y2="55.88" width="0.1524" layer="91"/>
 <pinref part="U$15" gate="G$1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="PAD2" gate="1" pin="P"/>
+<pinref part="SENS-GND" gate="1" pin="P"/>
 <pinref part="GND9" gate="1" pin="GND"/>
 <wire x1="231.14" y1="7.62" x2="242.57" y2="7.62" width="0.1524" layer="91"/>
 </segment>
@@ -2512,7 +2512,7 @@ JST PH 2-pin thru-home side entry</description>
 <net name="AIN+" class="0">
 <segment>
 <wire x1="101.6" y1="8.89" x2="88.9" y2="8.89" width="0.1524" layer="91"/>
-<pinref part="JP2" gate="A" pin="5"/>
+<pinref part="AMP" gate="A" pin="5"/>
 <label x="93.98" y="8.89" size="1.778" layer="95"/>
 <wire x1="101.6" y1="8.89" x2="101.6" y2="16.51" width="0.1524" layer="91"/>
 <pinref part="A1" gate="G$1" pin="7"/>
@@ -2569,20 +2569,20 @@ JST PH 2-pin thru-home side entry</description>
 <segment>
 <wire x1="336.55" y1="45.72" x2="323.85" y2="45.72" width="0.1524" layer="91"/>
 <label x="323.85" y="45.72" size="1.778" layer="95"/>
-<pinref part="JP10" gate="A" pin="5"/>
+<pinref part="GPSDAT" gate="A" pin="5"/>
 </segment>
 <segment>
 <wire x1="212.09" y1="49.53" x2="191.77" y2="49.53" width="0.1524" layer="91"/>
 <label x="191.77" y="49.53" size="1.778" layer="95"/>
-<pinref part="JP4" gate="A" pin="5"/>
+<pinref part="BNODAT" gate="A" pin="5"/>
 </segment>
 <segment>
 <wire x1="288.29" y1="45.72" x2="275.59" y2="45.72" width="0.1524" layer="91"/>
 <label x="275.59" y="45.72" size="1.778" layer="95"/>
-<pinref part="JP7" gate="A" pin="6"/>
+<pinref part="BARO" gate="A" pin="6"/>
 </segment>
 <segment>
-<pinref part="PAD4" gate="1" pin="P"/>
+<pinref part="SENS-SDA" gate="1" pin="P"/>
 <wire x1="231.14" y1="-5.08" x2="243.84" y2="-5.08" width="0.1524" layer="91"/>
 <label x="252.73" y="-5.08" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -2603,20 +2603,20 @@ JST PH 2-pin thru-home side entry</description>
 <segment>
 <wire x1="336.55" y1="48.26" x2="323.85" y2="48.26" width="0.1524" layer="91"/>
 <label x="323.85" y="48.26" size="1.778" layer="95"/>
-<pinref part="JP10" gate="A" pin="4"/>
+<pinref part="GPSDAT" gate="A" pin="4"/>
 </segment>
 <segment>
 <wire x1="212.09" y1="52.07" x2="191.77" y2="52.07" width="0.1524" layer="91"/>
 <label x="191.77" y="52.07" size="1.778" layer="95"/>
-<pinref part="JP4" gate="A" pin="4"/>
+<pinref part="BNODAT" gate="A" pin="4"/>
 </segment>
 <segment>
 <wire x1="288.29" y1="50.8" x2="275.59" y2="50.8" width="0.1524" layer="91"/>
 <label x="275.59" y="50.8" size="1.778" layer="95"/>
-<pinref part="JP7" gate="A" pin="4"/>
+<pinref part="BARO" gate="A" pin="4"/>
 </segment>
 <segment>
-<pinref part="PAD3" gate="1" pin="P"/>
+<pinref part="SENS-SCL" gate="1" pin="P"/>
 <wire x1="231.14" y1="1.27" x2="243.84" y2="1.27" width="0.1524" layer="91"/>
 <label x="252.73" y="1.27" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -2626,34 +2626,34 @@ JST PH 2-pin thru-home side entry</description>
 <wire x1="212.09" y1="57.15" x2="196.85" y2="57.15" width="0.1524" layer="91"/>
 <wire x1="196.85" y1="57.15" x2="196.85" y2="64.77" width="0.1524" layer="91"/>
 <pinref part="U$4" gate="G$1" pin="3.3V"/>
-<pinref part="JP4" gate="A" pin="2"/>
+<pinref part="BNODAT" gate="A" pin="2"/>
 <label x="184.15" y="63.5" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="INT" class="0">
 <segment>
-<pinref part="JP4" gate="A" pin="6"/>
+<pinref part="BNODAT" gate="A" pin="6"/>
 <wire x1="212.09" y1="46.99" x2="191.77" y2="46.99" width="0.1524" layer="91"/>
 <label x="191.77" y="46.99" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="MOSI" class="0">
 <segment>
-<pinref part="JP5" gate="A" pin="5"/>
+<pinref part="BNOCON" gate="A" pin="5"/>
 <wire x1="245.11" y1="49.53" x2="229.87" y2="49.53" width="0.1524" layer="91"/>
 <label x="229.87" y="49.53" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="BOOT" class="0">
 <segment>
-<pinref part="JP5" gate="A" pin="1"/>
+<pinref part="BNOCON" gate="A" pin="1"/>
 <wire x1="245.11" y1="59.69" x2="229.87" y2="59.69" width="0.1524" layer="91"/>
 <label x="229.87" y="59.69" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="CS" class="0">
 <segment>
-<pinref part="JP5" gate="A" pin="6"/>
+<pinref part="BNOCON" gate="A" pin="6"/>
 <wire x1="245.11" y1="46.99" x2="229.87" y2="46.99" width="0.1524" layer="91"/>
 <label x="229.87" y="46.99" size="1.778" layer="95"/>
 </segment>
@@ -2663,21 +2663,21 @@ JST PH 2-pin thru-home side entry</description>
 <wire x1="288.29" y1="55.88" x2="273.05" y2="55.88" width="0.1524" layer="91"/>
 <wire x1="273.05" y1="55.88" x2="273.05" y2="63.5" width="0.1524" layer="91"/>
 <pinref part="U$8" gate="G$1" pin="3.3V"/>
-<pinref part="JP7" gate="A" pin="2"/>
+<pinref part="BARO" gate="A" pin="2"/>
 </segment>
 </net>
 <net name="SDO/ADR" class="0">
 <segment>
 <wire x1="288.29" y1="48.26" x2="275.59" y2="48.26" width="0.1524" layer="91"/>
 <label x="275.59" y="48.26" size="1.778" layer="95"/>
-<pinref part="JP7" gate="A" pin="5"/>
+<pinref part="BARO" gate="A" pin="5"/>
 </segment>
 </net>
 <net name="CS_BARO" class="0">
 <segment>
 <wire x1="288.29" y1="43.18" x2="275.59" y2="43.18" width="0.1524" layer="91"/>
 <label x="275.59" y="43.18" size="1.778" layer="95"/>
-<pinref part="JP7" gate="A" pin="7"/>
+<pinref part="BARO" gate="A" pin="7"/>
 </segment>
 </net>
 <net name="3.3V_3" class="2">
@@ -2685,40 +2685,40 @@ JST PH 2-pin thru-home side entry</description>
 <wire x1="336.55" y1="53.34" x2="321.31" y2="53.34" width="0.1524" layer="91"/>
 <wire x1="321.31" y1="53.34" x2="321.31" y2="60.96" width="0.1524" layer="91"/>
 <pinref part="U$14" gate="G$1" pin="3.3V"/>
-<pinref part="JP10" gate="A" pin="2"/>
+<pinref part="GPSDAT" gate="A" pin="2"/>
 </segment>
 </net>
 <net name="1PPS" class="0">
 <segment>
-<pinref part="JP11" gate="A" pin="2"/>
+<pinref part="GPSMOUNT" gate="A" pin="2"/>
 <wire x1="361.95" y1="53.34" x2="384.81" y2="53.34" width="0.1524" layer="91"/>
 <label x="369.57" y="53.34" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="TXO" class="0">
 <segment>
-<pinref part="JP11" gate="A" pin="5"/>
+<pinref part="GPSMOUNT" gate="A" pin="5"/>
 <wire x1="384.81" y1="45.72" x2="361.95" y2="45.72" width="0.1524" layer="91"/>
 <label x="369.57" y="45.72" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="RXI" class="0">
 <segment>
-<pinref part="JP11" gate="A" pin="4"/>
+<pinref part="GPSMOUNT" gate="A" pin="4"/>
 <wire x1="361.95" y1="48.26" x2="384.81" y2="48.26" width="0.1524" layer="91"/>
 <label x="369.57" y="48.26" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="WAKEUP" class="0">
 <segment>
-<pinref part="JP11" gate="A" pin="6"/>
+<pinref part="GPSMOUNT" gate="A" pin="6"/>
 <wire x1="361.95" y1="43.18" x2="384.81" y2="43.18" width="0.1524" layer="91"/>
 <label x="369.57" y="43.18" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="!RESET" class="0">
 <segment>
-<pinref part="JP10" gate="A" pin="6"/>
+<pinref part="GPSDAT" gate="A" pin="6"/>
 <wire x1="336.55" y1="43.18" x2="323.85" y2="43.18" width="0.1524" layer="91"/>
 <label x="323.85" y="43.18" size="1.778" layer="95"/>
 </segment>
