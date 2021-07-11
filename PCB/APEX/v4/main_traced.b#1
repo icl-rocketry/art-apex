@@ -393,6 +393,9 @@ GND
 <hole x="71.12" y="46.99" drill="1.27"/>
 <hole x="73.66" y="46.99" drill="1.27"/>
 <hole x="76.2" y="46.99" drill="1.27"/>
+<wire x1="1.27" y1="63.5" x2="16.51" y2="63.5" width="0.254" layer="20"/>
+<wire x1="16.51" y1="63.5" x2="16.51" y2="72.39" width="0.254" layer="20"/>
+<wire x1="20.447" y1="19.685" x2="8.89" y2="19.685" width="0.254" layer="20"/>
 </plain>
 <libraries>
 <library name="pimoroni-boards">
