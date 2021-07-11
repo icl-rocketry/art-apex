@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="50" unitdist="mil" unit="mil" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mil"/>
+<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.005" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="16" fill="1" visible="no" active="no"/>
@@ -28,8 +28,8 @@
 <layer number="18" name="Vias" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="19" name="Unrouted" color="6" fill="1" visible="yes" active="yes"/>
 <layer number="20" name="Dimension" color="24" fill="1" visible="yes" active="yes"/>
-<layer number="21" name="tPlace" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="21" name="tPlace" color="16" fill="1" visible="yes" active="yes"/>
+<layer number="22" name="bPlace" color="14" fill="1" visible="yes" active="yes"/>
 <layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="yes"/>
 <layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="yes"/>
 <layer number="25" name="tNames" color="7" fill="1" visible="yes" active="yes"/>
@@ -52,13 +52,13 @@
 <layer number="42" name="bRestrict" color="1" fill="10" visible="yes" active="yes"/>
 <layer number="43" name="vRestrict" color="2" fill="10" visible="no" active="yes"/>
 <layer number="44" name="Drills" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="45" name="Holes" color="7" fill="1" visible="no" active="yes"/>
-<layer number="46" name="Milling" color="3" fill="1" visible="yes" active="yes"/>
+<layer number="45" name="Holes" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="46" name="Milling" color="3" fill="1" visible="no" active="yes"/>
 <layer number="47" name="Measures" color="7" fill="1" visible="no" active="yes"/>
 <layer number="48" name="Document" color="7" fill="1" visible="no" active="yes"/>
 <layer number="49" name="Reference" color="7" fill="1" visible="no" active="yes"/>
 <layer number="50" name="dxf" color="7" fill="1" visible="no" active="no"/>
-<layer number="51" name="tDocu" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="51" name="tDocu" color="6" fill="1" visible="yes" active="yes"/>
 <layer number="52" name="bDocu" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="53" name="tGND_GNDA" color="7" fill="9" visible="no" active="no"/>
 <layer number="54" name="bGND_GNDA" color="1" fill="9" visible="no" active="no"/>
@@ -228,14 +228,12 @@
 <text x="66.04" y="63.5" size="0.762" layer="25" rot="R90">GND</text>
 <text x="65.278" y="61.976" size="0.762" layer="25" rot="R270">SCL</text>
 <text x="65.278" y="58.293" size="0.762" layer="25" rot="R270">SDA</text>
-<rectangle x1="71.12" y1="59.69" x2="76.2" y2="63.5" layer="17"/>
-<rectangle x1="71.12" y1="55.88" x2="76.2" y2="58.42" layer="17"/>
 <text x="70.358" y="70.358" size="0.762" layer="25">SIM Isolation</text>
 <text x="74.676" y="64.262" size="0.762" layer="25" rot="R180">GND</text>
 <text x="74.549" y="55.372" size="0.762" layer="25" rot="R180">VCC</text>
 <text x="26.67" y="55.88" size="1.524" layer="25">SIM800L</text>
 <text x="7.62" y="58.42" size="1.524" layer="25">AMP</text>
-<text x="15.24" y="38.1" size="1.524" layer="25" rot="R180">GPS</text>
+<text x="15.24" y="39.37" size="1.524" layer="25" rot="R180">GPS</text>
 <text x="40.64" y="29.21" size="1.524" layer="25" rot="R90">BNO085</text>
 <text x="63.5" y="30.48" size="1.524" layer="25" rot="R90">BARO</text>
 <text x="75.184" y="44.958" size="1.016" layer="25" rot="R180">VCC</text>
@@ -303,16 +301,70 @@ SCL
 SDO
 SDA
 CS</text>
-<rectangle x1="1.27" y1="62.357" x2="17.526" y2="72.39" layer="46"/>
-<rectangle x1="3.81" y1="46.609" x2="76.2" y2="47.371" layer="46"/>
-<rectangle x1="6.35" y1="39.37" x2="21.59" y2="46.99" layer="46"/>
-<rectangle x1="33.02" y1="43.18" x2="45.72" y2="46.99" layer="46"/>
-<rectangle x1="36.83" y1="39.37" x2="41.91" y2="43.18" layer="46"/>
-<rectangle x1="57.15" y1="41.91" x2="69.85" y2="46.99" layer="46"/>
-<rectangle x1="62.23" y1="40.64" x2="69.85" y2="41.91" layer="46"/>
-<rectangle x1="6.35" y1="19.812" x2="21.59" y2="28.575" layer="46"/>
-<rectangle x1="33.02" y1="19.812" x2="41.91" y2="27.94" layer="46"/>
-<rectangle x1="57.15" y1="19.812" x2="66.04" y2="26.67" layer="46"/>
+<text x="21.59" y="29.21" size="1.016" layer="26" rot="MR0">VCC
+3V3
+GND
+SCL
+SDA
+RST</text>
+<text x="11.43" y="29.21" size="1.016" layer="26" rot="MR0">GND
+1PPS
+VCC
+RXI
+TXO
+WAKEUP</text>
+<text x="11.43" y="39.37" size="1.524" layer="26" rot="MR180">GPS</text>
+<text x="33.02" y="36.83" size="1.016" layer="26" rot="MR180">VCC
+3V3
+GND
+SCL
+SDA
+INT</text>
+<text x="39.37" y="29.21" size="1.524" layer="26" rot="MR90">BNO085</text>
+<text x="45.72" y="29.21" size="1.016" layer="26" rot="MR0">BOOT
+P0
+P1
+RST
+MOSI
+CS</text>
+<text x="57.15" y="27.94" size="1.016" layer="25">VCC
+3V3
+GND
+SCL
+SDO
+SDA
+CS</text>
+<text x="59.69" y="27.94" size="1.016" layer="26" rot="MR0">VCC
+3V3
+GND
+SCL
+SDO
+SDA
+CS</text>
+<text x="63.5" y="30.48" size="1.524" layer="25" rot="R90">BARO</text>
+<text x="62.23" y="30.48" size="1.524" layer="26" rot="MR90">BARO</text>
+<text x="49.403" y="56.134" size="1.016" layer="26" rot="MR180">RX
+TX
+Unused
+AIN+</text>
+<text x="56.007" y="55.245" size="1.016" layer="26" rot="MR180">SCL
+SDA
+GND</text>
+<text x="57.785" y="63.5" size="1.016" layer="26" rot="MR0">Tiny 2040</text>
+<text x="56.261" y="68.072" size="1.016" layer="26" rot="MR180">VCC
+GND
+</text>
+<text x="66.04" y="67.564" size="0.762" layer="26" rot="MR90">VCC</text>
+<text x="65.278" y="63.5" size="0.762" layer="26" rot="MR90">GND</text>
+<text x="65.278" y="61.976" size="0.762" layer="25" rot="R270">SCL</text>
+<text x="66.04" y="61.976" size="0.762" layer="26" rot="MR270">SCL</text>
+<text x="66.04" y="58.293" size="0.762" layer="26" rot="MR270">SDA</text>
+<text x="72.644" y="64.262" size="0.762" layer="26" rot="MR180">GND</text>
+<text x="75.438" y="52.451" size="0.762" layer="26" rot="MR90">VCC</text>
+<text x="72.136" y="44.958" size="1.016" layer="26" rot="MR180">VCC</text>
+<text x="72.136" y="38.608" size="1.016" layer="26" rot="MR180">GND</text>
+<text x="72.263" y="32.131" size="1.016" layer="26" rot="MR180">SCL</text>
+<text x="72.136" y="25.908" size="1.016" layer="26" rot="MR180">SDA</text>
 </plain>
 <libraries>
 <library name="pimoroni-boards">
@@ -931,15 +983,12 @@ Everything else you will find on https://aisler.net/help</description>
 <attribute name="VALUE" x="15.494" y="52.959" size="0.4064" layer="27" ratio="10" rot="R180"/>
 </element>
 <element name="BNODAT" library="microbuilder" package="1X06_ROUND_70" value="" x="30.861" y="33.02" smashed="yes" rot="R270">
-<attribute name="NAME" x="32.6898" y="35.6362" size="0.8128" layer="25" ratio="18" rot="R270"/>
 <attribute name="VALUE" x="28.956" y="40.64" size="0.4064" layer="27" ratio="10" rot="R270"/>
 </element>
 <element name="BNOCON" library="microbuilder" package="1X06_ROUND_70" value="" x="48.641" y="33.02" smashed="yes" rot="R270">
-<attribute name="NAME" x="45.3898" y="34.3662" size="0.8128" layer="25" ratio="18" rot="R270"/>
 <attribute name="VALUE" x="45.466" y="40.64" size="0.4064" layer="27" ratio="10" rot="R270"/>
 </element>
 <element name="BARO" library="microbuilder" package="1X07_ROUND_70" value="" x="54.991" y="33.02" smashed="yes" rot="R270">
-<attribute name="NAME" x="56.8198" y="33.0962" size="0.8128" layer="25" ratio="18" rot="R270"/>
 <attribute name="VALUE" x="51.816" y="41.91" size="0.4064" layer="27" ratio="10" rot="R270"/>
 </element>
 <element name="GPSDAT" library="microbuilder" package="1X06_ROUND_70" value="" x="24.511" y="33.02" smashed="yes" rot="MR270">
@@ -1017,7 +1066,7 @@ Everything else you will find on https://aisler.net/help</description>
 <wire x1="68.58" y1="68.58" x2="66.59" y2="97.79" width="0" layer="19" extent="16-16"/>
 <wire x1="73.66" y1="41.91" x2="68.58" y2="51.07" width="0" layer="19" extent="1-1"/>
 <wire x1="48.641" y1="31.75" x2="54.991" y2="40.64" width="0" layer="19" extent="1-1"/>
-<wire x1="4.191" y1="34.29" x2="11.684" y2="51.054" width="0" layer="19" extent="1-1"/>
+<wire x1="30.48" y1="66.04" x2="4.191" y2="34.29" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="GND">
 <contactref element="AMP" pad="1"/>
@@ -1229,79 +1278,24 @@ Everything else you will find on https://aisler.net/help</description>
 <mfgpreviewcolor name="substratecolor" color="0xFF786E46"/>
 </mfgpreviewcolors>
 <errors>
-<approved hash="21,19,215e20a0235cdd5c"/>
-<approved hash="21,19,d834d9cadbb625b6"/>
-<approved hash="21,19,47e3441f4460b863"/>
-<approved hash="21,19,dcafdea9dea9dcaf"/>
-<approved hash="21,19,4d574f554f554d57"/>
-<approved hash="21,19,9f2963289d289f57"/>
 <approved hash="21,19,23682316216adf6a"/>
 <approved hash="21,19,422bbc2bbfd7be29"/>
 <approved hash="21,19,8f7d8c818cff70fd"/>
-<approved hash="21,19,7a1c79e0799f859c"/>
-<approved hash="5,16,c6ded7d363128698"/>
-<approved hash="5,16,7ca0d853626f3e37"/>
-<approved hash="4,1,00d97f14856ff1b2"/>
-<approved hash="4,1,f517a3e8a2544165"/>
-<approved hash="4,1,4032ba3bd3ac21b1"/>
-<approved hash="4,1,3795acedd225107f"/>
-<approved hash="4,1,6e8397ece8fd1a82"/>
-<approved hash="4,1,594cacf1fbe6096f"/>
-<approved hash="4,1,55a9afe6c6db35d4"/>
-<approved hash="4,1,329fc880de11223e"/>
-<approved hash="4,1,e1390e601b56a60d"/>
-<approved hash="4,1,e15d78b4aa5b13c0"/>
-<approved hash="4,1,41512f58df16f636"/>
-<approved hash="4,1,3bf35042ab49c9b8"/>
-<approved hash="4,1,37166cf99674caaf"/>
-<approved hash="4,1,5cc547a8b383aede"/>
-<approved hash="4,1,2e684427be3edc65"/>
-<approved hash="4,1,df9d54b8ce23fbe8"/>
-<approved hash="4,16,00d97f14856ff1b2"/>
-<approved hash="4,16,f517a3e8a2544165"/>
-<approved hash="4,16,4032ba3bd3ac21b1"/>
-<approved hash="4,16,3795acedd225107f"/>
-<approved hash="4,16,6e8397ece8fd1a82"/>
-<approved hash="4,16,594cacf1fbe6096f"/>
-<approved hash="4,16,55a9afe6c6db35d4"/>
-<approved hash="4,16,329fc880de11223e"/>
-<approved hash="4,16,e1390e601b56a60d"/>
-<approved hash="4,16,e15d78b4aa5b13c0"/>
-<approved hash="4,16,41512f58df16f636"/>
-<approved hash="4,16,3bf35042ab49c9b8"/>
-<approved hash="4,16,37166cf99674caaf"/>
-<approved hash="4,16,5cc547a8b383aede"/>
-<approved hash="4,16,2e684427be3edc65"/>
-<approved hash="4,16,df9d54b8ce23fbe8"/>
-<approved hash="4,16,b33da28ca28eb33f"/>
-<approved hash="21,19,27b527cbdbca25c9"/>
-<approved hash="19,1,38ea0d87caba057d"/>
-<approved hash="19,1,24c818e025ea7635"/>
-<approved hash="19,16,ddfdd714b0be5fe2"/>
-<approved hash="19,16,dd958d33eb975c6a"/>
-<approved hash="19,16,811e8c4cea53596a"/>
-<approved hash="19,16,69fab1315cf200c2"/>
-<approved hash="19,16,62d6d19f3fec786a"/>
-<approved hash="19,16,e40aabf0c8c8f405"/>
-<approved hash="19,16,5cf7a7d0c4735e05"/>
-<approved hash="19,16,dd96dec6de237f6e"/>
-<approved hash="19,16,2e8cdbc4c5e9337a"/>
-<approved hash="19,16,f24073f2563269eb"/>
-<approved hash="19,16,653f0272ee9078ca"/>
-<approved hash="19,16,653ac07c2c8f7cd4"/>
-<approved hash="19,16,709ea05e4f4d7a38"/>
-<approved hash="19,16,6f96d1223e5144d8"/>
-<approved hash="19,16,68bae2350ec66312"/>
-<approved hash="19,16,999b03101d128ccd"/>
-<approved hash="19,16,b8fdba1fbe2b3832"/>
-<approved hash="19,16,c509ba66ce8444f6"/>
-<approved hash="19,16,c8d9887af021bbd6"/>
-<approved hash="19,16,fd2599b8dffa7f5a"/>
-<approved hash="19,16,c101a861dfd1427e"/>
-<approved hash="19,16,c5007864089d44ee"/>
-<approved hash="19,16,145a7026546381e8"/>
-<approved hash="19,16,ff21702454346734"/>
-<approved hash="19,16,8ecf9510f3dd52ff"/>
+<approved hash="21,19,f030f0cef2b10cb2"/>
+<approved hash="21,19,833f7d3f7f437f3d"/>
+<approved hash="21,19,a946ab44ab44a946"/>
+<approved hash="21,19,ddbd21bf204122be"/>
+<approved hash="21,19,887b8a798a79887b"/>
+<approved hash="21,19,2d4a2f482f482d4a"/>
+<approved hash="21,19,e54de74fe74fe54d"/>
+<approved hash="21,19,8269806b816b8369"/>
+<approved hash="21,19,2b81297d2902d501"/>
+<approved hash="21,19,30aa32a833a831aa"/>
+<approved hash="21,19,167e148214fde8fe"/>
+<approved hash="21,19,15d617d416d414d6"/>
+<approved hash="21,19,dc4fde4dde4ddc4f"/>
+<approved hash="21,19,3ca73b2739263925"/>
+<approved hash="21,19,9b0c990e990e9b0c"/>
 </errors>
 </board>
 </drawing>
