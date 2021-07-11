@@ -2365,6 +2365,12 @@ JST PH 2-pin thru-home side entry</description>
 <wire x1="72.39" y1="65.96" x2="72.39" y2="76.2" width="0.1524" layer="91"/>
 <label x="76.2" y="77.47" size="1.27" layer="95" xref="yes"/>
 </segment>
+<segment>
+<pinref part="U$1" gate="G$1" pin="RST"/>
+<wire x1="79.79" y1="62.96" x2="68.58" y2="62.96" width="0.1524" layer="91"/>
+<wire x1="68.58" y1="62.96" x2="68.58" y2="73.66" width="0.1524" layer="91"/>
+<label x="66.04" y="73.66" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
 </net>
 <net name="TX" class="0">
 <segment>
