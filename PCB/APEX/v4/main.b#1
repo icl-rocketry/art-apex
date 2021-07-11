@@ -654,11 +654,11 @@ design rules under a new name.</description>
 <param name="rvViaInner" value="0.25"/>
 <param name="rvMicroViaOuter" value="0.25"/>
 <param name="rvMicroViaInner" value="0.25"/>
-<param name="rlMinPadTop" value="17mil"/>
+<param name="rlMinPadTop" value="18mil"/>
 <param name="rlMaxPadTop" value="50mil"/>
 <param name="rlMinPadInner" value="10mil"/>
 <param name="rlMaxPadInner" value="50mil"/>
-<param name="rlMinPadBottom" value="17mil"/>
+<param name="rlMinPadBottom" value="18mil"/>
 <param name="rlMaxPadBottom" value="50mil"/>
 <param name="rlMinViaOuter" value="8mil"/>
 <param name="rlMaxViaOuter" value="20mil"/>

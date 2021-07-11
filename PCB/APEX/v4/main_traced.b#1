@@ -921,15 +921,12 @@ Everything else you will find on https://aisler.net/help</description>
 <attribute name="VALUE" x="15.494" y="52.959" size="0.4064" layer="27" ratio="10" rot="R180"/>
 </element>
 <element name="BNODAT" library="microbuilder" package="1X06_ROUND_70" value="" x="30.861" y="33.02" smashed="yes" rot="R270">
-<attribute name="NAME" x="32.6898" y="35.6362" size="0.8128" layer="25" ratio="18" rot="R270"/>
 <attribute name="VALUE" x="28.956" y="40.64" size="0.4064" layer="27" ratio="10" rot="R270"/>
 </element>
 <element name="BNOCON" library="microbuilder" package="1X06_ROUND_70" value="" x="48.641" y="33.02" smashed="yes" rot="R270">
-<attribute name="NAME" x="45.3898" y="34.3662" size="0.8128" layer="25" ratio="18" rot="R270"/>
 <attribute name="VALUE" x="45.466" y="40.64" size="0.4064" layer="27" ratio="10" rot="R270"/>
 </element>
 <element name="BARO" library="microbuilder" package="1X07_ROUND_70" value="" x="54.991" y="33.02" smashed="yes" rot="R270">
-<attribute name="NAME" x="56.8198" y="33.0962" size="0.8128" layer="25" ratio="18" rot="R270"/>
 <attribute name="VALUE" x="51.816" y="41.91" size="0.4064" layer="27" ratio="10" rot="R270"/>
 </element>
 <element name="GPSDAT" library="microbuilder" package="1X06_ROUND_70" value="" x="24.511" y="33.02" smashed="yes" rot="MR270">

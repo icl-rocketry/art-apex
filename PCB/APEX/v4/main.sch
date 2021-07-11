@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.005" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="16" fill="1" visible="no" active="no"/>
@@ -1996,13 +1996,13 @@ JST PH 2-pin thru-home side entry</description>
 <attribute name="NAME" x="-1.27" y="90.805" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-1.27" y="80.01" size="1.778" layer="96"/>
 </instance>
-<instance part="TINYLHS" gate="A" x="-10.16" y="58.42" smashed="yes">
-<attribute name="NAME" x="-16.51" y="71.755" size="1.778" layer="95"/>
-<attribute name="VALUE" x="-16.51" y="45.72" size="1.778" layer="96"/>
+<instance part="TINYLHS" gate="A" x="115.57" y="29.21" smashed="yes">
+<attribute name="NAME" x="109.22" y="42.545" size="1.778" layer="95"/>
+<attribute name="VALUE" x="109.22" y="16.51" size="1.778" layer="96"/>
 </instance>
-<instance part="TINYRHS" gate="A" x="0" y="58.42" smashed="yes">
-<attribute name="NAME" x="-6.35" y="71.755" size="1.778" layer="95"/>
-<attribute name="VALUE" x="-6.35" y="45.72" size="1.778" layer="96"/>
+<instance part="TINYRHS" gate="A" x="-21.59" y="58.42" smashed="yes">
+<attribute name="NAME" x="-27.94" y="71.755" size="1.778" layer="95"/>
+<attribute name="VALUE" x="-27.94" y="45.72" size="1.778" layer="96"/>
 </instance>
 <instance part="EXTV+" gate="1" x="-21.59" y="17.78" smashed="yes">
 <attribute name="NAME" x="-22.733" y="19.6342" size="1.778" layer="95"/>
@@ -2227,6 +2227,11 @@ JST PH 2-pin thru-home side entry</description>
 <pinref part="P+6" gate="VCC" pin="VCC"/>
 <wire x1="231.14" y1="13.97" x2="242.57" y2="13.97" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="TINYRHS" gate="A" pin="1"/>
+<wire x1="-24.13" y1="68.58" x2="-34.29" y2="68.58" width="0.1524" layer="91"/>
+<label x="-39.37" y="68.58" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
 </net>
 <net name="GND" class="0">
 <segment>
@@ -2320,6 +2325,16 @@ JST PH 2-pin thru-home side entry</description>
 <pinref part="GND9" gate="1" pin="GND"/>
 <wire x1="231.14" y1="7.62" x2="242.57" y2="7.62" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="TINYRHS" gate="A" pin="2"/>
+<wire x1="-24.13" y1="66.04" x2="-34.29" y2="66.04" width="0.1524" layer="91"/>
+<label x="-39.37" y="64.77" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="TINYRHS" gate="A" pin="8"/>
+<wire x1="-24.13" y1="50.8" x2="-34.29" y2="50.8" width="0.1524" layer="91"/>
+<label x="-39.37" y="49.53" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
 </net>
 <net name="AIN+" class="0">
 <segment>
@@ -2331,6 +2346,10 @@ JST PH 2-pin thru-home side entry</description>
 <wire x1="48.26" y1="52.07" x2="59.69" y2="52.07" width="0.1524" layer="91"/>
 <wire x1="59.69" y1="52.07" x2="59.69" y2="16.51" width="0.1524" layer="91"/>
 <wire x1="59.69" y1="16.51" x2="101.6" y2="16.51" width="0.1524" layer="91"/>
+<wire x1="101.6" y1="16.51" x2="101.6" y2="21.59" width="0.1524" layer="91"/>
+<junction x="101.6" y="16.51"/>
+<pinref part="TINYLHS" gate="A" pin="8"/>
+<wire x1="101.6" y1="21.59" x2="113.03" y2="21.59" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="SIMPOW" class="0">
@@ -2355,6 +2374,11 @@ JST PH 2-pin thru-home side entry</description>
 <wire x1="79.79" y1="57.15" x2="79.79" y2="56.96" width="0.1524" layer="91"/>
 <label x="53.34" y="54.61" size="1.27" layer="95" xref="yes"/>
 </segment>
+<segment>
+<pinref part="TINYLHS" gate="A" pin="6"/>
+<wire x1="113.03" y1="26.67" x2="97.79" y2="26.67" width="0.1524" layer="91"/>
+<label x="93.98" y="26.67" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
 </net>
 <net name="RX" class="0">
 <segment>
@@ -2363,6 +2387,11 @@ JST PH 2-pin thru-home side entry</description>
 <wire x1="48.26" y1="59.69" x2="79.79" y2="59.69" width="0.1524" layer="91"/>
 <wire x1="79.79" y1="59.69" x2="79.79" y2="59.96" width="0.1524" layer="91"/>
 <label x="53.34" y="62.23" size="1.27" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="TINYLHS" gate="A" pin="5"/>
+<wire x1="113.03" y1="29.21" x2="97.79" y2="29.21" width="0.1524" layer="91"/>
+<label x="97.79" y="30.48" size="1.27" layer="95" rot="R90" xref="yes"/>
 </segment>
 </net>
 <net name="SDA" class="0">
@@ -2398,6 +2427,11 @@ JST PH 2-pin thru-home side entry</description>
 <wire x1="231.14" y1="-5.08" x2="243.84" y2="-5.08" width="0.1524" layer="91"/>
 <label x="252.73" y="-5.08" size="1.27" layer="95" xref="yes"/>
 </segment>
+<segment>
+<pinref part="TINYRHS" gate="A" pin="7"/>
+<wire x1="-24.13" y1="53.34" x2="-34.29" y2="53.34" width="0.1524" layer="91"/>
+<label x="-39.37" y="53.34" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
 </net>
 <net name="SCL" class="0">
 <segment>
@@ -2431,6 +2465,11 @@ JST PH 2-pin thru-home side entry</description>
 <pinref part="SENS-SCL" gate="1" pin="P"/>
 <wire x1="231.14" y1="1.27" x2="243.84" y2="1.27" width="0.1524" layer="91"/>
 <label x="252.73" y="1.27" size="1.27" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="TINYRHS" gate="A" pin="6"/>
+<wire x1="-24.13" y1="55.88" x2="-34.29" y2="55.88" width="0.1524" layer="91"/>
+<label x="-39.37" y="57.15" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="3.3V_BNO" class="2">
