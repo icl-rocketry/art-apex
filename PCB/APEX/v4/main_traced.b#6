@@ -36,10 +36,10 @@
 <layer number="26" name="bNames" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="27" name="tValues" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="28" name="bValues" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="29" name="tStop" color="7" fill="3" visible="no" active="yes"/>
-<layer number="30" name="bStop" color="7" fill="6" visible="no" active="yes"/>
-<layer number="31" name="tCream" color="7" fill="4" visible="no" active="yes"/>
-<layer number="32" name="bCream" color="7" fill="5" visible="no" active="yes"/>
+<layer number="29" name="tStop" color="7" fill="3" visible="yes" active="yes"/>
+<layer number="30" name="bStop" color="7" fill="6" visible="yes" active="yes"/>
+<layer number="31" name="tCream" color="7" fill="4" visible="yes" active="yes"/>
+<layer number="32" name="bCream" color="7" fill="5" visible="yes" active="yes"/>
 <layer number="33" name="tFinish" color="6" fill="3" visible="no" active="yes"/>
 <layer number="34" name="bFinish" color="6" fill="6" visible="no" active="yes"/>
 <layer number="35" name="tGlue" color="7" fill="4" visible="no" active="yes"/>
@@ -51,7 +51,7 @@
 <layer number="41" name="tRestrict" color="4" fill="10" visible="yes" active="yes"/>
 <layer number="42" name="bRestrict" color="1" fill="10" visible="yes" active="yes"/>
 <layer number="43" name="vRestrict" color="2" fill="10" visible="yes" active="yes"/>
-<layer number="44" name="Drills" color="7" fill="1" visible="no" active="yes"/>
+<layer number="44" name="Drills" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="45" name="Holes" color="7" fill="1" visible="no" active="yes"/>
 <layer number="46" name="Milling" color="3" fill="1" visible="no" active="yes"/>
 <layer number="47" name="Measures" color="7" fill="1" visible="no" active="yes"/>
@@ -221,11 +221,10 @@
 <wire x1="1.651" y1="22.86" x2="1.651" y2="43.18" width="0" layer="21"/>
 <wire x1="1.651" y1="43.18" x2="4.191" y2="45.72" width="0" layer="21" curve="-90"/>
 <rectangle x1="71.12" y1="62.23" x2="76.2" y2="63.5" layer="1"/>
-<wire x1="1.27" y1="72.39" x2="77.47" y2="72.39" width="0.1524" layer="20"/>
-<wire x1="77.47" y1="72.39" x2="77.47" y2="20.32" width="0.1524" layer="20"/>
-<wire x1="1.27" y1="20.32" x2="1.27" y2="72.39" width="0.1524" layer="20"/>
-<wire x1="1.27" y1="20.32" x2="77.47" y2="20.32" width="0.1524" layer="20"/>
-<dimension x1="1.27" y1="20.32" x2="77.47" y2="20.32" x3="39.37" y3="16.51" textsize="1.778" layer="20"/>
+<wire x1="1.27" y1="72.39" x2="77.47" y2="72.39" width="0.254" layer="20"/>
+<wire x1="77.47" y1="72.39" x2="77.47" y2="19.685" width="0.254" layer="20"/>
+<wire x1="77.47" y1="19.685" x2="1.27" y2="19.685" width="0.254" layer="20"/>
+<wire x1="1.27" y1="19.685" x2="1.27" y2="72.39" width="0.254" layer="20"/>
 </plain>
 <libraries>
 <library name="pimoroni-boards">
@@ -617,42 +616,40 @@ JST PH 2-pin thru-home side entry</description>
 <class number="2" name="lowpower" width="0.3048" drill="0.4826">
 </class>
 </classes>
-<designrules name="default *">
-<description language="de">&lt;b&gt;EAGLE Design Rules&lt;/b&gt;
+<designrules name="aisler_2_layer_simple *">
+<description language="de">&lt;b&gt;Aisler Design Rules -  2 Layers - simple&lt;/b&gt;
+
 &lt;p&gt;
-Die Standard-Design-Rules sind so gewählt, dass sie für 
-die meisten Anwendungen passen. Sollte ihre Platine 
-besondere Anforderungen haben, treffen Sie die erforderlichen
-Einstellungen hier und speichern die Design Rules unter 
-einem neuen Namen ab.</description>
-<description language="en">&lt;b&gt;EAGLE Design Rules&lt;/b&gt;
+Please note that the design rules provided here constitute the limit of our manufacturing capabilities. Especially in combination with the autorouter, boards are not guaranteed to be functional. So if possible, try not to exploit the drc minimum.
+
+Everything else you will find on https://aisler.net/help</description>
+<description language="en">&lt;b&gt;Aisler Design Rules -  2 Layers - simple&lt;/b&gt;
+
 &lt;p&gt;
-The default Design Rules have been set to cover
-a wide range of applications. Your particular design
-may have different requirements, so please make the
-necessary adjustments and save your customized
-design rules under a new name.</description>
+Please note that the design rules provided here constitute the limit of our manufacturing capabilities. Especially in combination with the autorouter, boards are not guaranteed to be functional. So if possible, try not to exploit the drc minimum.
+
+Everything else you will find on https://aisler.net/help</description>
 <param name="layerSetup" value="(1*16)"/>
 <param name="mtCopper" value="0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm"/>
 <param name="mtIsolate" value="1.5mm 0.15mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm"/>
-<param name="mdWireWire" value="6mil"/>
-<param name="mdWirePad" value="6mil"/>
-<param name="mdWireVia" value="6mil"/>
-<param name="mdPadPad" value="6mil"/>
-<param name="mdPadVia" value="6mil"/>
-<param name="mdViaVia" value="6mil"/>
-<param name="mdSmdPad" value="6mil"/>
-<param name="mdSmdVia" value="6mil"/>
-<param name="mdSmdSmd" value="6mil"/>
-<param name="mdViaViaSameLayer" value="6mil"/>
+<param name="mdWireWire" value="0.1mm"/>
+<param name="mdWirePad" value="0.1mm"/>
+<param name="mdWireVia" value="0.1mm"/>
+<param name="mdPadPad" value="0.1mm"/>
+<param name="mdPadVia" value="0.1mm"/>
+<param name="mdViaVia" value="0.1mm"/>
+<param name="mdSmdPad" value="0.1mm"/>
+<param name="mdSmdVia" value="0.1mm"/>
+<param name="mdSmdSmd" value="0.1mm"/>
+<param name="mdViaViaSameLayer" value="8mil"/>
 <param name="mnLayersViaInSmd" value="2"/>
-<param name="mdCopperDimension" value="40mil"/>
-<param name="mdDrill" value="6mil"/>
+<param name="mdCopperDimension" value="0.3mm"/>
+<param name="mdDrill" value="0.25mm"/>
 <param name="mdSmdStop" value="0mil"/>
-<param name="msWidth" value="6mil"/>
-<param name="msDrill" value="0.35mm"/>
+<param name="msWidth" value="0.1mm"/>
+<param name="msDrill" value="0.3mm"/>
 <param name="msMicroVia" value="9.99mm"/>
-<param name="msBlindViaRatio" value="0.5"/>
+<param name="msBlindViaRatio" value="1"/>
 <param name="rvPadTop" value="0.25"/>
 <param name="rvPadInner" value="0.25"/>
 <param name="rvPadBottom" value="0.25"/>
@@ -660,35 +657,35 @@ design rules under a new name.</description>
 <param name="rvViaInner" value="0.25"/>
 <param name="rvMicroViaOuter" value="0.25"/>
 <param name="rvMicroViaInner" value="0.25"/>
-<param name="rlMinPadTop" value="18mil"/>
-<param name="rlMaxPadTop" value="50mil"/>
-<param name="rlMinPadInner" value="10mil"/>
-<param name="rlMaxPadInner" value="50mil"/>
-<param name="rlMinPadBottom" value="18mil"/>
-<param name="rlMaxPadBottom" value="50mil"/>
-<param name="rlMinViaOuter" value="8mil"/>
-<param name="rlMaxViaOuter" value="20mil"/>
-<param name="rlMinViaInner" value="8mil"/>
-<param name="rlMaxViaInner" value="20mil"/>
-<param name="rlMinMicroViaOuter" value="4mil"/>
-<param name="rlMaxMicroViaOuter" value="20mil"/>
-<param name="rlMinMicroViaInner" value="4mil"/>
-<param name="rlMaxMicroViaInner" value="20mil"/>
+<param name="rlMinPadTop" value="0.5mm"/>
+<param name="rlMaxPadTop" value="100mm"/>
+<param name="rlMinPadInner" value="0.2mm"/>
+<param name="rlMaxPadInner" value="100mm"/>
+<param name="rlMinPadBottom" value="0.5mm"/>
+<param name="rlMaxPadBottom" value="100mm"/>
+<param name="rlMinViaOuter" value="0.2mm"/>
+<param name="rlMaxViaOuter" value="100mm"/>
+<param name="rlMinViaInner" value="0.2mm"/>
+<param name="rlMaxViaInner" value="100mm"/>
+<param name="rlMinMicroViaOuter" value="2.5mm"/>
+<param name="rlMaxMicroViaOuter" value="100mm"/>
+<param name="rlMinMicroViaInner" value="2.5mm"/>
+<param name="rlMaxMicroViaInner" value="100mm"/>
 <param name="psTop" value="-1"/>
 <param name="psBottom" value="-1"/>
 <param name="psFirst" value="-1"/>
 <param name="psElongationLong" value="100"/>
 <param name="psElongationOffset" value="100"/>
-<param name="mvStopFrame" value="1"/>
+<param name="mvStopFrame" value="0"/>
 <param name="mvCreamFrame" value="0"/>
-<param name="mlMinStopFrame" value="4mil"/>
-<param name="mlMaxStopFrame" value="4mil"/>
+<param name="mlMinStopFrame" value="0mil"/>
+<param name="mlMaxStopFrame" value="0mil"/>
 <param name="mlMinCreamFrame" value="0mil"/>
 <param name="mlMaxCreamFrame" value="0mil"/>
 <param name="mlViaStopLimit" value="0mil"/>
 <param name="srRoundness" value="0"/>
 <param name="srMinRoundness" value="0mil"/>
-<param name="srMaxRoundness" value="0mil"/>
+<param name="srMaxRoundness" value="100mm"/>
 <param name="slThermalIsolate" value="10mil"/>
 <param name="slThermalsForVias" value="0"/>
 <param name="dpMaxLengthDifference" value="10mm"/>
@@ -939,10 +936,11 @@ design rules under a new name.</description>
 <wire x1="36.83" y1="35.56" x2="43.18" y2="35.56" width="0.8128" layer="16"/>
 <wire x1="33.02" y1="39.37" x2="36.83" y2="35.56" width="0.8128" layer="16"/>
 <wire x1="30.861" y1="39.37" x2="24.511" y2="39.37" width="0.8128" layer="16"/>
-<wire x1="54.991" y1="40.64" x2="48.641" y2="31.75" width="0" layer="19" extent="1-1"/>
-<wire x1="68.58" y1="51.07" x2="73.66" y2="41.91" width="0" layer="19" extent="1-1"/>
+<contactref element="TINYRHS" pad="1"/>
+<wire x1="62.78" y1="68.58" x2="62.23" y2="68.58" width="0" layer="19" extent="16-16"/>
+<wire x1="73.66" y1="41.91" x2="68.58" y2="51.07" width="0" layer="19" extent="1-1"/>
+<wire x1="48.641" y1="31.75" x2="54.991" y2="40.64" width="0" layer="19" extent="1-1"/>
 <wire x1="4.191" y1="34.29" x2="11.684" y2="51.054" width="0" layer="19" extent="1-1"/>
-<wire x1="68.58" y1="68.58" x2="73.406" y2="68.58" width="0" layer="19"/>
 </signal>
 <signal name="GND">
 <contactref element="AMP" pad="1"/>
@@ -987,11 +985,15 @@ design rules under a new name.</description>
 <wire x1="46.101" y1="34.29" x2="30.861" y2="34.29" width="0.8128" layer="16"/>
 <wire x1="48.641" y1="36.83" x2="46.101" y2="34.29" width="0.8128" layer="16"/>
 <wire x1="24.511" y1="34.29" x2="30.861" y2="34.29" width="0.8128" layer="16"/>
+<contactref element="TINYRHS" pad="2"/>
+<contactref element="TINYRHS" pad="8"/>
+<wire x1="62.23" y1="66.04" x2="62.78" y2="66.04" width="0" layer="19" extent="16-16"/>
 <wire x1="68.58" y1="53.07" x2="73.66" y2="60.96" width="0" layer="19" extent="1-1"/>
-<wire x1="54.61" y1="50.36" x2="62.78" y2="50.8" width="0" layer="19" extent="16-16"/>
+<wire x1="62.23" y1="50.8" x2="62.78" y2="50.8" width="0" layer="19" extent="16-16"/>
+<wire x1="54.61" y1="50.36" x2="62.23" y2="50.8" width="0" layer="19" extent="16-16"/>
 <wire x1="41.107" y1="53.698" x2="54.61" y2="50.36" width="0" layer="19" extent="16-16"/>
 <wire x1="4.191" y1="39.37" x2="6.604" y2="51.054" width="0" layer="19" extent="1-1"/>
-<wire x1="24.511" y1="34.29" x2="54.61" y2="50.36" width="0" layer="19" extent="16-16"/>
+<wire x1="48.641" y1="36.83" x2="54.61" y2="50.36" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="AIN+">
 <contactref element="AMP" pad="5"/>
@@ -1001,6 +1003,8 @@ design rules under a new name.</description>
 <wire x1="6.096" y1="48.514" x2="23.114" y2="48.514" width="0.8128" layer="16"/>
 <wire x1="25.4" y1="50.8" x2="23.114" y2="48.514" width="0.8128" layer="16"/>
 <wire x1="46.44" y1="50.8" x2="25.4" y2="50.8" width="0.8128" layer="16"/>
+<contactref element="TINYLHS" pad="8"/>
+<wire x1="46.44" y1="50.8" x2="46.99" y2="68.58" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="SIMPOW">
 <contactref element="SIMISO" pad="2"/>
@@ -1017,12 +1021,16 @@ design rules under a new name.</description>
 <contactref element="U$1" pad="TX"/>
 <wire x1="46.44" y1="55.88" x2="41.425" y2="55.88" width="0.8128" layer="16"/>
 <wire x1="41.425" y1="55.88" x2="41.107" y2="56.198" width="0.8128" layer="16"/>
+<contactref element="TINYLHS" pad="6"/>
+<wire x1="46.44" y1="55.88" x2="46.99" y2="63.5" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="RX">
 <contactref element="A1" pad="4"/>
 <contactref element="U$1" pad="RX"/>
 <wire x1="46.44" y1="58.42" x2="41.385" y2="58.42" width="0.8128" layer="16"/>
 <wire x1="41.385" y1="58.42" x2="41.107" y2="58.698" width="0.8128" layer="16"/>
+<contactref element="TINYLHS" pad="5"/>
+<wire x1="46.44" y1="58.42" x2="46.99" y2="60.96" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="SDA">
 <contactref element="A1" pad="A0"/>
@@ -1052,7 +1060,9 @@ design rules under a new name.</description>
 <wire x1="54.61" y1="27.94" x2="54.991" y2="27.94" width="0.8128" layer="16"/>
 <wire x1="46.99" y1="22.86" x2="50.8" y2="22.86" width="0.8128" layer="16"/>
 <wire x1="24.511" y1="29.21" x2="30.861" y2="29.21" width="0.8128" layer="16"/>
-<wire x1="54.991" y1="27.94" x2="62.78" y2="53.34" width="0" layer="19" extent="16-16"/>
+<contactref element="TINYRHS" pad="7"/>
+<wire x1="62.23" y1="53.34" x2="62.78" y2="53.34" width="0" layer="19" extent="16-16"/>
+<wire x1="54.991" y1="27.94" x2="62.23" y2="53.34" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="SCL">
 <contactref element="A1" pad="A1"/>
@@ -1079,7 +1089,9 @@ design rules under a new name.</description>
 <wire x1="48.26" y1="24.13" x2="45.72" y2="26.67" width="0.8128" layer="16"/>
 <wire x1="45.72" y1="26.67" x2="45.72" y2="31.75" width="0.8128" layer="16"/>
 <wire x1="30.861" y1="31.75" x2="24.511" y2="31.75" width="0.8128" layer="16"/>
-<wire x1="54.991" y1="33.02" x2="62.78" y2="55.88" width="0" layer="19" extent="16-16"/>
+<contactref element="TINYRHS" pad="6"/>
+<wire x1="62.23" y1="55.88" x2="62.78" y2="55.88" width="0" layer="19" extent="16-16"/>
+<wire x1="54.991" y1="33.02" x2="62.23" y2="55.88" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="3.3V_BNO" class="2">
 <contactref element="BNODAT" pad="2"/>
@@ -1131,6 +1143,81 @@ design rules under a new name.</description>
 <mfgpreviewcolor name="coppercolor" color="0xFFFFBF00"/>
 <mfgpreviewcolor name="substratecolor" color="0xFF786E46"/>
 </mfgpreviewcolors>
+<errors>
+<approved hash="21,19,215e20a0235cdd5c"/>
+<approved hash="21,19,d834d9cadbb625b6"/>
+<approved hash="21,19,47e3441f4460b863"/>
+<approved hash="21,19,dcafdea9dea9dcaf"/>
+<approved hash="21,19,4d574f554f554d57"/>
+<approved hash="21,19,9f2963289d289f57"/>
+<approved hash="21,19,23682316216adf6a"/>
+<approved hash="21,19,422bbc2bbfd7be29"/>
+<approved hash="21,19,8f7d8c818cff70fd"/>
+<approved hash="21,19,7a1c79e0799f859c"/>
+<approved hash="5,16,c6ded7d363128698"/>
+<approved hash="5,16,7ca0d853626f3e37"/>
+<approved hash="4,1,00d97f14856ff1b2"/>
+<approved hash="4,1,f517a3e8a2544165"/>
+<approved hash="4,1,4032ba3bd3ac21b1"/>
+<approved hash="4,1,3795acedd225107f"/>
+<approved hash="4,1,6e8397ece8fd1a82"/>
+<approved hash="4,1,594cacf1fbe6096f"/>
+<approved hash="4,1,55a9afe6c6db35d4"/>
+<approved hash="4,1,329fc880de11223e"/>
+<approved hash="4,1,e1390e601b56a60d"/>
+<approved hash="4,1,e15d78b4aa5b13c0"/>
+<approved hash="4,1,41512f58df16f636"/>
+<approved hash="4,1,3bf35042ab49c9b8"/>
+<approved hash="4,1,37166cf99674caaf"/>
+<approved hash="4,1,5cc547a8b383aede"/>
+<approved hash="4,1,2e684427be3edc65"/>
+<approved hash="4,1,df9d54b8ce23fbe8"/>
+<approved hash="4,16,00d97f14856ff1b2"/>
+<approved hash="4,16,f517a3e8a2544165"/>
+<approved hash="4,16,4032ba3bd3ac21b1"/>
+<approved hash="4,16,3795acedd225107f"/>
+<approved hash="4,16,6e8397ece8fd1a82"/>
+<approved hash="4,16,594cacf1fbe6096f"/>
+<approved hash="4,16,55a9afe6c6db35d4"/>
+<approved hash="4,16,329fc880de11223e"/>
+<approved hash="4,16,e1390e601b56a60d"/>
+<approved hash="4,16,e15d78b4aa5b13c0"/>
+<approved hash="4,16,41512f58df16f636"/>
+<approved hash="4,16,3bf35042ab49c9b8"/>
+<approved hash="4,16,37166cf99674caaf"/>
+<approved hash="4,16,5cc547a8b383aede"/>
+<approved hash="4,16,2e684427be3edc65"/>
+<approved hash="4,16,df9d54b8ce23fbe8"/>
+<approved hash="4,16,b33da28ca28eb33f"/>
+<approved hash="21,19,27b527cbdbca25c9"/>
+<approved hash="19,1,38ea0d87caba057d"/>
+<approved hash="19,1,24c818e025ea7635"/>
+<approved hash="19,16,ddfdd714b0be5fe2"/>
+<approved hash="19,16,dd958d33eb975c6a"/>
+<approved hash="19,16,811e8c4cea53596a"/>
+<approved hash="19,16,69fab1315cf200c2"/>
+<approved hash="19,16,62d6d19f3fec786a"/>
+<approved hash="19,16,e40aabf0c8c8f405"/>
+<approved hash="19,16,5cf7a7d0c4735e05"/>
+<approved hash="19,16,dd96dec6de237f6e"/>
+<approved hash="19,16,2e8cdbc4c5e9337a"/>
+<approved hash="19,16,f24073f2563269eb"/>
+<approved hash="19,16,653f0272ee9078ca"/>
+<approved hash="19,16,653ac07c2c8f7cd4"/>
+<approved hash="19,16,709ea05e4f4d7a38"/>
+<approved hash="19,16,6f96d1223e5144d8"/>
+<approved hash="19,16,68bae2350ec66312"/>
+<approved hash="19,16,999b03101d128ccd"/>
+<approved hash="19,16,b8fdba1fbe2b3832"/>
+<approved hash="19,16,c509ba66ce8444f6"/>
+<approved hash="19,16,c8d9887af021bbd6"/>
+<approved hash="19,16,fd2599b8dffa7f5a"/>
+<approved hash="19,16,c101a861dfd1427e"/>
+<approved hash="19,16,c5007864089d44ee"/>
+<approved hash="19,16,145a7026546381e8"/>
+<approved hash="19,16,ff21702454346734"/>
+<approved hash="19,16,8ecf9510f3dd52ff"/>
+</errors>
 </board>
 </drawing>
 <compatibility>
