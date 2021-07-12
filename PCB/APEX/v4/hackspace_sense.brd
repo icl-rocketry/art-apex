@@ -216,6 +216,9 @@
 <wire x1="105.41" y1="36.83" x2="27.94" y2="36.83" width="0.254" layer="20"/>
 <dimension x1="27.94" y1="8.89" x2="105.41" y2="8.89" x3="66.675" y3="5.08" textsize="1.778" textratio="15" layer="49" width="0.254"/>
 <dimension x1="27.94" y1="36.83" x2="27.94" y2="8.89" x3="25.4" y3="22.86" textsize="1.778" textratio="15" layer="49" width="0.254"/>
+<text x="43.18" y="17.78" size="1.778" layer="21" font="vector" ratio="15">BNO</text>
+<text x="64.77" y="31.75" size="1.778" layer="21" font="vector" ratio="15">BARO</text>
+<text x="91.44" y="27.94" size="1.778" layer="21" font="vector" ratio="15">GPS</text>
 </plain>
 <libraries>
 <library name="wirepad" urn="urn:adsk.eagle:library:412">
@@ -605,6 +608,8 @@ Everything else you will find on https://aisler.net/help</description>
 <wire x1="101.6" y1="29.21" x2="99.06" y2="29.21" width="1.524" layer="16"/>
 <wire x1="101.6" y1="29.21" x2="101.6" y2="31.75" width="1.524" layer="16"/>
 <wire x1="101.6" y1="29.21" x2="104.14" y2="29.21" width="1.524" layer="16"/>
+<wire x1="81.28" y1="24.13" x2="83.82" y2="24.13" width="1.524" layer="16"/>
+<wire x1="31.75" y1="25.4" x2="40.64" y2="25.4" width="1.524" layer="16"/>
 </signal>
 <signal name="VCC">
 <contactref element="INT-VCC" pad="1"/>
