@@ -8,7 +8,7 @@
 </settings>
 <grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.005" altunitdist="inch" altunit="inch"/>
 <layers>
-<layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
+<layer number="1" name="Top" color="4" fill="1" visible="no" active="yes"/>
 <layer number="2" name="Route2" color="16" fill="1" visible="no" active="no"/>
 <layer number="3" name="Route3" color="17" fill="1" visible="no" active="no"/>
 <layer number="4" name="Route4" color="18" fill="1" visible="no" active="no"/>
@@ -23,7 +23,7 @@
 <layer number="13" name="Route13" color="21" fill="1" visible="no" active="no"/>
 <layer number="14" name="Route14" color="22" fill="1" visible="no" active="no"/>
 <layer number="15" name="Route15" color="23" fill="1" visible="no" active="no"/>
-<layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
+<layer number="16" name="Bottom" color="1" fill="1" visible="no" active="yes"/>
 <layer number="17" name="Pads" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="18" name="Vias" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="19" name="Unrouted" color="6" fill="1" visible="yes" active="yes"/>
@@ -32,14 +32,14 @@
 <layer number="22" name="bPlace" color="14" fill="1" visible="yes" active="yes"/>
 <layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="yes"/>
 <layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="yes"/>
-<layer number="25" name="tNames" color="7" fill="1" visible="no" active="yes"/>
-<layer number="26" name="bNames" color="7" fill="1" visible="no" active="yes"/>
-<layer number="27" name="tValues" color="7" fill="1" visible="no" active="yes"/>
-<layer number="28" name="bValues" color="7" fill="1" visible="no" active="yes"/>
-<layer number="29" name="tStop" color="7" fill="3" visible="no" active="yes"/>
-<layer number="30" name="bStop" color="7" fill="6" visible="no" active="yes"/>
-<layer number="31" name="tCream" color="7" fill="4" visible="no" active="yes"/>
-<layer number="32" name="bCream" color="7" fill="5" visible="no" active="yes"/>
+<layer number="25" name="tNames" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="26" name="bNames" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="27" name="tValues" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="28" name="bValues" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="29" name="tStop" color="7" fill="3" visible="yes" active="yes"/>
+<layer number="30" name="bStop" color="7" fill="6" visible="yes" active="yes"/>
+<layer number="31" name="tCream" color="7" fill="4" visible="yes" active="yes"/>
+<layer number="32" name="bCream" color="7" fill="5" visible="yes" active="yes"/>
 <layer number="33" name="tFinish" color="6" fill="3" visible="no" active="yes"/>
 <layer number="34" name="bFinish" color="6" fill="6" visible="no" active="yes"/>
 <layer number="35" name="tGlue" color="7" fill="4" visible="no" active="yes"/>
@@ -49,17 +49,17 @@
 <layer number="39" name="tKeepout" color="4" fill="11" visible="no" active="yes"/>
 <layer number="40" name="bKeepout" color="1" fill="11" visible="no" active="yes"/>
 <layer number="41" name="tRestrict" color="4" fill="10" visible="no" active="yes"/>
-<layer number="42" name="bRestrict" color="1" fill="10" visible="no" active="yes"/>
+<layer number="42" name="bRestrict" color="1" fill="10" visible="yes" active="yes"/>
 <layer number="43" name="vRestrict" color="2" fill="10" visible="no" active="yes"/>
-<layer number="44" name="Drills" color="7" fill="1" visible="no" active="yes"/>
+<layer number="44" name="Drills" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="45" name="Holes" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="46" name="Milling" color="3" fill="1" visible="no" active="yes"/>
 <layer number="47" name="Measures" color="7" fill="1" visible="no" active="yes"/>
 <layer number="48" name="Document" color="7" fill="1" visible="no" active="yes"/>
-<layer number="49" name="Reference" color="7" fill="1" visible="no" active="yes"/>
+<layer number="49" name="Reference" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="50" name="dxf" color="7" fill="1" visible="no" active="no"/>
 <layer number="51" name="tDocu" color="6" fill="1" visible="yes" active="yes"/>
-<layer number="52" name="bDocu" color="7" fill="1" visible="no" active="yes"/>
+<layer number="52" name="bDocu" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="53" name="tGND_GNDA" color="7" fill="9" visible="no" active="no"/>
 <layer number="54" name="bGND_GNDA" color="1" fill="9" visible="no" active="no"/>
 <layer number="56" name="wert" color="7" fill="1" visible="no" active="no"/>
@@ -203,9 +203,6 @@
 <wire x1="54.991" y1="45.72" x2="52.451" y2="43.18" width="0" layer="21" curve="90"/>
 <wire x1="52.451" y1="43.18" x2="52.451" y2="22.86" width="0" layer="21"/>
 <wire x1="52.451" y1="22.86" x2="54.991" y2="20.32" width="0" layer="21" curve="90"/>
-<wire x1="54.991" y1="20.32" x2="67.691" y2="20.32" width="0" layer="21"/>
-<wire x1="67.691" y1="20.32" x2="70.231" y2="22.86" width="0" layer="21" curve="90"/>
-<wire x1="70.231" y1="22.86" x2="70.231" y2="43.18" width="0" layer="21"/>
 <wire x1="70.231" y1="43.18" x2="67.691" y2="45.72" width="0" layer="21" curve="90"/>
 <wire x1="4.191" y1="45.72" x2="24.511" y2="45.72" width="0" layer="21"/>
 <wire x1="24.511" y1="45.72" x2="27.051" y2="43.18" width="0" layer="21" curve="-90"/>
@@ -221,17 +218,17 @@
 <text x="65.278" y="61.976" size="0.762" layer="25" rot="R270">SCL</text>
 <text x="65.278" y="58.293" size="0.762" layer="25" rot="R270">SDA</text>
 <text x="70.358" y="70.358" size="0.762" layer="25">SIM Isolation</text>
-<text x="74.676" y="64.262" size="0.762" layer="25" rot="R180">GND</text>
+<text x="74.676" y="62.992" size="0.762" layer="25" rot="R180">GND</text>
 <text x="74.549" y="55.372" size="0.762" layer="25" rot="R180">VCC</text>
 <text x="26.67" y="55.88" size="1.524" layer="25">SIM800L</text>
 <text x="7.62" y="58.42" size="1.524" layer="25">AMP</text>
 <text x="16.51" y="39.37" size="1.524" layer="25" rot="R180">GPS</text>
 <text x="39.37" y="29.21" size="1.524" layer="25" rot="R90">BNO085</text>
 <text x="63.5" y="30.48" size="1.524" layer="25" rot="R90">BARO</text>
-<text x="75.184" y="44.958" size="1.016" layer="25" rot="R180">VCC</text>
-<text x="75.184" y="38.608" size="1.016" layer="25" rot="R180">GND</text>
-<text x="75.057" y="32.131" size="1.016" layer="25" rot="R180">SCL</text>
-<text x="75.184" y="25.908" size="1.016" layer="25" rot="R180">SDA</text>
+<text x="69.342" y="30.734" size="1.016" layer="25" rot="R270">VCC</text>
+<text x="69.342" y="34.544" size="1.016" layer="25" rot="R270">GND</text>
+<text x="70.231" y="35.433" size="1.016" layer="25" rot="R90">SCL</text>
+<text x="69.342" y="42.164" size="1.016" layer="25" rot="R270">SDA</text>
 <text x="51.435" y="63.5" size="1.016" layer="25">Tiny 2040</text>
 <text x="51.562" y="60.96" size="1.016" layer="25">USB C Up</text>
 <text x="50.8" y="58.42" size="1.016" layer="25">5V Top Right</text>
@@ -351,12 +348,9 @@ GND
 <text x="65.278" y="61.976" size="0.762" layer="25" rot="R270">SCL</text>
 <text x="66.04" y="61.976" size="0.762" layer="26" rot="MR270">SCL</text>
 <text x="66.04" y="58.293" size="0.762" layer="26" rot="MR270">SDA</text>
-<text x="72.644" y="64.262" size="0.762" layer="26" rot="MR180">GND</text>
-<text x="75.438" y="52.451" size="0.762" layer="26" rot="MR90">VCC</text>
-<text x="72.136" y="44.958" size="1.016" layer="26" rot="MR180">VCC</text>
-<text x="72.136" y="38.608" size="1.016" layer="26" rot="MR180">GND</text>
-<text x="72.263" y="32.131" size="1.016" layer="26" rot="MR180">SCL</text>
-<text x="72.136" y="25.908" size="1.016" layer="26" rot="MR180">SDA</text>
+<text x="74.676" y="60.198" size="0.762" layer="26" rot="MR0">GND</text>
+<text x="74.549" y="56.388" size="0.762" layer="26" rot="MR0">VCC</text>
+<text x="72.136" y="43.688" size="1.016" layer="26" rot="MR180">SDA</text>
 <wire x1="1.27" y1="46.99" x2="77.47" y2="46.99" width="1.27" layer="21"/>
 <wire x1="77.47" y1="46.99" x2="1.27" y2="46.99" width="1.27" layer="22"/>
 <hole x="2.54" y="46.99" drill="1.27"/>
@@ -392,14 +386,11 @@ GND
 <wire x1="1.27" y1="63.5" x2="15.24" y2="63.5" width="0.254" layer="20"/>
 <wire x1="15.24" y1="63.5" x2="15.24" y2="72.39" width="0.254" layer="20"/>
 <text x="3.81" y="60.96" size="0.762" layer="25" font="vector" ratio="15">Push Through This Way</text>
-<text x="19.05" y="68.58" size="0.762" layer="25" font="vector" ratio="15">Push Through This Way</text>
+<text x="22.86" y="63.5" size="0.762" layer="25" font="vector" ratio="15">Push Through This Way</text>
 <text x="55.88" y="43.18" size="0.762" layer="25" font="vector" ratio="15">Push Through This Way</text>
 <text x="30.48" y="41.91" size="1.27" layer="25" font="vector" ratio="15">Push Through This Way</text>
 <text x="5.08" y="41.91" size="1.27" layer="25" font="vector" ratio="15">Push Through This Way</text>
-<text x="25.4" y="50.8" size="0.762" layer="25" font="vector" ratio="15">Headers Soldered Upside Down</text>
-<dimension x1="0" y1="72.39" x2="-2.54" y2="47.752" x3="-5.08" y3="60.071" textsize="0.762" textratio="15" layer="49" dtype="vertical"/>
-<dimension x1="-5.08" y1="46.355" x2="-3.81" y2="19.558" x3="-7.62" y3="32.9565" textsize="0.762" textratio="15" layer="49" dtype="vertical"/>
-<dimension x1="1.27" y1="19.05" x2="77.47" y2="19.05" x3="39.37" y3="16.51" textsize="0.762" textratio="15" layer="49"/>
+<text x="22.86" y="49.53" size="0.762" layer="25" font="vector" ratio="15">Headers Soldered Upside Down</text>
 <text x="24.892" y="51.943" size="1.016" layer="26" rot="MR0">RING
 DTR
 MIC+
@@ -418,14 +409,28 @@ SD
 AIN-
 AIN+</text>
 <text x="52.07" y="41.91" size="2.54" layer="26" font="vector" ratio="15" rot="MR0">Altitude Record Team</text>
-<text x="68.199" y="21.59" size="1.27" layer="26" font="vector" ratio="15" rot="MR0">Shrey Bohra, Rohit Singh, Jason Hon, Akshat Tripathi, Harry Allcock
+<text x="64.262" y="21.209" size="1.27" layer="26" font="vector" ratio="15" rot="MR0">Shrey Bohra, Rohit Singh, Jason Hon, Akshat Tripathi, Harry Allcock
 Julian Ting, Nathanael Jenkins, Rohin Nayar, Tash Tanim, Kwan Yiu Tam</text>
-<text x="70.993" y="45.593" size="2.032" layer="26" font="vector" ratio="15" rot="MR270">APEX Sensor Board</text>
 <text x="22.606" y="51.943" size="2.032" layer="26" font="vector" ratio="15" rot="MR180">APEX Comms</text>
-<text x="43.18" y="68.58" size="1.778" layer="26" font="vector" ratio="15" rot="MR0">Altitude Record Team</text>
+<text x="42.799" y="68.707" size="1.778" layer="26" font="vector" ratio="15" rot="MR0">Altitude Record Team</text>
 <wire x1="1.27" y1="63.5" x2="1.27" y2="20.32" width="0.254" layer="20"/>
-<wire x1="1.27" y1="20.32" x2="77.47" y2="20.32" width="0.254" layer="20"/>
-<wire x1="77.47" y1="20.32" x2="77.47" y2="72.39" width="0.254" layer="20"/>
+<wire x1="1.27" y1="20.32" x2="66.04" y2="20.32" width="0.254" layer="20"/>
+<wire x1="77.47" y1="26.67" x2="77.47" y2="72.39" width="0.254" layer="20"/>
+<wire x1="77.47" y1="26.67" x2="66.04" y2="26.67" width="0.254" layer="20"/>
+<wire x1="66.04" y1="26.67" x2="66.04" y2="20.32" width="0.254" layer="20"/>
+<text x="67.31" y="27.94" size="1.27" layer="25" font="vector" ratio="15" rot="R90">APEX Sensor Board</text>
+<text x="66.04" y="27.94" size="1.27" layer="26" font="vector" ratio="15" rot="MR90">APEX Sensor Board</text>
+<text x="70.358" y="30.734" size="1.016" layer="26" rot="MR270">VCC</text>
+<text x="70.358" y="34.544" size="1.016" layer="26" rot="MR270">GND</text>
+<text x="69.469" y="35.433" size="1.016" layer="26" rot="MR90">SCL</text>
+<text x="70.358" y="42.164" size="1.016" layer="26" rot="MR270">SDA</text>
+<text x="57.658" y="60.96" size="1.016" layer="26" rot="MR0">USB C Up</text>
+<text x="75.692" y="70.358" size="0.762" layer="26" rot="MR0">SIM Isolation</text>
+<text x="11.43" y="58.42" size="1.524" layer="26" rot="MR0">AMP</text>
+<text x="71.12" y="53.34" size="1.27" layer="26" font="vector" ratio="15" rot="MR270">+ -</text>
+<text x="72.39" y="50.8" size="1.27" layer="26" font="vector" ratio="15" rot="MR90">Lipo</text>
+<text x="70.866" y="50.546" size="1.27" layer="25" font="vector" ratio="15" rot="R90">+ -</text>
+<text x="73.66" y="50.8" size="1.27" layer="25" font="vector" ratio="15" rot="R90">Lipo</text>
 </plain>
 <libraries>
 <library name="pimoroni-boards">
@@ -1016,13 +1021,13 @@ Everything else you will find on https://aisler.net/help</description>
 <attribute name="POPULARITY" value="67" x="62.23" y="59.69" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="59.055" y="69.85" size="1.27" layer="27" rot="R270"/>
 </element>
-<element name="EXTV+" library="wirepad" library_urn="urn:adsk.eagle:library:412" package="SMD2,54-5,08" package3d_urn="urn:adsk.eagle:package:30841/1" value="" x="73.66" y="57.15" smashed="yes" rot="R90">
-<attribute name="POPULARITY" value="21" x="73.66" y="57.15" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="VALUE" x="73.66" y="57.15" size="0.0254" layer="27" rot="R90"/>
+<element name="EXTV+" library="wirepad" library_urn="urn:adsk.eagle:library:412" package="SMD2,54-5,08" package3d_urn="urn:adsk.eagle:package:30841/1" value="" x="73.787" y="57.277" smashed="yes" rot="R90">
+<attribute name="POPULARITY" value="21" x="73.787" y="57.277" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" x="73.787" y="57.277" size="0.0254" layer="27" rot="R90"/>
 </element>
-<element name="EXTGND" library="wirepad" library_urn="urn:adsk.eagle:library:412" package="SMD2,54-5,08" package3d_urn="urn:adsk.eagle:package:30841/1" value="" x="73.66" y="60.96" smashed="yes" rot="R90">
-<attribute name="POPULARITY" value="21" x="73.66" y="60.96" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="VALUE" x="73.66" y="60.96" size="0.0254" layer="27" rot="R90"/>
+<element name="EXTGND" library="wirepad" library_urn="urn:adsk.eagle:library:412" package="SMD2,54-5,08" package3d_urn="urn:adsk.eagle:package:30841/1" value="" x="73.787" y="60.325" smashed="yes" rot="R90">
+<attribute name="POPULARITY" value="21" x="73.787" y="60.325" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" x="73.787" y="60.325" size="0.0254" layer="27" rot="R90"/>
 </element>
 <element name="CON-VCC" library="wirepad" library_urn="urn:adsk.eagle:library:412" package="3,17/1,3" package3d_urn="urn:adsk.eagle:package:30833/1" value="" x="68.58" y="68.58" smashed="yes">
 <attribute name="POPULARITY" value="3" x="68.58" y="68.58" size="1.778" layer="27" display="off"/>
@@ -1090,20 +1095,19 @@ Everything else you will find on https://aisler.net/help</description>
 <contactref element="BNOCON" pad="4"/>
 <contactref element="SENS-VCC" pad="1"/>
 <wire x1="68.58" y1="51.07" x2="70.12" y2="51.07" width="0.8128" layer="1"/>
-<wire x1="73.66" y1="54.61" x2="73.66" y2="57.15" width="0.8128" layer="1"/>
-<wire x1="70.12" y1="51.07" x2="73.66" y2="54.61" width="0.8128" layer="1"/>
 <contactref element="TINYRHS" pad="1"/>
+<polygon width="0.254" layer="1" isolate="0.8128">
+<vertex x="1.27" y="63.5"/>
+<vertex x="15.24" y="63.5"/>
+<vertex x="15.24" y="72.39"/>
+<vertex x="77.47" y="72.39"/>
+<vertex x="77.47" y="26.67"/>
+<vertex x="66.04" y="26.67"/>
+<vertex x="66.04" y="20.32"/>
+<vertex x="1.27" y="20.32"/>
+</polygon>
 <wire x1="68.58" y1="68.58" x2="66.59" y2="97.79" width="0" layer="19" extent="16-16"/>
-<wire x1="73.914" y1="66.04" x2="68.58" y2="68.58" width="0" layer="19" extent="1-1"/>
-<wire x1="62.23" y1="68.58" x2="68.58" y2="68.58" width="0" layer="19" extent="1-1"/>
-<wire x1="73.66" y1="57.15" x2="73.914" y2="66.04" width="0" layer="19" extent="1-1"/>
 <wire x1="54.991" y1="40.64" x2="68.58" y2="51.07" width="0" layer="19" extent="1-1"/>
-<wire x1="48.641" y1="31.75" x2="54.991" y2="40.64" width="0" layer="19" extent="1-1"/>
-<wire x1="30.861" y1="39.37" x2="48.641" y2="31.75" width="0" layer="19" extent="1-1"/>
-<wire x1="24.511" y1="39.37" x2="30.861" y2="39.37" width="0" layer="19" extent="1-1"/>
-<wire x1="11.684" y1="51.054" x2="24.511" y2="39.37" width="0" layer="19" extent="1-1"/>
-<wire x1="4.191" y1="34.29" x2="11.684" y2="51.054" width="0" layer="19" extent="1-1"/>
-<wire x1="73.66" y1="29.21" x2="54.991" y2="40.64" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="GND">
 <contactref element="AMP" pad="1"/>
@@ -1123,26 +1127,26 @@ Everything else you will find on https://aisler.net/help</description>
 <contactref element="BNOCON" pad="3"/>
 <contactref element="BNOCON" pad="2"/>
 <contactref element="SENS-GND" pad="1"/>
-<wire x1="73.66" y1="60.96" x2="69.85" y2="64.77" width="0.8128" layer="1"/>
-<wire x1="69.85" y1="64.77" x2="68.58" y2="64.77" width="0.8128" layer="1"/>
 <contactref element="TINYRHS" pad="2"/>
 <contactref element="TINYRHS" pad="8"/>
+<wire x1="73.787" y1="60.325" x2="69.342" y2="64.77" width="0.8128" layer="1"/>
+<wire x1="69.342" y1="64.77" x2="68.58" y2="64.77" width="0.8128" layer="1"/>
+<wire x1="48.641" y1="34.29" x2="49.53" y2="34.29" width="0.8128" layer="1"/>
+<wire x1="49.53" y1="34.29" x2="50.8" y2="35.56" width="0.8128" layer="1"/>
+<wire x1="50.8" y1="35.56" x2="54.991" y2="35.56" width="0.8128" layer="1"/>
+<polygon width="0.254" layer="16" isolate="0.8128">
+<vertex x="1.27" y="63.5"/>
+<vertex x="15.24" y="63.5"/>
+<vertex x="15.24" y="72.39"/>
+<vertex x="77.47" y="72.39"/>
+<vertex x="77.47" y="26.67"/>
+<vertex x="66.04" y="26.67"/>
+<vertex x="66.04" y="20.32"/>
+<vertex x="1.27" y="20.32"/>
+</polygon>
 <wire x1="66.59" y1="80.01" x2="66.59" y2="95.25" width="0" layer="19" extent="16-16"/>
 <wire x1="58.42" y1="79.57" x2="66.59" y2="80.01" width="0" layer="19" extent="16-16"/>
 <wire x1="62.23" y1="66.04" x2="58.42" y2="79.57" width="0" layer="19" extent="16-16"/>
-<wire x1="68.58" y1="64.77" x2="62.23" y2="66.04" width="0" layer="19" extent="1-1"/>
-<wire x1="68.58" y1="53.07" x2="73.66" y2="60.96" width="0" layer="19" extent="1-1"/>
-<wire x1="62.23" y1="50.8" x2="68.58" y2="53.07" width="0" layer="19" extent="1-1"/>
-<wire x1="54.991" y1="35.56" x2="62.23" y2="50.8" width="0" layer="19" extent="1-1"/>
-<wire x1="48.641" y1="36.83" x2="54.991" y2="35.56" width="0" layer="19" extent="1-1"/>
-<wire x1="48.641" y1="34.29" x2="48.641" y2="36.83" width="0" layer="19" extent="1-1"/>
-<wire x1="30.861" y1="34.29" x2="48.641" y2="34.29" width="0" layer="19" extent="1-1"/>
-<wire x1="24.511" y1="34.29" x2="30.861" y2="34.29" width="0" layer="19" extent="1-1"/>
-<wire x1="41.107" y1="53.698" x2="48.641" y2="36.83" width="0" layer="19" extent="1-1"/>
-<wire x1="73.66" y1="33.02" x2="54.991" y2="35.56" width="0" layer="19" extent="1-1"/>
-<wire x1="14.224" y1="51.054" x2="24.511" y2="34.29" width="0" layer="19" extent="1-1"/>
-<wire x1="6.604" y1="51.054" x2="14.224" y2="51.054" width="0" layer="19" extent="1-1"/>
-<wire x1="20.107" y1="61.198" x2="14.224" y2="51.054" width="0" layer="19" extent="1-1"/>
 <wire x1="4.191" y1="39.37" x2="6.604" y2="51.054" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="AIN+">
@@ -1296,22 +1300,19 @@ Everything else you will find on https://aisler.net/help</description>
 <mfgpreviewcolor name="substratecolor" color="0xFF786E46"/>
 </mfgpreviewcolors>
 <errors>
-<approved hash="21,19,23682316216adf6a"/>
-<approved hash="21,19,422bbc2bbfd7be29"/>
 <approved hash="21,19,8f7d8c818cff70fd"/>
-<approved hash="21,19,f030f0cef2b10cb2"/>
 <approved hash="21,19,a946ab44ab44a946"/>
 <approved hash="21,19,ddbd21bf204122be"/>
 <approved hash="21,19,2d4a2f482f482d4a"/>
 <approved hash="21,19,e54de74fe74fe54d"/>
 <approved hash="21,19,8269806b816b8369"/>
-<approved hash="21,19,2b81297d2902d501"/>
 <approved hash="21,19,30aa32a833a831aa"/>
-<approved hash="21,19,167e148214fde8fe"/>
 <approved hash="21,19,15d617d416d414d6"/>
 <approved hash="21,19,dc4fde4dde4ddc4f"/>
 <approved hash="21,19,9b0c990e990e9b0c"/>
-<approved hash="21,19,d834d9cadbb625b6"/>
+<approved hash="21,19,533aad3aafc6ae38"/>
+<approved hash="21,19,1d4e1cce1ed31ecc"/>
+<approved hash="21,19,4c294c294e2b4f35"/>
 </errors>
 </board>
 </drawing>
