@@ -4,6 +4,8 @@ from external import sleep_ms
 with open("phone.number") as pno:
     OWNER_NUMBER = pno.readline()
 
+print(OWNER_NUMBER)
+
 SEND_DELAY_MS = 50
 
 class sms:
