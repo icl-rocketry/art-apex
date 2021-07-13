@@ -1,7 +1,9 @@
 from external import UART
 from external import sleep_ms
 
-OWNER_NUMBER = "0"
+with open("phone.number") as pno:
+    OWNER_NUMBER = pno.readline()
+
 SEND_DELAY_MS = 50
 
 class sms:
