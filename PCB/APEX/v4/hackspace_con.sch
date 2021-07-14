@@ -1501,6 +1501,10 @@ JST PH 2-pin thru-home side entry</description>
 <wire x1="81.28" y1="-17.78" x2="81.28" y2="-15.24" width="0.1524" layer="91"/>
 <pinref part="EXTGND" gate="1" pin="P"/>
 <wire x1="81.28" y1="-15.24" x2="71.12" y2="-15.24" width="0.1524" layer="91"/>
+<pinref part="TINYLHS" gate="A" pin="7"/>
+<wire x1="106.68" y1="-12.7" x2="81.28" y2="-12.7" width="0.1524" layer="91"/>
+<wire x1="81.28" y1="-12.7" x2="81.28" y2="-15.24" width="0.1524" layer="91"/>
+<junction x="81.28" y="-15.24"/>
 </segment>
 <segment>
 <pinref part="U$1" gate="G$1" pin="GND"/>
