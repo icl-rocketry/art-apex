@@ -187,7 +187,22 @@ def send(cmd: str) -> str:
         time.sleep(0.05)
         resp = sim.read()
         if resp is None:
-            return ""
+            print("No response")
+            return "No response"
+        print(resp.decode("ascii"))
         return resp.decode("ascii")
 
+def send_msg(self, msg: str):
+    send("AT+CMGF=1") # Text message mode
+    send("AT+CMGS=\"{OWNER_NUMBER}\"")
+    send(msg)
+    sim.write(bytes(chr(26)))
+
+print("Checking Connection")
 send("at")
+print("Getting SIM number")
+send("at+ccid")
+print("Check registration")
+send("at+creg?")
+print("Check inout voltage")
+send("at+cbc")
