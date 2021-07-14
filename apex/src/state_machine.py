@@ -24,6 +24,13 @@ def LED(r,g,b):
     gled.duty_cycle = gduty
     bled.duty_cycle = bduty
 
+speaker = pwmio.PWMOut(board.GP7, frequency = 0, duty_cycle = 32768, variable_frequency = True)
+
+def buzz(freq):
+    speaker.frequency = frequency
+
+    
+
 class state:
     def run(self):
         raise NotImplementedError("Not implemented")
