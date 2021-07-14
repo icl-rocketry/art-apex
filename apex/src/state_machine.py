@@ -1,4 +1,4 @@
-#The state machine has 3 states:
+    #The state machine has 3 states:
 # 1. Preflight - calibrates all sensors, and waits for a text message containing the message "launch".
 # 2. Flight - takes readings from sensors for FLIGHT_TIME minutes.
 # 3. Postflight - takes gps readings and sends them to GROUND_CONTROL_PHONE, until a "Received" is received.
@@ -16,9 +16,9 @@ class state:
         raise NotImplementedError("Not implemented")
 
 #FIXME these pins might be wrong
-i2c = I2C(sda=board.GP2, scl=board.GP3, timeout=10000)
+i2c = I2C(scl = board.GP27, sda = board.GP26, frequency = 100000, timeout = 100000)
 
-_sms = sms(0, 0)
+_sms = sms(rx = board.GP5, tx = board.GP4)
 _sensors = sensors(i2c)
 _gps = gps(i2c, 1000)
 class preflight(state):
