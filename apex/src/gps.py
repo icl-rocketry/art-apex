@@ -28,5 +28,14 @@ class gps:
         else:
             lat, long = self._get_loc()
             link = "https://maps.google.com/maps?q=" + str(round(lat, 7)) + "%2C" + str(round(long, 7))
-            return link
+            
+            fixtime = "{:02}:{:02}:{:02}".format(
+                gps.timestamp_utc.tm_hour,  # not get all data like year, day,
+                gps.timestamp_utc.tm_min,  # month!
+                gps.timestamp_utc.tm_sec)
+            
+            quality = self._gps.fix_quality()
+
+            msg = "Location: {}\nFix acquired at {}\nFix Quality {}".format(link, fixtime, quality)
+            return msg
     
