@@ -23,7 +23,7 @@ class gps:
 
     def create_msg(self):
         self.update()
-        if not status:
+        if not self.status:
             return "No fix"
         else:
             lat, long = self._get_loc()
