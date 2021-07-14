@@ -27,9 +27,11 @@ def LED(r,g,b):
 speaker = pwmio.PWMOut(board.GP7, frequency = 0, duty_cycle = 32768, variable_frequency = True)
 
 def buzz(freq):
-    speaker.frequency = frequency
+    speaker.frequency = freq
 
     
+
+
 
 class state:
     def run(self):

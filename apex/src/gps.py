@@ -11,12 +11,22 @@ class gps:
         self._gps = GPS_GtopI2C(i2c, debug=False)
         self._gps.send_command(b"PMTK314,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0")
         self._gps.send_command(bytes(f"PMTK220,{1000//frequency}"))
-
-    #This might take some more time depending on whether the gps has got a fix
-    #Note, if the gps loses fix in the middle of this method, then anything could happen - but it's unlikely
-    def get_long_lat(self):
+        self.gps.update()
+        self.status = self.gps.has_fix()
+    
+    def update(self):
         self._gps.update()
-        while not self._gps.has_fix:
-            self._gps.update()
-        return self._gps.longitude, self._gps.latitude
+        self.status = self.gps.has_fix()
+
+    def _get_loc(self):
+        return self._gps.latitude, self._gps.longitude
+
+    def create_msg(self):
+        self.update()
+        if not status:
+            return "No fix"
+        else:
+            lat, long = self._get_loc()
+            link = "https://maps.google.com/maps?q=" + str(round(lat, 7)) + "%2C" + str(round(long, 7))
+            return link
     
