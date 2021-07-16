@@ -40,4 +40,4 @@ else:
     def millis(): return monotonic_ns() // 1_000_000
 
 
-def sleep_ms(m): return sleep(m//1000)
+def sleep_ms(m): sleep(m//1000)
