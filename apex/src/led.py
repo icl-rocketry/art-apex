@@ -29,4 +29,10 @@ class LED:
         self.state = not self.state
         self._set(self.r*self.state, self.g*self.state, self.b*self.state)
 
-        
+    def on(self):
+        self.state = True
+        self._set(self.r, self.g, self.b)
+
+    def off(self):
+        self.state = False
+        self._set(0, 0, 0)
