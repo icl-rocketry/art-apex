@@ -49,7 +49,6 @@ print("Check input voltage")
 send("at+cbc")
 print("sending message")
 
-num = "+447813580661"
 
 while True:
     inp = input("Command: ")
