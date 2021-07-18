@@ -12,18 +12,13 @@ from external import sleep_ms
 import struct
 import pwmio
 from led import LED
+from speaker import Speaker
 
 led = LED()
 led.colour(255, 255, 255)
 led.on()
 
-speaker = pwmio.PWMOut(board.GP7, frequency = 0, duty_cycle = 32768, variable_frequency = True)
-
-def buzz(freq):
-    speaker.frequency = freq
-
-    
-
+speaker = Speaker()
 
 
 class state:

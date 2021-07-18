@@ -5,6 +5,7 @@ from random import randint
 
 class Speaker: 
     def __init__(self, Aout = board.GP7):
+        # speaker defaults as off
         self.speaker = pwmio.PWMOut(Aout, frequency = 0, duty_cycle = 32768, variable_frequency = True)
 
     def _playtone(self, frequency):
@@ -24,11 +25,13 @@ class Speaker:
             self._playtone(f)
             time.sleep(delay)
 
-    def siren(self):
+    def siren(self, cycles = 3):
         # 3x sweep up and down
-        for _ in range(3):
+        for _ in range(cycles):
             self._sweep()
             self._sweep(startf = 8100, endf = 100, step = -10)
 
+    def shutup(self):
+        self._playtone(0)
         
     
