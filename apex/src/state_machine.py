@@ -82,4 +82,10 @@ class postflight(state):
 
             time.sleep(0.5)
 
+            wait += 1
+
+            if wait == 60:
+                speaker.siren()
+                wait = 0
+
         
