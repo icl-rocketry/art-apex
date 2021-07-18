@@ -13,13 +13,13 @@ import struct
 import pwmio
 from led import LED
 from speaker import Speaker
+import time
 
 led = LED()
 led.colour(255, 255, 255)
 led.on()
 
 speaker = Speaker()
-
 
 class state:
     def run(self):
@@ -31,6 +31,8 @@ i2c = I2C(scl = board.GP27, sda = board.GP26, frequency = 100000, timeout = 1000
 _sms = sms(rx = board.GP5, tx = board.GP4)
 _sensors = sensors(i2c)
 _gps = gps(i2c, 1000)
+
+
 class preflight(state):
     def run(self):
         while "launch" not in _sms.recv_msg():
@@ -66,8 +68,18 @@ class flight(state):
 class postflight(state):
     def run(self):
         resp = ""
-        while "Received" not in resp:
-            location = _gps.get_long_lat()
-            _sms.send_msg(str(location))
+        wait = 0
+        while True:
             resp = _sms.recv_msg()
+            _gps.update()
+
+            if resp == "siren":
+                speaker.siren()
+            
+            elif resp == "location":
+                msg = _gps.create_msg()
+                _sms.send_msg(msg)
+
+            time.sleep(0.5)
+
         
