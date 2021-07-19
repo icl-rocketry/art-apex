@@ -23,14 +23,14 @@ LED(255, 0, 0)
 sim = busio.UART(baudrate = 9600, rx = board.GP5, tx = board.GP4)
 
 def send(cmd: str) -> str:
-        sim.write(bytes((cmd+"\r\n").encode("ascii")))
-        time.sleep(0.05)
-        resp = sim.read()
-        if resp is None:
-            print("No response")
-            return "No response"
-        print(resp.decode("ascii"))
-        return resp.decode("ascii")
+    sim.write(bytes((cmd+"\r\n").encode("ascii")))
+    time.sleep(0.05)
+    resp = sim.read()
+    if resp is None:
+        print("No response")
+        return "No response"
+    print(resp.decode("ascii"))
+    return resp.decode("ascii")
 
 def send_msg(msg: str, num):
     send("AT+CMGF=1") # Text message mode

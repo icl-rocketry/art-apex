@@ -33,5 +33,4 @@ class Speaker:
 
     def shutup(self):
         self._playtone(0)
-        
     

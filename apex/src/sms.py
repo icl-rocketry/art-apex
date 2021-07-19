@@ -1,5 +1,10 @@
-from external import UART
-from external import sleep_ms
+from time import sleep
+from busio import UART
+
+
+def sleep_ms(ms):
+    sleep(ms//1000)
+
 
 with open("phone.number") as pno:
     OWNER_NUMBER = pno.readline()
@@ -59,9 +64,9 @@ class sms:
         resp = ""
         while resp == "" or "+CMT" not in resp:
             resp = self._uart.read()
-            if resp == None:
+            if resp is None:
                 resp = ""
-        
+
         msg = resp.decode("ascii")
         words = msg.split("\r\n")
         return words[2]

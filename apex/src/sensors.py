@@ -1,10 +1,8 @@
-from external import (
-    millis,
+from time import monotonic_ns
+
+from adafruit_dps310 import DPS310, Rate, Mode, SampleCount
+from adafruit_bno08x.i2c import (
     BNO08X_I2C,
-    DPS310,
-    Rate,
-    Mode,
-    SampleCount,
     BNO_REPORT_LINEAR_ACCELERATION,
     BNO_REPORT_STEP_COUNTER,
     BNO_REPORT_ACTIVITY_CLASSIFIER,
@@ -12,7 +10,14 @@ from external import (
     BNO_REPORT_GEOMAGNETIC_ROTATION_VECTOR,
 )
 
-DATA_SIZE = 16 #Millis, Acc_x, Acc_y, Acc_z, Rot_i1, Rot_j1, Rot_k1, Rot_real1, Rot_i2, Rot_j2, Rot_k2, Rot_real2, Steps, Activity, Pressure, Temperature
+
+def millis():
+    return monotonic_ns() // 1_000_000
+
+
+DATA_SIZE = 16  # Millis, Acc_x, Acc_y, Acc_z, Rot_i1, Rot_j1, Rot_k1, Rot_real1, Rot_i2, Rot_j2, Rot_k2, Rot_real2, Steps, Activity, Pressure, Temperature
+
+
 class sensors:
 
     data_size = DATA_SIZE
@@ -41,15 +46,14 @@ class sensors:
         self._bno.enable_feature(BNO_REPORT_ACTIVITY_CLASSIFIER)
         self._bno.enable_feature(BNO_REPORT_STEP_COUNTER)
 
-
     def get(self):
-        self.data[0] = millis()
-        self.data[1:4] = self._bno.linear_acceleration
-        self.data[4:8] = self._bno.quaternion
-        self.data[8:12] = self._bno.geomagnetic_quaternion
-        self.data[12] = self._bno.steps
-        self.data[13] = 0 #TODO convert classification to index
-        self.data[14] = self._dps310.pressure
-        self.data[15] = self._dps310.temperature
+        self._data[0] = millis()
+        self._data[1:4] = self._bno.linear_acceleration
+        self._data[4:8] = self._bno.quaternion
+        self._data[8:12] = self._bno.geomagnetic_quaternion
+        self._data[12] = self._bno.steps
+        self._data[13] = 0  # TODO convert classification to index
+        self._data[14] = self._dps310.pressure
+        self._data[15] = self._dps310.temperature
 
-        return self.data
+        return self._data
