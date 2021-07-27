@@ -55,3 +55,12 @@ class sms:
         msg = resp.decode("ascii")
         words = msg.split("\r\n")
         return words[2]
+
+#AT+CFUN=1
+#AT+CPIN?
+#AT+CSTT="wap.vodafone.co.uk","wap","wap"
+#lAT+CIICR
+#AT+CIFSR
+#lAT+CIPSTART="TCP","exploreembedded.com",80
+#lAT+CIPSEND=63
+#lGET exploreembedded.com/wiki/images/1/15/Hello.txt HTTP/1.0
