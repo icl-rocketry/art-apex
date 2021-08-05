@@ -6,7 +6,7 @@ from random import randint
 class Speaker: 
     def __init__(self, Aout = board.GP7):
         # speaker defaults as off
-        self.speaker = pwmio.PWMOut(Aout, frequency = 0, duty_cycle = 32768, variable_frequency = True)
+        self.speaker = pwmio.PWMOut(Aout, duty_cycle = 0, variable_frequency = True)
 
     def _playtone(self, frequency):
         self.speaker.frequency = frequency

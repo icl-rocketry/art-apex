@@ -12,9 +12,9 @@ class gps:
         self._gps = GPS_GtopI2C(i2c, debug=False)
         self._gps.send_command(
             b"PMTK314,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0")
-        self._gps.send_command(bytes(f"PMTK220,{1000//frequency}".encode("ascii"))
+        self._gps.send_command(bytes(f"PMTK220,{1000//frequency}".encode("ascii")))
         self._gps.update()
-        self.status = self._gps.has_fix()
+        self.status = self._gps.has_fix
 
     def update(self):
         self._gps.update()

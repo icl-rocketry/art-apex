@@ -26,8 +26,11 @@ def sleep_ms(ms):
     sleep(ms//1000)
 
 
-# FIXME these pins might be wrong
-i2c = I2C(scl=board.GP27, sda=board.GP26, frequency=100000, timeout=100000)
+from busio import I2C
+import board
+i2c = I2C(scl=board.GP27, sda=board.GP26, timeout=1000000000)
+i2c.try_lock()
+print(i2c.scan())
 
 class state:
     def run(self):

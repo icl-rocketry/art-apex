@@ -1,8 +1,8 @@
 from time import monotonic_ns
 
 from adafruit_dps310 import DPS310, Rate, Mode, SampleCount
-from adafruit_bno08x.i2c import (
-    BNO08X_I2C,
+from adafruit_bno08x.i2c import BNO08X_I2C
+from adafruit_bno055 import (
     BNO_REPORT_LINEAR_ACCELERATION,
     BNO_REPORT_STEP_COUNTER,
     BNO_REPORT_ACTIVITY_CLASSIFIER,
