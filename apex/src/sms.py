@@ -47,10 +47,12 @@ class sms:
         self._send("AT+CMGF=1")  # Text message mode
         self._send("AT+CNMI=1,2,0,0,0")  # Send text message over uart
         resp = ""
-        while resp == "" or "+CMT" not in resp:
+        count = 0
+        while count < 10 and (resp == "" or "+CMT" not in resp):
             resp = self._uart.read()
             if resp is None:
                 resp = ""
+            count += 1
 
         msg = resp.decode("ascii")
         words = msg.split("\r\n")
