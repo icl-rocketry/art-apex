@@ -26,11 +26,8 @@ def sleep_ms(ms):
     sleep(ms//1000)
 
 
-from busio import I2C
-import board
-i2c = I2C(scl=board.GP27, sda=board.GP26, timeout=1000000000)
-i2c.try_lock()
-print(i2c.scan())
+# FIXME these pins might be wrong
+i2c = I2C(scl=board.GP27, sda=board.GP26, timeout=10000000)
 
 class state:
     def run(self):
@@ -44,9 +41,12 @@ class diagnostic(state):
         sms_.send_msg("sensors ok")
         gps_ = gps(i2c, 1000)
         sms_.send_msg("gps ok")
-
+        print("Done")
+        led.colour(0, 255, 0)
+        led.on()
         while sms_.recv_msg() != "ok":
-            sleep_ms(500)
+            sleep_ms(1000)
+            led.toggle()
         return preflight(sms_, sensors_, gps_)
 
 class preflight(state):
@@ -56,8 +56,10 @@ class preflight(state):
         self._gps = gps
 
     def run(self):
+        led.colour(0, 0, 255)
         while self._sms.recv_msg() != "launch":
-            sleep_ms(500)
+            sleep_ms(1000)
+            led.on()
         self._sms.send_msg("launching")
         return flight(self._sms, self._sensors, self._gps)
 
@@ -79,6 +81,7 @@ class flight(state):
 
     def run(self):
         i = 0
+        led.colour(255, 0, 0)
         while i < self._flight_time:
             i += 1
             start = millis()
@@ -89,6 +92,8 @@ class flight(state):
 
             end = millis()
             sleep_ms(max(0, self._delay - (end - start)))
+        self._storage.flush()
+        self._storage.close()
         return postflight(self._sms, self._gps)
 
 
@@ -100,6 +105,7 @@ class postflight(state):
     def run(self):
         resp = ""
         wait = 0
+        led.colour(0, 255, 255)
         while True:
             resp = self._sms.recv_msg()
             self._gps.update()
