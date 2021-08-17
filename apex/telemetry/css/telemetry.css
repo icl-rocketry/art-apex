@@ -1,3 +1,8 @@
+body {
+    background-color: #2e3131;
+    font-family: "Oswald";
+}
+
 .container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -5,26 +10,50 @@
     gap: 0px 0px;
     grid-auto-flow: row;
     grid-template-areas:
-      "x Altitude Time Conn"
-      "y Rocket Rocket Alt-chart"
-      "z Rocket Rocket velocity";
-  }
-  
-  .Rocket { grid-area: Rocket; }
-  
-  .Altitude { grid-area: Altitude; }
-  
-  .Time { grid-area: Time; }
-  
-  .Conn\? { grid-area: Conn\?; }
-  
-  .Alt-chart { grid-area: Alt-chart; }
-  
-  .x { grid-area: x; }
-  
-  .y { grid-area: y; }
-  
-  .z { grid-area: z; }
-  
-  .velocity { grid-area: velocity; }
-  
+        "x Altitude Time Conn"
+        "y Rocket Rocket Alt-chart"
+        "z Rocket Rocket velocity";
+    color: #e4e9ed;
+    text-align: center;
+    font-size: 80px;
+}
+
+.Rocket {
+    grid-area: Rocket;
+}
+
+.Altitude {
+    grid-area: Altitude;
+    margin: auto;
+}
+
+.Time {
+    grid-area: Time;
+    margin: auto;
+}
+
+.Conn {
+    grid-area: Conn;
+    margin: auto;
+}
+
+.Alt-chart {
+    grid-area: Alt-chart;
+}
+
+.x {
+    grid-area: x;
+}
+
+.y {
+    grid-area: y;
+}
+
+.z {
+    grid-area: z;
+}
+
+.velocity {
+    grid-area: velocity;
+    margin: auto;
+}
