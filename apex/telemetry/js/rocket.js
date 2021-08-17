@@ -1,42 +1,51 @@
-import { STLLoader } from 'https://cdn.jsdelivr.net/npm/three@0.120.1/examples/jsm/loaders/STLLoader.js';
+import {
+    STLLoader
+} from 'https://cdn.jsdelivr.net/npm/three@0.120.1/examples/jsm/loaders/STLLoader.js';
 
 let canvas = document.getElementById('canvas');
-document.body.appendChild(canvas);
 
 // Setup
 let scene = new THREE.Scene();
 scene.background = new THREE.Color(0x2e3131);
-let camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10000);
-let renderer = new THREE.WebGLRenderer();
+let cHeight = canvas.clientHeight * 2.5;
+let cWidth = canvas.clientWidth * 2.5;
+let camera = new THREE.PerspectiveCamera(75, cWidth / cHeight, 0.1, 10000);
+let renderer = new THREE.WebGLRenderer({canvas: canvas, antialias: true});
 
-renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setSize(cWidth, cHeight);
 console.log(renderer.domElement)
-document.body.appendChild(renderer.domElement);
+// canvas.appendChild(renderer.domElement);
 
 // Resize after viewport-size-change
 window.addEventListener("resize", function () {
-    let height = window.innerHeight;
-    let width = window.innerWidth;
+    let height = cHeight;
+    let width = cWidth;
     renderer.setSize(width, height);
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
 });
 
 let loader = new STLLoader();
-loader.load( './apex.stl', function ( geometry ) {
+loader.load('./apex.stl', function (geometry) {
     console.log(geometry);
-    let material = new THREE.MeshNormalMaterial( {
+    let material = new THREE.MeshNormalMaterial({
         color: 0x6c7a89,
-    } );
-    let mesh = new THREE.Mesh( geometry, material );
-    scene.add( mesh );
+    });
+    let mesh = new THREE.Mesh(geometry, material);
+    scene.add(mesh);
     geometry.center();
     geometry.translate(1, 0, 0); //Account for bounding box center error
-    camera.lookAt( mesh.position);
-} );
+    camera.lookAt(mesh.position);
 
-const axesHelper = new THREE.AxesHelper( 100);
-scene.add( axesHelper );
+    window.set_euler = function set_euler(x, y, z) {
+        mesh.rotation.x = x;
+        mesh.rotation.y = y;
+        mesh.rotation.z = z;
+    }
+});
+
+const axesHelper = new THREE.AxesHelper(100);
+scene.add(axesHelper);
 
 // Camera positioning
 camera.position.x = 72;
