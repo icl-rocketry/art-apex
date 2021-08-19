@@ -15,6 +15,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.110/examples/js/controls/OrbitControls.js"></script>
     <script type="module" src="./js/rocket.js"></script>
+    <script src="./js/charts.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.0/dist/chart.min.js"></script>
 
@@ -39,64 +40,21 @@
         <div class="Alt-chart">A</div>
         <div class="x">
             <canvas id="myChart" width="400" height="300%"></canvas>
+            <script>
+                createChart("myChart", 0, 100, -10, 10);
+                var prev = 0;
+                var i = 0;
+                setInterval(() => {
+                    prev += (Math.random() - 0.5);
+                    update_myChart(i, prev);
+                    i += 1;
+                }, 100);
+            </script>
         </div>
         <div class="y">y</div>
         <div class="z">z</div>
         <div class="velocity">v</div>
     </div>
-    <script>
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var data = [];
-
-        var myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                datasets: [{
-                    label: "X acceleration",
-                    data: data,
-                    radius: 0,
-                    borderColor: '#FF0000',
-                    tension: 0.01,
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    xAxis: {
-                        max: 100,
-                        grid: {
-                            drawBorder: false,
-                            display: false
-                        },
-                        type: "linear"
-                    },
-                    yAxis: {
-                        max: 10,
-                        grid: {
-                            drawBorder: false,
-                            display: false
-                        }
-                    },
-                },
-                plugins: {
-                    legend: false
-                }
-            }
-        });
-
-        var prev = 0;
-        var i = 0;
-        setInterval(() => {
-            prev += (Math.random() - 0.5) * 0.1;
-
-            data.push({
-                x: i,
-                y: prev
-            });
-            i++;
-            myChart.update("none");
-        }, 50);
-    </script>
 </body>
 
 </html>
