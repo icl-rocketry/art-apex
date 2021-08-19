@@ -1,4 +1,4 @@
-window.createChart = (id, xMin, xMax, yMin, yMax) => {
+window.createChart = (id, xMin, xMax, yMin, yMax, colour) => {
     let ctx = document.getElementById(id).getContext('2d');
     let data = [];
     let myChart = new Chart(ctx, {
@@ -8,7 +8,7 @@ window.createChart = (id, xMin, xMax, yMin, yMax) => {
                 label: "X acceleration",
                 data: data,
                 radius: 0,
-                borderColor: '#FF0000',
+                borderColor: colour,
                 tension: 0.01,
                 borderWidth: 1
             }]

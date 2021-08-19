@@ -37,24 +37,42 @@
         <div class="Altitude">204</div>
         <div class="Time">12:23</div>
         <div class="Conn">Yes</div>
-        <div class="Alt-chart">A</div>
-        <div class="x">
-            <canvas id="myChart" width="400" height="300%"></canvas>
-            <script>
-                createChart("myChart", 0, 100, -10, 10);
-                var prev = 0;
-                var i = 0;
-                setInterval(() => {
-                    prev += (Math.random() - 0.5);
-                    update_myChart(i, prev);
-                    i += 1;
-                }, 100);
-            </script>
+        <div class="Alt-chart">
+            <canvas id="altitude" width="400" height="300%"></canvas>
         </div>
-        <div class="y">y</div>
-        <div class="z">z</div>
+        <div class="x">
+            <canvas id="x" width="400" height="300%"></canvas>
+        </div>
+        <div class="y">
+            <canvas id="y" width="400" height="300%"></canvas>
+        </div>
+        <div class="z">
+            <canvas id="z" width="400" height="300%"></canvas>
+        </div>
         <div class="velocity">v</div>
     </div>
+    <script>
+        createChart("altitude", 0, 1000, 0, 100, "#FFFFFF");
+        createChart("x", 0, 1000, -20, 20, "#FF0000");
+        createChart("y", 0, 1000, -20, 20, "#00FF00");
+        createChart("z", 0, 1000, -20, 20, "#0000FF");
+        var prevX = 0;
+        var prevY = 0;
+        var prevZ = 0;
+        var prevAlt = 0;
+        var i = 0;
+        setInterval(() => {
+            prevX += (Math.random() - 0.5);
+            prevY += (Math.random() - 0.5);
+            prevZ += (Math.random() - 0.5);
+            prevAlt += Math.random();
+            update_x(i, prevX);
+            update_y(i, prevY);
+            update_z(i, prevZ);
+            update_altitude(i, prevAlt);
+            i += 1;
+        }, 100);
+    </script>
 </body>
 
 </html>
