@@ -34,9 +34,9 @@
 <body>
     <div class="container">
         <canvas class="Rocket" id="canvas"></canvas>
-        <div class="Altitude">204</div>
-        <div class="Time">12:23</div>
-        <div class="Conn">Yes</div>
+        <div class="Altitude" id="alt">204</div>
+        <div class="Time" id="flight_time">12:23</div>
+        <div class="Conn" id="conn">Yes</div>
         <div class="Alt-chart">
             <canvas id="altitude" width="400" height="275%"></canvas>
         </div>
@@ -49,7 +49,7 @@
         <div class="z">
             <canvas id="z" width="400" height="275%"></canvas>
         </div>
-        <div class="velocity">v</div>
+        <div class="velocity" id="velocity">v</div>
     </div>
     <script>
         createChart("altitude", 0, 100000, 0, 100, "#FFFFFF");
@@ -63,7 +63,7 @@
             console.log("socket openned");
         }
 
-        socket.onmessage = function (event) {
+        socket.onmessage = async function (event) {
             let data = JSON.parse(event.data);
             if (data === "END") {
                 console.log("END");
@@ -73,15 +73,30 @@
             msgs.push(data);
         }
 
-        setInterval(() => {
+        altitude = document.getElementById("alt");
+        velocity = document.getElementById("velocity");
+        flight_time = document.getElementById("flight_time");
+        conn = document.getElementById("conn");
+        prev_time = 0;
+        prev_alt = 0;
+        setInterval(async () => {
             let data = msgs.shift();
             if (data === undefined) {
+                conn.innerHTML = "DIS";
+                conn.style.color = "#d91e18";
                 return;
             }
+            conn.innerHTML = "CON";
+            conn.style.color = "#03a678"
             update_x(data["time"], data["accel_x"]);
             update_y(data["time"], data["accel_y"]);
             update_z(data["time"], data["accel_z"]);
             update_altitude(data["time"], data["alt"]);
+            altitude.innerHTML = data["alt"].toFixed(2) + "m";
+            velocity.innerHTML = ((data["alt"] - prev_alt) / (data["time"] - prev_time)).toFixed(2) + "m/s";
+            flight_time.innerHTML = (data["time"] / 1000).toFixed(2) + "s";
+            prev_time = data["time"];
+            prev_alt = data["alt"];
         }, 50);
     </script>
 </body>
