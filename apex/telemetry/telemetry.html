@@ -52,26 +52,37 @@
         <div class="velocity">v</div>
     </div>
     <script>
-        createChart("altitude", 0, 1000, 0, 100, "#FFFFFF");
-        createChart("x", 0, 1000, -20, 20, "#FF0000");
-        createChart("y", 0, 1000, -20, 20, "#00FF00");
-        createChart("z", 0, 1000, -20, 20, "#0000FF");
-        var prevX = 0;
-        var prevY = 0;
-        var prevZ = 0;
-        var prevAlt = 0;
-        var i = 0;
+        createChart("altitude", 0, 100000, 0, 100, "#FFFFFF");
+        createChart("x", 0, 100000, -20, 20, "#FF0000");
+        createChart("y", 0, 100000, -20, 20, "#00FF00");
+        createChart("z", 0, 100000, -20, 20, "#0000FF");
+        
+        let socket = new WebSocket("ws://192.168.1.16:8081");
+        let msgs = [];
+        socket.onopen = function () {
+            console.log("socket openned");
+        }
+
+        socket.onmessage = function (event) {
+            let data = JSON.parse(event.data);
+            if (data === "END") {
+                console.log("END");
+                return;
+            }
+            console.log(data);
+            msgs.push(data);
+        }
+
         setInterval(() => {
-            prevX += (Math.random() - 0.5);
-            prevY += (Math.random() - 0.5);
-            prevZ += (Math.random() - 0.5);
-            prevAlt += Math.random();
-            update_x(i, prevX);
-            update_y(i, prevY);
-            update_z(i, prevZ);
-            update_altitude(i, prevAlt);
-            i += 1;
-        }, 100);
+            let data = msgs.shift();
+            if (data === undefined) {
+                return;
+            }
+            update_x(data["time"], data["accel_x"]);
+            update_y(data["time"], data["accel_y"]);
+            update_z(data["time"], data["accel_z"]);
+            update_altitude(data["time"], data["alt"]);
+        }, 50);
     </script>
 </body>
 

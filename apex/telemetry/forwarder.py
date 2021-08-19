@@ -72,19 +72,19 @@ class UDPProtocol:
         if not self.started:
             if "start" in data.decode("ascii"):
                 self.started = True
-                self.file = open(f"dumps/broadcast_{datetime.now().strftime('%H_%M_%S_%m_%d_%Y')}.csv", "w")
+                # self.file = open(f"dumps/broadcast_{datetime.now().strftime('%H_%M_%S_%m_%d_%Y')}.csv", "w")
                 print("starting")
             return
         
         if is_end_msg(data):
-            self.file.close()
+            # self.file.close()
             self.started = False
             self.queue.put_nowait(EndFrame())
             print("stopped")
             return
         
         for frame in parse(data):
-            self.file.write(frame.to_csv())
+            # self.file.write(frame.to_csv())
             self.queue.put_nowait(frame) #Won't error since the queue must have an unlimited size
 
 class Websockets:
@@ -104,6 +104,7 @@ class Websockets:
                 data = await websocket.recv()
                 print(f"{path} sent {data}") #Basically discard data
         except websockets.exceptions.ConnectionClosed:
+            print(self.clients, path)
             del self.clients[path]
     
     async def broadcast(self):
