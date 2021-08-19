@@ -16,6 +16,7 @@
     <script src="https://cdn.jsdelivr.net/npm/three@0.110/examples/js/controls/OrbitControls.js"></script>
     <script type="module" src="./js/rocket.js"></script>
     <script src="./js/charts.js"></script>
+    <script src="./js/ahrs/www-ahrs.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.0/dist/chart.min.js"></script>
 
@@ -34,9 +35,9 @@
 <body>
     <div class="container">
         <canvas class="Rocket" id="canvas"></canvas>
-        <div class="Altitude" id="alt">204</div>
-        <div class="Time" id="flight_time">12:23</div>
-        <div class="Conn" id="conn">Yes</div>
+        <div class="Altitude" id="alt">0m</div>
+        <div class="Time" id="flight_time">0s</div>
+        <div class="Conn" id="conn">---</div>
         <div class="Alt-chart">
             <canvas id="altitude" width="400" height="275%"></canvas>
         </div>
@@ -49,9 +50,16 @@
         <div class="z">
             <canvas id="z" width="400" height="275%"></canvas>
         </div>
-        <div class="velocity" id="velocity">v</div>
+        <div class="velocity" id="velocity">0m/s</div>
     </div>
     <script>
+        const AHRS = require("ahrs");
+        const madgwick = new AHRS({
+            sampleInterval: 50,
+            algorithm: "Madgwick",
+            beta: 0.4,
+        });
+
         createChart("altitude", 0, 100000, 0, 100, "#FFFFFF");
         createChart("x", 0, 100000, -20, 20, "#FF0000");
         createChart("y", 0, 100000, -20, 20, "#00FF00");
@@ -60,7 +68,7 @@
         let socket = new WebSocket("ws://192.168.1.16:8081");
         let msgs = [];
         socket.onopen = function () {
-            console.log("socket openned");
+            console.log("socket opened");
         }
 
         socket.onmessage = async function (event) {
@@ -86,6 +94,11 @@
                 conn.style.color = "#d91e18";
                 return;
             }
+
+            madgwick.update(data["gyro_x"], data["gyro_y"], data["gyro_z"], data["accel_x"], data["accel_y"], data["accel_z"], data["mag_x"], data["mag_y"], data["mag_z"]);
+            const angles = madgwick.getEulerAngles();
+            set_euler(angles.roll, angles.pitch, angles.heading);
+
             conn.innerHTML = "CON";
             conn.style.color = "#03a678"
             update_x(data["time"], data["accel_x"]);
