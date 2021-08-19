@@ -1,4 +1,4 @@
-import socket
+import asyncio
 from datetime import datetime
 import struct
 
@@ -57,25 +57,42 @@ def parse(msg):
         frames.append(Frame(*frame))
     return frames
 
+class UDPProtocol:
+    def __init__(self):
+        self.started = False
 
-if __name__ == "__main__":
-    sock = socket.socket(socket.AF_INET,  # Internet
-                        socket.SOCK_DGRAM)  # UDP
-    sock.bind((UDP_IP, UDP_PORT))
+    def connection_made(self, _):
+        print("connection")
+
+    def datagram_received(self, data, _):
+        if not self.started:
+            if "start" in data.decode("ascii"):
+                self.started = True
+                self.file = open(f"dumps/broadcast_{datetime.now().strftime('%H_%M_%S_%m_%d_%Y')}.csv", "w")
+                print("starting")
+                return
+        
+        if is_end_msg(data):
+            self.file.close()
+            self.started = False
+            print("stopped")
+            return
+        
+        for frame in parse(data):
+            self.file.write(frame.to_csv())
+
+            
+    
+
+async def main():
+    loop = asyncio.get_running_loop()
+    transport, protocol = await loop.create_datagram_endpoint(
+        lambda: UDPProtocol(),
+        local_addr=(UDP_IP, UDP_PORT),
+    )
 
     while True:
-        msg = ""
-        while "start" not in msg:
-            msg = str(sock.recvfrom(1024))
-            print(msg)
+        await asyncio.sleep(60*60)
 
-        print("starting")
-        with open(f"dumps/broadcast_{datetime.now().strftime('%H_%M_%S_%m_%d_%Y')}.csv", "w") as file:
-            while True:
-                msg = sock.recvfrom(1024)[0]
-                if is_end_msg(msg):
-                    break
-                for frame in parse(msg):
-                    file.write(frame.to_csv())
-                print(msg, msg[0] == b'e', msg[0] == 'e', msg[0], b'e')
-        break
+if __name__ == "__main__":
+    asyncio.run(main())
