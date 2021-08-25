@@ -43,17 +43,13 @@ class sensors:
         self._bno.enable_feature(BNO_REPORT_LINEAR_ACCELERATION)
         self._bno.enable_feature(BNO_REPORT_ROTATION_VECTOR)
         self._bno.enable_feature(BNO_REPORT_GEOMAGNETIC_ROTATION_VECTOR)
-        self._bno.enable_feature(BNO_REPORT_ACTIVITY_CLASSIFIER)
-        self._bno.enable_feature(BNO_REPORT_STEP_COUNTER)
 
     def get(self):
         self._data[0] = millis()
         self._data[1:4] = self._bno.linear_acceleration
         self._data[4:8] = self._bno.quaternion
         self._data[8:12] = self._bno.geomagnetic_quaternion
-        self._data[12] = self._bno.steps
-        self._data[13] = 0  # TODO convert classification to index
-        self._data[14] = self._dps310.pressure
-        self._data[15] = self._dps310.temperature
+        self._data[12] = self._dps310.pressure
+        self._data[13] = self._dps310.temperature
 
         return self._data
