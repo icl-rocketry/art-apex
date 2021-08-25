@@ -83,13 +83,31 @@ class flight(state):
     def run(self):
         i = 0
         led.colour(255, 0, 0)
+
         capture_gps = False
+        
+        #Problem:
+        #Sim module will need long (50ms+) waits to work
+        #But we can't afford that in a single threaded environment
+        #Solution:
+        #Use pkt_wait to provide the sleeps
+        pkt_wait = 1
+        pkt = bytearray(24)
+        self._sms.connect()
+
         while i < self._flight_time:
+            pkt_wait -= 1
             i += 1
             start = millis()
             data = self._sensors.get()
             for reading in data:
                 self._sensor_storage.write(struct.pack("f", reading))
+
+            if pkt_wait == 0:
+                pkt[0] = data[0] #time
+                pkt[1:5] = data[4:8] #geo_quaternion
+                pkt[5] = data[12] #altitude
+                pkt_wait = self._sms.send_pkt(pkt)
 
             if capture_gps:
                 long, lat, alt = self._gps.get_loc()
@@ -102,6 +120,7 @@ class flight(state):
         self._sensor_storage.close()
         self._gps_storage.flush()
         self._gps_storage.close()
+        self._sms.disconnect()
         return postflight(self._sms, self._gps)
 
 

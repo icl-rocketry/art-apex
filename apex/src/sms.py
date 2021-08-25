@@ -12,10 +12,12 @@ with open("phone.number") as file:
 print(OWNER_NUMBER)
 
 SEND_DELAY_MS = 50
+MAX_PKT_SIZE = 24*20
 
 class sms:
     def __init__(self, rx, tx):
         self._uart = UART(baudrate=9600, rx=rx, tx=tx)
+        self.pkt_size = 0
 
     def _send(self, cmd: str) -> str:
         self._uart.write(bytes((cmd+"\r\n").encode("ascii")))
@@ -57,6 +59,34 @@ class sms:
         msg = resp.decode("ascii")
         words = msg.split("\r\n")
         return words[2]
+
+    def connect(self):
+        self._send("AT+CFUN=1")
+        self._send("AT+CSTT=\"wap.vodafone.co.uk\",\"wap\",\"wap\"")
+        self._send("AT+CIICR")
+        sleep_ms(200)
+        self._send("AT+CIFSR")
+        self._send("AT+CIPSTART=\"UDP\",35.229.97.111,8080")
+        sleep_ms(2000)
+
+    #Returns the number of milliseconds that need to be waited
+    #This will have some gaps though, especially when sending a new packet
+    def send_pkt(self, pkt: bytes) -> int:
+        if self.pkt_size == 0:
+            self._uart.write(bytes((f"AT+CIPSEND={MAX_PKT_SIZE}").encode("ascii")))
+            return 4
+        
+        self._uart.write(pkt)
+        self.pkt_size += len(pkt)
+        if self.pkt_size >= MAX_PKT_SIZE:
+            self._uart.write(bytes("\r\n".encode("ascii")))
+            return 3
+        return 1
+
+    def disconnect(self):
+        self._send("AT+CIPCLOSE")
+        self._send("AT+CIPSHUT")
+
 
 #AT+CFUN=1
 #AT+CPIN?
