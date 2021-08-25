@@ -67,7 +67,7 @@ class preflight(state):
 class flight(state):
     # TODO optimise buffer size such that data can be flushed in the same amount of time that would be
     # spent sleeping
-    _recordings_before_flush = 3
+    _recordings_before_flush = 180
     _buffer_size = _recordings_before_flush * sensors.data_size
     _capture_rate = 20
     _delay = 1000//_capture_rate
@@ -77,23 +77,31 @@ class flight(state):
         self._sms = sms
         self._sensors = sensors
         self._gps = gps
-        self._storage = open("log.bin", "wb", buffering=self._buffer_size)
+        self._sensor_storage = open("log.bin", "wb", buffering=self._buffer_size)
+        self._gps_storage = open("gps.bin", "wb")
 
     def run(self):
         i = 0
         led.colour(255, 0, 0)
+        capture_gps = False
         while i < self._flight_time:
             i += 1
             start = millis()
             data = self._sensors.get()
-
             for reading in data:
-                self._storage.write(struct.pack("f", reading))
+                self._sensor_storage.write(struct.pack("f", reading))
 
+            if capture_gps:
+                long, lat, alt = self._gps.get_loc()
+                self._gps_storage.write(struct.pack("fff", [long, lat, alt]))
+
+            capture_gps = not capture_gps
             end = millis()
             sleep_ms(max(0, self._delay - (end - start)))
-        self._storage.flush()
-        self._storage.close()
+        self._sensor_storage.flush()
+        self._sensor_storage.close()
+        self._gps_storage.flush()
+        self._gps_storage.close()
         return postflight(self._sms, self._gps)
 
 
