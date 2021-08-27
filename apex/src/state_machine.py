@@ -86,7 +86,7 @@ class flight(state):
         self._sms = sms
         self._sensors = sensors
         self._gps = gps
-        self._sensor_storage = open("log.bin", "wb", buffering=self._buffer_size)
+        self._sensor_storage = open("log.bin", "wb", self._buffer_size)
         self._gps_storage = open("gps.bin", "wb")
 
     def run(self):
@@ -113,7 +113,7 @@ class flight(state):
             if pkt_wait == 0:
                 pkt[0:4] = struct.pack("f", data[0]) #time
                 for j in range(4):
-                    pkt[4*j:4*(j+1)] = struct.pack("f", data[j+6]) #geo_quaternion #TODO - fix
+                    pkt[4*j:4*(j+1)] = struct.pack("f", data[j+4])
                 
                 pkt[20:24] = struct.pack("f", data[10]) #altitude
                 pkt_wait = self._sms.send_pkt(pkt)
