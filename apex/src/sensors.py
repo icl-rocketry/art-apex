@@ -1,4 +1,4 @@
-from time import monotonic_ns
+from time import monotonic_ns, sleep
 
 from adafruit_dps310 import DPS310, Rate, Mode, SampleCount
 from adafruit_bno08x.i2c import BNO08X_I2C
@@ -60,6 +60,10 @@ class sensors:
             # return self._dps310.pressure, self._dps310.temperature
         # except:
         return float(ERROR), float(ERROR)
+
+    def calibrate(self):
+        self._bno.begin_calibration()
+        sleep(15)
 
     def get(self):
         lin_accel, quat, geo_quat, accel, gyro, mag = self._get_accelerometer()

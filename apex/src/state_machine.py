@@ -1,7 +1,9 @@
-# The state machine has 3 states:
-# 1. Preflight - calibrates all sensors, and waits for a text message containing the message "launch".
-# 2. Flight - takes readings from sensors for FLIGHT_TIME minutes.
-# 3. Postflight - takes gps readings and sends them to GROUND_CONTROL_PHONE, until a "Received" is received.
+# The state machine has 5 states:
+# 1. Diagnostic - all peripherals are initialised
+# 2. Calibration - the accelerometer is calibrated
+# 3. Preflight - calibrates all sensors, and waits for a text message containing the message "launch".
+# 4. Flight - takes readings from sensors for FLIGHT_TIME minutes.
+# 5. Postflight - takes gps readings and sends them to GROUND_CONTROL_PHONE, until a "Received" is received.
 #                 It also plays sounds over the speakers, in case the earlier method failed
 
 import struct
@@ -38,16 +40,23 @@ class diagnostic(state):
         sms_ = sms(rx=board.GP5, tx=board.GP4)
         sms_.report()
         sensors_ = sensors(i2c)
-        sms_.report()
         gps_ = gps(i2c, 1000)
-        sms_.report()
         print("Done")
+        return preflight(sms_, sensors_, gps_)
+
+class calibration(state):
+    def __init__(self, sms, sensors, gps):
+        self._sms = sms
+        self._sensors = sensors
+        self._gps = gps
+    
+    def run(self):
         led.colour(0, 255, 0)
         led.on()
-        while sms_.recv_msg() != "ok":
-            sleep_ms(1000)
+        self._sensors.calibrate()
+        while self._sms.recv_msg() != "ok":
+            sleep_ms(500)
             led.toggle()
-        return preflight(sms_, sensors_, gps_)
 
 class preflight(state):
     def __init__(self, sms, sensors, gps):
@@ -58,7 +67,7 @@ class preflight(state):
     def run(self):
         led.colour(0, 0, 255)
         while self._sms.recv_msg() != "launch":
-            sleep_ms(1000)
+            sleep_ms(500)
             led.toggle()
         self._sms.send_msg("launching")
         return flight(self._sms, self._sensors, self._gps)
@@ -68,7 +77,7 @@ class flight(state):
     # TODO optimise buffer size such that data can be flushed in the same amount of time that would be
     # spent sleeping
     _recordings_before_flush = 180
-    _buffer_size = _recordings_before_flush * sensors.data_size
+    _buffer_size = _recordings_before_flush * sensors.data_size * 4
     _capture_rate = 20
     _delay = 1000//_capture_rate
     _flight_time = 15 * _capture_rate  # 5 minutes of flight
