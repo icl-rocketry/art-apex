@@ -133,7 +133,6 @@ class postflight(state):
         led.colour(0, 255, 255)
         while True:
             resp = self._sms.recv_msg()
-            self._gps.update()
 
             if resp == "siren":
                 speaker.siren()
