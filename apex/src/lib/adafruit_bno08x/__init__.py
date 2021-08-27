@@ -33,6 +33,8 @@ from collections import namedtuple
 import time
 from micropython import const
 
+from .debug import channels, reports
+
 # TODO: shorten names
 # Channel 0: the SHTP command channel
 BNO_CHANNEL_SHTP_COMMAND = const(0)

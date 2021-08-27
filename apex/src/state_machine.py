@@ -42,7 +42,7 @@ class diagnostic(state):
         sensors_ = sensors(i2c)
         gps_ = gps(i2c, 1000)
         print("Done")
-        return preflight(sms_, sensors_, gps_)
+        return calibration(sms_, sensors_, gps_)
 
 class calibration(state):
     def __init__(self, sms, sensors, gps):
@@ -53,10 +53,12 @@ class calibration(state):
     def run(self):
         led.colour(0, 255, 0)
         led.on()
-        self._sensors.calibrate()
-        while self._sms.recv_msg() != "ok":
-            sleep_ms(500)
-            led.toggle()
+        # self._sensors.calibrate()
+        led.colour(255, 0, 255)
+        # while self._sms.recv_msg() != "ok":
+        #     sleep_ms(500)
+        #     led.toggle()
+        return preflight(self._sms, self._sensors, self._gps)
 
 class preflight(state):
     def __init__(self, sms, sensors, gps):
@@ -66,11 +68,35 @@ class preflight(state):
 
     def run(self):
         led.colour(0, 0, 255)
-        while self._sms.recv_msg() != "launch":
-            sleep_ms(500)
-            led.toggle()
+        # while self._sms.recv_msg() != "launch":
+        #     sleep_ms(500)
+        #     led.toggle()
         self._sms.send_msg("launching")
         return flight(self._sms, self._sensors, self._gps)
+
+def mean(data):
+    """Return the sample arithmetic mean of data."""
+    n = len(data)
+    if n < 1:
+        raise ValueError('mean requires at least one data point')
+    return sum(data)/n # in Python 2 use sum(data)/float(n)
+
+def _ss(data):
+    """Return sum of square deviations of sequence data."""
+    c = mean(data)
+    ss = sum((x-c)**2 for x in data)
+    return ss
+
+def stddev(data, ddof=0):
+    """Calculates the population standard deviation
+    by default; specify ddof=1 to compute the sample
+    standard deviation."""
+    n = len(data)
+    if n < 2:
+        raise ValueError('variance requires at least two data points')
+    ss = _ss(data)
+    pvar = ss/(n-ddof)
+    return pvar**0.5
 
 
 class flight(state):
@@ -86,8 +112,7 @@ class flight(state):
         self._sms = sms
         self._sensors = sensors
         self._gps = gps
-        self._sensor_storage = open("log.bin", "wb", self._buffer_size)
-        self._gps_storage = open("gps.bin", "wb")
+        self._sensor_storage = open("log.bin", "wb")
 
     def run(self):
         i = 0
@@ -101,6 +126,7 @@ class flight(state):
         pkt_wait = 1
         pkt = bytearray(sensors.data_size * 4)
         self._sms.connect()
+        sens = []
 
         while i < self._flight_time:
             pkt_wait -= 1
@@ -117,16 +143,14 @@ class flight(state):
                 
                 pkt[20:24] = struct.pack("f", data[10]) #altitude
                 pkt_wait = self._sms.send_pkt(pkt)
-
-            long, lat, alt = self._gps.get_loc()
-            self._gps_storage.write(struct.pack("fff", long, lat, alt))
-
             end = millis()
+            sens.append(end-start)
+            print(end - start)
             sleep_ms(max(0, self._delay - (end - start)))
+
+        print("mean:", mean(sens), "stddev:", stddev(sens), "max:", max(sens))
         self._sensor_storage.flush()
         self._sensor_storage.close()
-        self._gps_storage.flush()
-        self._gps_storage.close()
         self._sms.disconnect()
         return postflight(self._sms, self._gps)
 
@@ -141,11 +165,13 @@ class postflight(state):
         wait = 0
         led.colour(0, 255, 255)
         while True:
-            resp = self._sms.recv_msg()
+            # resp = self._sms.recv_msg()
+            resp = "siren"
 
             if resp == "siren":
                 speaker.siren()
                 wait = 0
+                break
 
             elif resp == "location":
                 msg = self._gps.create_msg()

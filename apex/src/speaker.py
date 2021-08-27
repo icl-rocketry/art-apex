@@ -26,6 +26,7 @@ class Speaker:
             time.sleep(delay)
 
     def siren(self, cycles = 3):
+        self.speaker.duty_cycle = 65535 // 2
         # 3x sweep up and down
         for _ in range(cycles):
             self._sweep()
@@ -33,4 +34,5 @@ class Speaker:
 
     def shutup(self):
         self._playtone(0)
+        self.speaker.duty_cycle = 0
     

@@ -6,6 +6,7 @@ try:
     while state is not None:
         state = state.run()
 except Exception as e:
+    print(e)
     import os
     os.rename("boot.py", "boo.py")
     print("Renamed")
