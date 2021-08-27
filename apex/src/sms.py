@@ -48,16 +48,18 @@ class sms:
     def recv_msg(self) -> str:
         self._send("AT+CMGF=1")  # Text message mode
         self._send("AT+CNMI=1,2,0,0,0")  # Send text message over uart
-        resp = ""
+        resp = "\r\n\r\n"
         count = 0
         while count < 10 and (resp == "" or "+CMT" not in resp):
             resp = self._uart.read()
             if resp is None:
-                resp = ""
+                resp = "\r\n\r\n"
+            else:
+                resp = resp.decode("ascii")
+                break
             count += 1
 
-        msg = resp.decode("ascii")
-        words = msg.split("\r\n")
+        words = resp.split("\r\n")
         return words[2]
 
     def connect(self):
@@ -73,7 +75,7 @@ class sms:
     #This will have some gaps though, especially when sending a new packet
     def send_pkt(self, pkt: bytes) -> int:
         if self.pkt_size == 0:
-            self._uart.write(bytes((f"AT+CIPSEND={MAX_PKT_SIZE}").encode("ascii")))
+            self._uart.write(bytes((f"AT+CIPSEND={MAX_PKT_SIZE}\r\na").encode("ascii")))
             return 4
         
         self._uart.write(pkt)

@@ -38,9 +38,9 @@ class diagnostic(state):
         sms_ = sms(rx=board.GP5, tx=board.GP4)
         sms_.report()
         sensors_ = sensors(i2c)
-        sms_.send_msg("sensors ok")
+        sms_.report()
         gps_ = gps(i2c, 1000)
-        sms_.send_msg("gps ok")
+        sms_.report()
         print("Done")
         led.colour(0, 255, 0)
         led.on()
@@ -59,7 +59,7 @@ class preflight(state):
         led.colour(0, 0, 255)
         while self._sms.recv_msg() != "launch":
             sleep_ms(1000)
-            led.on()
+            led.toggle()
         self._sms.send_msg("launching")
         return flight(self._sms, self._sensors, self._gps)
 
@@ -71,7 +71,7 @@ class flight(state):
     _buffer_size = _recordings_before_flush * sensors.data_size
     _capture_rate = 20
     _delay = 1000//_capture_rate
-    _flight_time = 5 * 60 * _capture_rate  # 5 minutes of flight
+    _flight_time = 15 * _capture_rate  # 5 minutes of flight
 
     def __init__(self, sms, sensors, gps):
         self._sms = sms
@@ -84,15 +84,13 @@ class flight(state):
         i = 0
         led.colour(255, 0, 0)
 
-        capture_gps = False
-        
         #Problem:
         #Sim module will need long (50ms+) waits to work
         #But we can't afford that in a single threaded environment
         #Solution:
         #Use pkt_wait to provide the sleeps
         pkt_wait = 1
-        pkt = bytearray(24)
+        pkt = bytearray(sensors.data_size * 4)
         self._sms.connect()
 
         while i < self._flight_time:
@@ -104,16 +102,16 @@ class flight(state):
                 self._sensor_storage.write(struct.pack("f", reading))
 
             if pkt_wait == 0:
-                pkt[0] = data[0] #time
-                pkt[1:5] = data[4:8] #geo_quaternion
-                pkt[5] = data[12] #altitude
+                pkt[0:4] = struct.pack("f", data[0]) #time
+                for j in range(4):
+                    pkt[4*j:4*(j+1)] = struct.pack("f", data[j+6]) #geo_quaternion #TODO - fix
+                
+                pkt[20:24] = struct.pack("f", data[10]) #altitude
                 pkt_wait = self._sms.send_pkt(pkt)
 
-            if capture_gps:
-                long, lat, alt = self._gps.get_loc()
-                self._gps_storage.write(struct.pack("fff", [long, lat, alt]))
+            long, lat, alt = self._gps.get_loc()
+            self._gps_storage.write(struct.pack("fff", long, lat, alt))
 
-            capture_gps = not capture_gps
             end = millis()
             sleep_ms(max(0, self._delay - (end - start)))
         self._sensor_storage.flush()
@@ -139,10 +137,12 @@ class postflight(state):
 
             if resp == "siren":
                 speaker.siren()
+                wait = 0
 
             elif resp == "location":
                 msg = self._gps.create_msg()
                 self._sms.send_msg(msg)
+                wait = 0
 
             sleep(0.5)
 
