@@ -28,7 +28,6 @@ def sleep_ms(ms):
     sleep(ms//1000)
 
 
-# FIXME these pins might be wrong
 i2c = I2C(scl=board.GP27, sda=board.GP26, timeout=10000000)
 
 class state:
@@ -135,28 +134,17 @@ class postflight(state):
         self._gps = gps
 
     def run(self):
-        resp = ""
         wait = 0
         led.colour(0, 255, 255)
-        for i in range(5):
+        for _ in range(5):
             self._sms.send_msg("Landed")
             sleep_ms(100)
         while True:
-            resp = self._sms.recv_msg()
-
-            if resp == "siren":
+            if wait % 60 == 0:
+                self._sms.send_msg(self._gps.create_msg())
+            elif wait % 45 == 0:
                 speaker.siren()
-                wait = 0
-
-            elif resp == "location":
-                msg = self._gps.create_msg()
-                self._sms.send_msg(msg)
-                wait = 0
-
-            sleep(0.5)
-
+            elif wait % 5 == 0:
+                speaker.beep()
+            sleep(1)
             wait += 1
-
-            if wait == 60:
-                speaker.siren()
-                wait = 0
