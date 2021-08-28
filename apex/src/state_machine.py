@@ -31,6 +31,11 @@ def sleep_ms(ms):
 i2c = I2C(scl=board.GP27, sda=board.GP26, timeout=10000000)
 
 class state:
+    def __init__(self, sms, sensors, gps):
+        self._sms = sms
+        self._sensors = sensors
+        self._gps = gps
+
     def run(self):
         raise NotImplementedError("Not implemented")
 
@@ -46,11 +51,6 @@ class diagnostic(state):
         return calibration(sms_, sensors_, gps_)
 
 class calibration(state):
-    def __init__(self, sms, sensors, gps):
-        self._sms = sms
-        self._sensors = sensors
-        self._gps = gps
-    
     def run(self):
         led.colour(0, 255, 0)
         led.on()
@@ -62,11 +62,6 @@ class calibration(state):
         return preflight(self._sms, self._sensors, self._gps)
 
 class preflight(state):
-    def __init__(self, sms, sensors, gps):
-        self._sms = sms
-        self._sensors = sensors
-        self._gps = gps
-
     def run(self):
         led.colour(0, 0, 255)
         self._sms.send_msg("Never gonna give you up")
@@ -74,15 +69,14 @@ class preflight(state):
             pass
         self._sms.send_msg("launching")
         return flight(self._sms, self._sensors, self._gps)
+
 class flight(state):
     _capture_rate = 20
     _delay = 1000//_capture_rate
     _flight_time = 30 * _capture_rate  # 5 minutes of flight
 
     def __init__(self, sms, sensors, gps):
-        self._sms = sms
-        self._sensors = sensors
-        self._gps = gps
+        super(sms, sensors, gps)
         self._sensor_storage = open("log.bin", "wb")
 
     def run(self):
@@ -128,8 +122,7 @@ class flight(state):
 
 class postflight(state):
     def __init__(self, sms, gps):
-        self._sms = sms
-        self._gps = gps
+        super(sms, None, gps)
 
     def run(self):
         wait = 0
