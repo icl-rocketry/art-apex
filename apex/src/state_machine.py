@@ -77,7 +77,7 @@ class preflight(state):
 class flight(state):
     _capture_rate = 20
     _delay = 1000//_capture_rate
-    _flight_time = 15 * _capture_rate  # 5 minutes of flight
+    _flight_time = 5 * 60 * _capture_rate  # 5 minutes of flight
 
     def __init__(self, sms, sensors, gps):
         self._sms = sms
