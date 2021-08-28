@@ -29,16 +29,16 @@ class sensors:
     # All sensors will share the same i2c bus
     def __init__(self, i2c):
         # Initialise barometer - TODO tweak the rate and samplecounts
-        # self._dps310 = DPS310(i2c)
-        # self._dps310.reset()
-        # # 2 samples per pressure measurement
-        # self._dps310.pressure_oversample_count = SampleCount.COUNT_2
-        # self._dps310.pressure_rate = Rate.RATE_16_HZ
-        # self._dps310.temperature_oversample_count = SampleCount.COUNT_16
-        # self._dps310.temperature_rate = Rate.RATE_16_HZ
-        # self._dps310.mode = Mode.CONT_PRESTEMP
-        # self._dps310.wait_temperature_ready()
-        # self._dps310.wait_pressure_ready()
+        self._dps310 = DPS310(i2c)
+        self._dps310.reset()
+        # 2 samples per pressure measurement
+        self._dps310.pressure_oversample_count = SampleCount.COUNT_2
+        self._dps310.pressure_rate = Rate.RATE_16_HZ
+        self._dps310.temperature_oversample_count = SampleCount.COUNT_16
+        self._dps310.temperature_rate = Rate.RATE_16_HZ
+        self._dps310.mode = Mode.CONT_PRESTEMP
+        self._dps310.wait_temperature_ready()
+        self._dps310.wait_pressure_ready()
 
         # Initialise imu
         self._bno = BNO08X_I2C(i2c)
@@ -56,10 +56,10 @@ class sensors:
             return [float(ERROR)]*3, [float(ERROR)]*4, [float(ERROR)]*4, [float(ERROR)]*3, [float(ERROR)]*3, [float(ERROR)]*3
 
     def _get_barometer(self):
-        # try:
-            # return self._dps310.pressure, self._dps310.temperature
-        # except:
-        return float(ERROR), float(ERROR)
+        try:
+            return self._dps310.pressure, self._dps310.temperature
+        except:
+            return float(ERROR), float(ERROR)
 
     def calibrate(self):
         self._bno.begin_calibration()

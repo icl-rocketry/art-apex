@@ -16,7 +16,7 @@ MAX_PKT_SIZE = 320
 
 class sms:
     def __init__(self, rx, tx):
-        self._uart = UART(baudrate=9600, rx=rx, tx=tx)
+        self._uart = UART(baudrate=57600, rx=rx, tx=tx)
         self.pkt_size = 0
 
     def _send(self, cmd: str) -> str:
