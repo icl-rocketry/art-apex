@@ -40,9 +40,11 @@ class state:
         raise NotImplementedError("Not implemented")
 
 class diagnostic(state):
+    def __init__(self):
+        pass
+
     def run(self):
         sms_ = sms(rx=board.GP5, tx=board.GP4)
-        sleep_ms(1000)
         sms_.report()
         sensors_ = sensors(i2c)
         gps_ = gps(i2c, 1000)
@@ -54,8 +56,7 @@ class calibration(state):
     def run(self):
         led.colour(0, 255, 0)
         led.on()
-        # self._sensors.calibrate()
-        sleep_ms(2000)
+        self._sensors.calibrate()
         led.colour(255, 0, 255)
         while self._sms.recv_msg(led) != "ok":
             pass
