@@ -36,3 +36,8 @@ class Speaker:
         self._playtone(0)
         self.speaker.duty_cycle = 0
     
+    def beep(self):
+        self.speaker.duty_cycle = 65535 // 2
+        self._playtone(4000)
+        time.sleep(0.2)
+        self.speaker.duty_cycle = 0
