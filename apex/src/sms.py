@@ -12,7 +12,7 @@ with open("phone.number") as file:
 print(OWNER_NUMBER)
 
 SEND_DELAY_MS = 50
-MAX_PKT_SIZE = 24*20
+MAX_PKT_SIZE = 320
 
 class sms:
     def __init__(self, rx, tx):

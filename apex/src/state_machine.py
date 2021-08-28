@@ -95,7 +95,7 @@ class flight(state):
         #Solution:
         #Use pkt_wait to provide the sleeps
         pkt_wait = 1
-        pkt = bytearray(sensors.data_size * 4)
+        pkt = bytearray(32 * 4)
         self._sms.connect()
 
         while i < self._flight_time:
@@ -112,6 +112,10 @@ class flight(state):
                     pkt[4*j:4*(j+1)] = struct.pack("f", data[j+4])
                 
                 pkt[20:24] = struct.pack("f", data[10]) #altitude
+                
+                lat, lon, _ = self._gps.get_loc()
+                pkt[20:24] = struct.pack("f", lat)
+                pkt[24:28] = struct.pack("f", lon)
                 pkt_wait = self._sms.send_pkt(pkt)
             end = millis()
             sleep_ms(max(0, self._delay - (end - start)))
