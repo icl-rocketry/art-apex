@@ -38,6 +38,7 @@ class state:
 class diagnostic(state):
     def run(self):
         sms_ = sms(rx=board.GP5, tx=board.GP4)
+        sleep_ms(1000)
         sms_.report()
         sensors_ = sensors(i2c)
         gps_ = gps(i2c, 1000)
@@ -54,10 +55,11 @@ class calibration(state):
     def run(self):
         led.colour(0, 255, 0)
         led.on()
-        self._sensors.calibrate()
+        # self._sensors.calibrate()
+        sleep_ms(2000)
         led.colour(255, 0, 255)
         while self._sms.recv_msg() != "ok":
-            sleep_ms(500)
+            sleep_ms(50)
             led.toggle()
         return preflight(self._sms, self._sensors, self._gps)
 
@@ -69,15 +71,16 @@ class preflight(state):
 
     def run(self):
         led.colour(0, 0, 255)
+        self._sms.send_msg("Never gonna give you up")
         while self._sms.recv_msg() != "launch":
-            sleep_ms(500)
+            sleep_ms(50)
             led.toggle()
         self._sms.send_msg("launching")
         return flight(self._sms, self._sensors, self._gps)
 class flight(state):
     _capture_rate = 20
     _delay = 1000//_capture_rate
-    _flight_time = 5 * 60 * _capture_rate  # 5 minutes of flight
+    _flight_time = 30 * _capture_rate  # 5 minutes of flight
 
     def __init__(self, sms, sensors, gps):
         self._sms = sms
@@ -94,35 +97,35 @@ class flight(state):
         #But we can't afford that in a single threaded environment
         #Solution:
         #Use pkt_wait to provide the sleeps
-        pkt_wait = 1
-        pkt = bytearray(32 * 4)
-        self._sms.connect()
+        # pkt_wait = 1
+        # pkt = bytearray(32 * 4)
+        # self._sms.connect()
 
         while i < self._flight_time:
-            pkt_wait -= 1
+            # pkt_wait -= 1
             i += 1
             start = millis()
             data = self._sensors.get()
             for reading in data:
                 self._sensor_storage.write(struct.pack("f", reading))
 
-            if pkt_wait == 0:
-                pkt[0:4] = struct.pack("f", data[0]) #time
-                for j in range(4):
-                    pkt[4*j:4*(j+1)] = struct.pack("f", data[j+4])
+            # if pkt_wait == 0:
+            #     pkt[0:4] = struct.pack("f", data[0]) #time
+            #     for j in range(4):
+            #         pkt[4*j:4*(j+1)] = struct.pack("f", data[j+4])
                 
-                pkt[20:24] = struct.pack("f", data[10]) #altitude
+            #     pkt[20:24] = struct.pack("f", data[10]) #altitude
                 
-                lat, lon, _ = self._gps.get_loc()
-                pkt[20:24] = struct.pack("f", lat)
-                pkt[24:28] = struct.pack("f", lon)
-                pkt_wait = self._sms.send_pkt(pkt)
+            #     lat, lon, _ = self._gps.get_loc()
+            #     pkt[20:24] = struct.pack("f", lat)
+            #     pkt[24:28] = struct.pack("f", lon)
+                # pkt_wait = self._sms.send_pkt(pkt)
             end = millis()
             sleep_ms(max(0, self._delay - (end - start)))
 
         self._sensor_storage.flush()
         self._sensor_storage.close()
-        self._sms.disconnect()
+        # self._sms.disconnect()
         return postflight(self._sms, self._gps)
 
 
@@ -135,6 +138,9 @@ class postflight(state):
         resp = ""
         wait = 0
         led.colour(0, 255, 255)
+        for i in range(5):
+            self._sms.send_msg("Landed")
+            sleep_ms(100)
         while True:
             resp = self._sms.recv_msg()
 
