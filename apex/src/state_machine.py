@@ -57,9 +57,8 @@ class calibration(state):
         # self._sensors.calibrate()
         sleep_ms(2000)
         led.colour(255, 0, 255)
-        while self._sms.recv_msg() != "ok":
-            sleep_ms(50)
-            led.toggle()
+        while self._sms.recv_msg(led) != "ok":
+            pass
         return preflight(self._sms, self._sensors, self._gps)
 
 class preflight(state):
@@ -71,9 +70,8 @@ class preflight(state):
     def run(self):
         led.colour(0, 0, 255)
         self._sms.send_msg("Never gonna give you up")
-        while self._sms.recv_msg() != "launch":
-            sleep_ms(50)
-            led.toggle()
+        while self._sms.recv_msg(led) != "launch":
+            pass
         self._sms.send_msg("launching")
         return flight(self._sms, self._sensors, self._gps)
 class flight(state):

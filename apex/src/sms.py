@@ -45,15 +45,18 @@ class sms:
         self._send(msg)
         self._uart.write(bytes(chr(26).encode("ascii")))
 
-    def recv_msg(self) -> str:
+    def recv_msg(self, indicator=None) -> str:
         self._send("AT+CMGF=1")  # Text message mode
         self._send("AT+CNMI=1,2,0,0,0")  # Send text message over uart
         resp = "\r\n\r\n"
         while "+CMT" not in resp:
+            if indicator is not None:
+                indicator.toggle()
             resp = self._uart.read()
             if resp is None:
                 resp = "\r\n\r\n"
             else:
+                indicator.on()
                 resp = resp.decode("ascii")
                 words = resp.split("\r\n")
                 return words[2]
