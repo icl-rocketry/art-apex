@@ -28,7 +28,7 @@ def sleep_ms(ms):
     sleep(ms//1000)
 
 
-i2c = I2C(scl=board.GP27, sda=board.GP26, timeout=10000000)
+i2c = I2C(scl=board.GP27, sda=board.GP26, timeout=10000000, frequency=400_000)
 
 class state:
     def __init__(self, sms, sensors, gps):
@@ -42,13 +42,14 @@ class state:
 class diagnostic(state):
     def __init__(self):
         pass
-
+    
     def run(self):
         sms_ = sms(rx=board.GP5, tx=board.GP4)
-        sms_.report()
         sensors_ = sensors(i2c)
         gps_ = gps(i2c, 1000)
         sms_.send_msg("gps+sensors ok")
+        sleep_ms(50)
+        sms_.report()
         print("Done")
         return calibration(sms_, sensors_, gps_)
 
@@ -58,6 +59,7 @@ class calibration(state):
         led.on()
         self._sensors.calibrate()
         led.colour(255, 0, 255)
+        self._sms.send_msg("Calibrating")
         while self._sms.recv_msg(led) != "ok":
             pass
         return preflight(self._sms, self._sensors, self._gps)
@@ -65,8 +67,8 @@ class calibration(state):
 class preflight(state):
     def run(self):
         led.colour(0, 0, 255)
-        self._sms.send_msg("Never gonna give you up")
-        while self._sms.recv_msg(led) != "launch":
+        self._sms.send_msg("Send 'la'")
+        while self._sms.recv_msg(led) != "la":
             pass
         self._sms.send_msg("launching")
         return flight(self._sms, self._sensors, self._gps)
@@ -77,7 +79,7 @@ class flight(state):
     _flight_time = 30 * _capture_rate  # 5 minutes of flight
 
     def __init__(self, sms, sensors, gps):
-        super(sms, sensors, gps)
+        super(flight, self).__init__(sms, sensors, gps)
         self._sensor_storage = open("log.bin", "wb")
 
     def run(self):
@@ -123,20 +125,25 @@ class flight(state):
 
 class postflight(state):
     def __init__(self, sms, gps):
-        super(sms, None, gps)
+        super(postflight, self).__init__(sms, None, gps)
 
     def run(self):
-        wait = 0
         led.colour(0, 255, 255)
+        for _ in range(2):
+            self._sms.send_msg_all("Landed")
+            sleep(10)
+        sleep(2)
         for _ in range(5):
-            self._sms.send_msg("Landed")
-            sleep_ms(100)
+            self._sms.send_msg_all(self._gps.create_msg())
+            sleep(60)
+           
+        sleep(60)
+
         while True:
-            if wait % 60 == 0:
-                self._sms.send_msg(self._gps.create_msg())
-            elif wait % 45 == 0:
-                speaker.siren()
-            elif wait % 5 == 0:
-                speaker.beep()
-            sleep(1)
-            wait += 1
+            speaker.siren()
+            sleep(45)
+            speaker.shutup()
+            speaker.noise()
+            sleep(45)
+            speaker.shutup()
+        
