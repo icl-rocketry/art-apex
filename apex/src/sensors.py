@@ -49,7 +49,7 @@ class sensors:
 
     def _get_accelerometer(self):
         try:
-            return self._bno.quaertnion, self._bno.acceleration, self._bno.gyro, self._bno.magnetic
+            return self._bno.quaternion, self._bno.acceleration, self._bno.gyro, self._bno.magnetic
         except:
             return [float(ERROR)]*4, [float(ERROR)]*3, [float(ERROR)]*3, [float(ERROR)]*3
 

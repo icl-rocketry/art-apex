@@ -44,7 +44,7 @@ class gps:
             self._gps.timestamp_utc.tm_min,  # month!
             self._gps.timestamp_utc.tm_sec)
 
-        quality = self._gps.fix_quality()
+        quality = self._gps.fix_quality
 
         msg = "Location: {}\nFix acquired at {}\nFix Quality {}".format(
             link, fixtime, quality)
