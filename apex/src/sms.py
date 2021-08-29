@@ -7,8 +7,8 @@ def sleep_ms(ms):
 
 
 with open("phone.number") as file:
-    OWNER_NUMBER = file.readline()
-
+    NUMBERS = file.readlines()
+    OWNER_NUMBER = NUMBERS[0]
 print(OWNER_NUMBER)
 
 SEND_DELAY_MS = 50
@@ -39,11 +39,16 @@ class sms:
         rep += self._send("AT+CBC")  # lipo state
         self.send_msg(rep)
 
-    def send_msg(self, msg: str):
+    def send_msg(self, msg: str, number=OWNER_NUMBER):
         self._send("AT+CMGF=1")  # Text message mode
-        self._send(f"AT+CMGS=\"{OWNER_NUMBER}\"")
+        self._send(f"AT+CMGS=\"{number}\"")
         self._send(msg)
         self._uart.write(bytes(chr(26).encode("ascii")))
+
+    def send_msg_all(self, msg: str):
+        for num in NUMBERS:
+            self.send_msg(msg, num)
+            sleep_ms(2000)
 
     def recv_msg(self, indicator=None) -> str:
         self._send("AT+CMGF=1")  # Text message mode
