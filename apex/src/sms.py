@@ -7,7 +7,7 @@ def sleep_ms(ms):
 
 
 with open("phone.number") as file:
-    NUMBERS = file.readlines()
+    NUMBERS = [line.replace("\r\n", "") for line in file.readlines()]
     OWNER_NUMBER = NUMBERS[0]
 print(OWNER_NUMBER)
 
@@ -48,7 +48,7 @@ class sms:
     def send_msg_all(self, msg: str):
         for num in NUMBERS:
             self.send_msg(msg, num)
-            sleep_ms(2000)
+            sleep_ms(5000)
 
     def recv_msg(self, indicator=None) -> str:
         self._send("AT+CMGF=1")  # Text message mode

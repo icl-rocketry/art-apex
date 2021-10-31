@@ -57,9 +57,10 @@ class calibration(state):
     def run(self):
         led.colour(0, 255, 0)
         led.on()
+        self._sms.send_msg("Calibrating")
         self._sensors.calibrate()
         led.colour(255, 0, 255)
-        self._sms.send_msg("Calibrating")
+        self._sms.send_msg("Calibrated")
         while self._sms.recv_msg(led) != "ok":
             pass
         return preflight(self._sms, self._sensors, self._gps)
