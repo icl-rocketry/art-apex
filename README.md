@@ -21,7 +21,7 @@ The flight computer for Apex consists of the following components:
 
 The Tiny2040 is connected to the BNO085, DPS310 and PA1010D via an I2C connection using GPIO pins 26 and 27. The Tiny2040 is connected to the Sim800L module via a UART connection using GPIO pins 4 and 5.
 
-Since the Sim800L requires 4V, it is connected in parallel to the rest of the components, which are connected to the 3V3 power out pin of the Tiny2040.
+The SIM8000L **must** be isolated when the Tiny2040 is connected to USB, or else it will be fried.
 
 ## Software
 
