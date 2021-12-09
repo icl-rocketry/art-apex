@@ -3852,7 +3852,6 @@ JST PH 2-pin thru-home side entry</description>
 </class>
 </classes>
 <parts>
-<part name="U$42" library="microbuilder" deviceset="FRAME_A4_ADAFRUIT" device=""/>
 <part name="JP2" library="microbuilder" deviceset="HEADER-1X5" device="70MIL"/>
 <part name="P+1" library="microbuilder" deviceset="VCC" device=""/>
 <part name="U$1" library="microbuilder" deviceset="GND" device=""/>
@@ -3867,10 +3866,8 @@ JST PH 2-pin thru-home side entry</description>
 <sheets>
 <sheet>
 <plain>
-<wire x1="50.8" y1="99.06" x2="50.8" y2="101.6" width="0.1524" layer="94" style="shortdash"/>
 </plain>
 <instances>
-<instance part="U$42" gate="G$1" x="-48.26" y="48.26" smashed="yes"/>
 <instance part="JP2" gate="A" x="-5.031390625" y="611.38649375" smashed="yes" rot="R180">
 <attribute name="NAME" x="1.318609375" y="603.13149375" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="1.318609375" y="621.54649375" size="1.778" layer="96" rot="R180"/>
@@ -3919,12 +3916,12 @@ JST PH 2-pin thru-home side entry</description>
 <wire x1="-68.58" y1="619.76" x2="-68.58" y2="627.38" width="0.1524" layer="91"/>
 <pinref part="JP6" gate="A" pin="7"/>
 <pinref part="SUPPLY1" gate="+5V" pin="+5V"/>
-<label x="-63.5" y="627.38" size="1.27" layer="95" xref="yes"/>
+<label x="-66.04" y="624.84" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
 <pinref part="CN1" gate="G$1" pin="2"/>
 <wire x1="-81.28" y1="629.92" x2="-88.9" y2="629.92" width="0.1524" layer="91"/>
-<label x="-81.28" y="624.84" size="1.27" layer="95" xref="yes"/>
+<label x="-86.36" y="627.38" size="1.27" layer="95" rot="R270" xref="yes"/>
 </segment>
 </net>
 <net name="GND" class="0">
