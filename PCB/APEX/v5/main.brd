@@ -544,9 +544,8 @@ design rules under a new name.</description>
 <contactref element="JP5" pad="1"/>
 <contactref element="JP5" pad="1C"/>
 <contactref element="JP2" pad="5"/>
-<wire x1="54.864" y1="104.775" x2="60.706" y2="104.775" width="1.27" layer="16"/>
-<wire x1="60.706" y1="104.775" x2="61.7855" y2="103.6955" width="1.27" layer="16"/>
-<wire x1="61.7855" y1="103.6955" x2="61.7855" y2="100.965" width="1.27" layer="16"/>
+<wire x1="54.864" y1="104.775" x2="58.674" y2="100.965" width="1.27" layer="16"/>
+<wire x1="61.7855" y1="100.965" x2="58.674" y2="100.965" width="1.27" layer="16"/>
 <wire x1="61.7855" y1="100.965" x2="61.7855" y2="102.235" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="A1">
