@@ -4174,9 +4174,9 @@ JST PH 2-pin thru-home side entry</description>
 <label x="-86.36" y="627.38" size="1.27" layer="95" rot="R270" xref="yes"/>
 </segment>
 <segment>
-<pinref part="TESTPATCH" gate="A" pin="1"/>
-<wire x1="-50.8" y1="584.2" x2="-58.42" y2="584.2" width="0.1524" layer="91"/>
-<label x="-68.58" y="584.2" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="TESTPATCH" gate="A" pin="2"/>
+<wire x1="-50.8" y1="581.66" x2="-58.42" y2="581.66" width="0.1524" layer="91"/>
+<label x="-60.96" y="581.66" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="GND" class="0">
@@ -4202,9 +4202,9 @@ JST PH 2-pin thru-home side entry</description>
 <label x="2.588609375" y="613.92649375" size="1.778" layer="95"/>
 </segment>
 <segment>
-<pinref part="TESTPATCH" gate="A" pin="2"/>
-<wire x1="-50.8" y1="581.66" x2="-58.42" y2="581.66" width="0.1524" layer="91"/>
-<label x="-60.96" y="581.66" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="TESTPATCH" gate="A" pin="1"/>
+<wire x1="-50.8" y1="584.2" x2="-58.42" y2="584.2" width="0.1524" layer="91"/>
+<label x="-68.58" y="584.2" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="SD" class="0">
