@@ -1,0 +1,7 @@
+*.b#*
+*.s#*
+*.d#*
+*.job
+*.pro
+PCB/APEX/eagle.epf
+PCB/APEX/bmp.scr
