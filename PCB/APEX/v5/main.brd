@@ -3369,7 +3369,7 @@ http://www.4uconnector.com/online/object/4udrawing/01528.pdf</description>
 <class number="2" name="lowpower" width="0.254" drill="0.381">
 </class>
 </classes>
-<designrules name="aisler_2_layer_simple">
+<designrules name="aisler_2_layer_simple *">
 <description language="de">&lt;b&gt;Aisler Design Rules -  2 Layers - simple&lt;/b&gt;
 
 &lt;p&gt;
@@ -3410,11 +3410,11 @@ Everything else you will find on https://aisler.net/help</description>
 <param name="rvViaInner" value="0.25"/>
 <param name="rvMicroViaOuter" value="0.25"/>
 <param name="rvMicroViaInner" value="0.25"/>
-<param name="rlMinPadTop" value="0.2mm"/>
+<param name="rlMinPadTop" value="0.3mm"/>
 <param name="rlMaxPadTop" value="100mm"/>
-<param name="rlMinPadInner" value="0.2mm"/>
+<param name="rlMinPadInner" value="0.3mm"/>
 <param name="rlMaxPadInner" value="100mm"/>
-<param name="rlMinPadBottom" value="0.2mm"/>
+<param name="rlMinPadBottom" value="0.3mm"/>
 <param name="rlMaxPadBottom" value="100mm"/>
 <param name="rlMinViaOuter" value="0.2mm"/>
 <param name="rlMaxViaOuter" value="100mm"/>
@@ -3710,21 +3710,14 @@ Everything else you will find on https://aisler.net/help</description>
 <mfgpreviewcolor name="substratecolor" color="0xFF786E46"/>
 </mfgpreviewcolors>
 <errors>
-<approved hash="19,1,df18c63ef43fc12b"/>
 <approved hash="19,1,2975b826da282e46"/>
 <approved hash="19,1,921ca0e217ce1d93"/>
-<approved hash="19,1,a860953ed83d2b52"/>
 <approved hash="19,1,d04d1cf7b81a9cb0"/>
 <approved hash="19,1,bade357804ad42fb"/>
-<approved hash="19,1,fb22423efc352914"/>
 <approved hash="19,1,c21c24e1a7ba2691"/>
-<approved hash="19,1,fd07b83114337539"/>
 <approved hash="19,1,f09bae3654f008d7"/>
 <approved hash="19,1,464f5081ad6f75b3"/>
 <approved hash="19,1,bfa83e7a58ad108d"/>
-<approved hash="19,1,fa217d83b008529b"/>
-<approved hash="19,1,54358138783ed307"/>
-<approved hash="19,1,3611873f803b7321"/>
 <approved hash="23,1,bbe05f69fa1ed215"/>
 <approved hash="23,1,a3e45765d61e9819"/>
 <approved hash="23,1,83e4b765b21e8a19"/>
@@ -3732,6 +3725,13 @@ Everything else you will find on https://aisler.net/help</description>
 <approved hash="23,1,9fe8af61ae1ef41d"/>
 <approved hash="23,1,7fe6e772e20f920a"/>
 <approved hash="23,1,bbe6ef68661d501b"/>
+<approved hash="19,1,a5d36585b113190b"/>
+<approved hash="19,1,28aca8fcd8192178"/>
+<approved hash="19,1,e1e691be951d693b"/>
+<approved hash="19,1,bbcf3f947f1ae918"/>
+<approved hash="19,1,1dfd9037ec791ca9"/>
+<approved hash="19,1,24f974a67c181123"/>
+<approved hash="19,1,a6dee28b160da104"/>
 </errors>
 </board>
 </drawing>
