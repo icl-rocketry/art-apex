@@ -246,6 +246,7 @@ Facing Out</text>
 <wire x1="63.627" y1="121.031" x2="63.627" y2="121.285" width="1.524" layer="29"/>
 <wire x1="61.087" y1="120.904" x2="60.96" y2="121.031" width="1.524" layer="29"/>
 <wire x1="60.96" y1="121.031" x2="60.96" y2="121.285" width="1.524" layer="29"/>
+<rectangle x1="59.69" y1="107.95" x2="77.47" y2="116.84" layer="46"/>
 </plain>
 <libraries>
 <library name="microbuilder">
