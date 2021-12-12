@@ -1,5 +1,6 @@
 *.b#*
 *.s#*
+*.d#*
 *.job
 *.pro
 PCB/APEX/eagle.epf
