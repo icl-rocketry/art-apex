@@ -3244,6 +3244,7 @@ Bhuvan</text>
 <text x="80.772" y="107.823" size="0.762" layer="25" font="vector" ratio="15" rot="R180">solder
 flush</text>
 <text x="49.53" y="106.68" size="0.762" layer="26" font="vector" ratio="15" rot="MR90">solder slightly raised</text>
+<hole x="54.61" y="123.19" drill="3"/>
 </plain>
 <libraries>
 <library name="microbuilder">
