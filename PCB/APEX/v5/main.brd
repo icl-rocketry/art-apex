@@ -34,8 +34,8 @@
 <layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="yes"/>
 <layer number="25" name="tNames" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="26" name="bNames" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="27" name="tValues" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="28" name="bValues" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="27" name="tValues" color="7" fill="1" visible="no" active="yes"/>
+<layer number="28" name="bValues" color="7" fill="1" visible="no" active="yes"/>
 <layer number="29" name="tStop" color="7" fill="3" visible="yes" active="yes"/>
 <layer number="30" name="bStop" color="7" fill="6" visible="yes" active="yes"/>
 <layer number="31" name="tCream" color="7" fill="4" visible="no" active="yes"/>
@@ -51,15 +51,15 @@
 <layer number="41" name="tRestrict" color="4" fill="10" visible="no" active="yes"/>
 <layer number="42" name="bRestrict" color="1" fill="10" visible="no" active="yes"/>
 <layer number="43" name="vRestrict" color="2" fill="10" visible="no" active="yes"/>
-<layer number="44" name="Drills" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="44" name="Drills" color="7" fill="1" visible="no" active="yes"/>
 <layer number="45" name="Holes" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="46" name="Milling" color="3" fill="1" visible="yes" active="yes"/>
 <layer number="47" name="Measures" color="7" fill="1" visible="no" active="yes"/>
 <layer number="48" name="Document" color="7" fill="1" visible="no" active="yes"/>
 <layer number="49" name="Reference" color="7" fill="1" visible="no" active="yes"/>
 <layer number="50" name="dxf" color="7" fill="1" visible="no" active="no"/>
-<layer number="51" name="tDocu" color="6" fill="1" visible="yes" active="yes"/>
-<layer number="52" name="bDocu" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="51" name="tDocu" color="6" fill="1" visible="no" active="yes"/>
+<layer number="52" name="bDocu" color="7" fill="1" visible="no" active="yes"/>
 <layer number="53" name="tGND_GNDA" color="7" fill="9" visible="no" active="no"/>
 <layer number="54" name="bGND_GNDA" color="1" fill="9" visible="no" active="no"/>
 <layer number="56" name="wert" color="7" fill="1" visible="no" active="no"/>
@@ -146,7 +146,7 @@
 <layer number="196" name="mValues" color="7" fill="1" visible="no" active="yes"/>
 <layer number="199" name="Contour" color="7" fill="1" visible="no" active="yes"/>
 <layer number="200" name="200bmp" color="1" fill="10" visible="no" active="yes"/>
-<layer number="201" name="201bmp" color="7" fill="1" visible="no" active="yes"/>
+<layer number="201" name="201bmp" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="202" name="202bmp" color="7" fill="1" visible="no" active="yes"/>
 <layer number="203" name="203bmp" color="7" fill="1" visible="no" active="yes"/>
 <layer number="204" name="204bmp" color="7" fill="1" visible="no" active="yes"/>
@@ -188,14 +188,10 @@
 </layers>
 <board>
 <plain>
-<wire x1="51.816" y1="117.475" x2="51.816" y2="107.315" width="0.508" layer="22"/>
-<wire x1="51.816" y1="107.315" x2="54.356" y2="104.775" width="0.508" layer="22" curve="90"/>
 <wire x1="54.356" y1="104.775" x2="73.406" y2="104.775" width="0.508" layer="22"/>
 <wire x1="73.406" y1="104.775" x2="75.946" y2="107.315" width="0.508" layer="22" curve="90"/>
-<wire x1="75.946" y1="107.315" x2="75.946" y2="117.475" width="0.508" layer="22"/>
 <wire x1="75.946" y1="117.475" x2="73.406" y2="120.015" width="0.508" layer="22" curve="90"/>
 <wire x1="73.406" y1="120.015" x2="54.356" y2="120.015" width="0.508" layer="22"/>
-<wire x1="54.356" y1="120.015" x2="51.816" y2="117.475" width="0.508" layer="22" curve="90"/>
 <text x="115.2398" y="58.4708" size="1.016" layer="21" font="vector" ratio="12" rot="R180" align="center"></text>
 <circle x="66.04" y="111.76" radius="19.05" width="0.254" layer="20"/>
 <text x="53.34" y="106.68" size="0.762" layer="26" font="vector" ratio="15" rot="MR0">GND
@@ -223,7 +219,6 @@ Facing Out</text>
 <wire x1="58.293" y1="118.745" x2="60.833" y2="121.285" width="0.254" layer="21" curve="-90"/>
 <wire x1="60.833" y1="121.285" x2="76.454" y2="121.285" width="0.254" layer="21"/>
 <wire x1="76.454" y1="121.285" x2="78.994" y2="118.745" width="0.254" layer="21" curve="-90"/>
-<wire x1="78.994" y1="118.745" x2="78.994" y2="106.045" width="0.254" layer="21"/>
 <wire x1="78.994" y1="106.045" x2="76.454" y2="103.505" width="0.254" layer="21" curve="-90"/>
 <text x="172.3898" y="102.9208" size="1.016" layer="21" font="vector" ratio="12" rot="R180" align="center"></text>
 <wire x1="61.087" y1="103.759" x2="61.087" y2="103.378" width="1.524" layer="29"/>
@@ -246,8 +241,16 @@ Facing Out</text>
 <wire x1="63.627" y1="121.031" x2="63.627" y2="121.285" width="1.524" layer="29"/>
 <wire x1="61.087" y1="120.904" x2="60.96" y2="121.031" width="1.524" layer="29"/>
 <wire x1="60.96" y1="121.031" x2="60.96" y2="121.285" width="1.524" layer="29"/>
-<rectangle x1="59.69" y1="107.95" x2="77.47" y2="116.84" layer="46"/>
 <text x="52.07" y="121.92" size="1.016" layer="21" font="vector" ratio="15" rot="R270">APEX Designed by ART @ ICLR</text>
+<wire x1="59.69" y1="115.57" x2="60.96" y2="116.84" width="0.508" layer="20" curve="-90"/>
+<wire x1="60.96" y1="116.84" x2="74.93" y2="116.84" width="0.508" layer="20"/>
+<wire x1="74.93" y1="116.84" x2="76.2" y2="115.57" width="0.508" layer="20" curve="-90"/>
+<wire x1="76.2" y1="115.57" x2="76.2" y2="109.22" width="0.508" layer="20"/>
+<wire x1="76.2" y1="109.22" x2="74.93" y2="107.95" width="0.508" layer="20" curve="-90"/>
+<wire x1="74.93" y1="107.95" x2="60.96" y2="107.95" width="0.508" layer="20"/>
+<wire x1="60.96" y1="107.95" x2="59.69" y2="109.22" width="0.508" layer="20" curve="-90"/>
+<wire x1="59.69" y1="109.22" x2="59.69" y2="115.57" width="0.508" layer="20"/>
+<wire x1="66.167" y1="121.158" x2="66.167" y2="121.285" width="1.524" layer="29"/>
 </plain>
 <libraries>
 <library name="microbuilder">
