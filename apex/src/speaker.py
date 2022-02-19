@@ -36,8 +36,36 @@ class Speaker:
         self._playtone(0)
         self.speaker.duty_cycle = 0
     
-    def beep(self):
-        self.speaker.duty_cycle = 65535 // 2
-        self._playtone(4000)
-        time.sleep(0.2)
-        self.speaker.duty_cycle = 0
+    def beep(self, n : int):
+        for i in range(0,n):
+            self.speaker.duty_cycle = 65535 // 2
+            self._playtone(4000)
+            time.sleep(0.2)
+            self.speaker.duty_cycle = 0
+
+
+# from time import sleep
+
+# class Speaker:
+#     def __init__(self):
+#         self.switch = False
+
+#     def turnOn(self):
+#         self.switch = True
+    
+#     def turnOff(self):
+#         self.switch = False
+
+#     def beep(self, n : int):
+#         for i in range(0,n):
+#           self.turnOn()
+#           print("BEEPING")
+#           sleep(1)
+#           self.turnOff()
+
+#     def longBeep(self):
+#         self.turnOn()
+#         print("LOOOOOOONGGGGGG BEEPING")
+#         sleep(5)
+#         self.turnOff()
+    
