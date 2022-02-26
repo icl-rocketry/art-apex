@@ -7,7 +7,7 @@ sensors = Sensors()
 state = diagnostic(speaker, sensors) 
 try: 
     while (state is not None):
-       state = state.run()    
+       state = state.run()
 except Exception as e:
     file = open("error.txt", "w")
     file.write(str(e))
