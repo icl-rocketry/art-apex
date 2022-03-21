@@ -28,7 +28,7 @@
 <layer number="18" name="Vias" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="19" name="Unrouted" color="6" fill="1" visible="yes" active="yes"/>
 <layer number="20" name="Dimension" color="24" fill="1" visible="yes" active="yes"/>
-<layer number="21" name="tPlace" color="16" fill="1" visible="yes" active="yes"/>
+<layer number="21" name="tPlace" color="16" fill="1" visible="no" active="yes"/>
 <layer number="22" name="bPlace" color="14" fill="1" visible="yes" active="yes"/>
 <layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="yes"/>
 <layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="yes"/>
@@ -99,13 +99,9 @@
 </layers>
 <board>
 <plain>
-<wire x1="-11.684" y1="-6.985" x2="7.366" y2="-6.985" width="0.508" layer="22"/>
-<wire x1="7.366" y1="-6.985" x2="9.906" y2="-4.445" width="0.508" layer="22" curve="90"/>
-<wire x1="9.906" y1="5.715" x2="7.366" y2="8.255" width="0.508" layer="22" curve="90"/>
-<wire x1="7.366" y1="8.255" x2="-11.684" y2="8.255" width="0.508" layer="22"/>
 <text x="115.2398" y="58.4708" size="1.016" layer="21" font="vector" ratio="12" rot="R180" align="center"></text>
 <circle x="0" y="0" radius="19.05" width="0.254" layer="20"/>
-<text x="-12.7" y="-5.08" size="0.762" layer="26" font="vector" ratio="15" rot="MR0">GND
+<text x="-12.7" y="-5.08" size="0.762" layer="22" font="vector" ratio="15" rot="MR0">GND
 
 VCC
 
@@ -115,15 +111,15 @@ SD
 AIN-
 
 AIN+</text>
-<text x="16.129" y="4.064" size="0.762" layer="25" font="vector" ratio="15" rot="R270">USB C This End</text>
-<text x="-5.461" y="10.795" size="0.762" layer="25" font="vector" ratio="15">TX   SCL  SDA  A3   A2   A1   A0</text>
-<text x="11.049" y="-9.398" size="0.762" layer="25" font="vector" ratio="15" rot="R180">RX   SCK  MI   MO   3V   GND  5V</text>
-<text x="-8.636" y="-3.683" size="0.762" layer="25" font="vector" ratio="15" rot="R90">STEMMA This End</text>
-<text x="-9.906" y="-2.286" size="0.762" layer="26" font="vector" ratio="15" rot="MR90">AMP This Side
+<text x="16.129" y="4.064" size="0.762" layer="21" font="vector" ratio="15" rot="R270">USB C This End</text>
+<text x="-5.461" y="10.795" size="0.762" layer="21" font="vector" ratio="15">TX   SCL  SDA  A3   A2   A1   A0</text>
+<text x="11.049" y="-9.398" size="0.762" layer="21" font="vector" ratio="15" rot="R180">RX   SCK  MI   MO   3V   GND  5V</text>
+<text x="-8.636" y="-3.683" size="0.762" layer="21" font="vector" ratio="15" rot="R90">STEMMA This End</text>
+<text x="-9.906" y="-2.286" size="0.762" layer="22" font="vector" ratio="15" rot="MR90">AMP This Side
 Facing Out</text>
-<text x="-6.35" y="-13.97" size="0.762" layer="26" font="vector" ratio="15" rot="MR0">BAT+</text>
-<text x="1.27" y="-13.97" size="0.762" layer="26" font="vector" ratio="15" rot="MR0">BAT-</text>
-<text x="-6.223" y="11.938" size="0.762" layer="25" font="vector" ratio="15">SCL  SDA  AIN+ VCC  GND</text>
+<text x="-6.35" y="-13.97" size="0.762" layer="22" font="vector" ratio="15" rot="MR0">BAT+</text>
+<text x="1.27" y="-13.97" size="0.762" layer="22" font="vector" ratio="15" rot="MR0">BAT-</text>
+<text x="-6.223" y="11.938" size="0.762" layer="21" font="vector" ratio="15">SCL  SDA  AIN+ VCC  GND</text>
 <wire x1="10.414" y1="-8.255" x2="-5.207" y2="-8.255" width="0.254" layer="21"/>
 <wire x1="-5.207" y1="-8.255" x2="-7.747" y2="-5.715" width="0.254" layer="21" curve="-90"/>
 <wire x1="-7.747" y1="-5.715" x2="-7.747" y2="6.985" width="0.254" layer="21"/>
@@ -3120,18 +3116,18 @@ Facing Out</text>
 <rectangle x1="5.088" y1="-9.942" x2="6.308" y2="-9.922" layer="30" rot="R180"/>
 <rectangle x1="5.188" y1="-9.922" x2="6.208" y2="-9.902" layer="30" rot="R180"/>
 <rectangle x1="5.408" y1="-9.902" x2="5.988" y2="-9.882" layer="30" rot="R180"/>
-<text x="-15.24" y="-5.08" size="0.508" layer="25" font="vector" ratio="15" rot="R90">Designed By
+<text x="-15.24" y="-5.08" size="0.508" layer="21" font="vector" ratio="15" rot="R90">Designed By
 Shrey Bohra | Akshat Tripathi
 Shreya Ramteke | Hrithik Parmessur</text>
-<text x="15.748" y="-3.81" size="0.762" layer="25" font="vector" ratio="15" rot="R90">Connectors Facing Up</text>
-<text x="-2.54" y="16.51" size="0.762" layer="25" font="vector" ratio="15">Test Points</text>
-<text x="-5.08" y="-17.78" size="0.762" layer="25" font="vector" ratio="15">LiPo</text>
-<text x="18.034" y="-3.937" size="0.762" layer="25" font="vector" ratio="15" rot="R90">RP2040 This Side</text>
-<text x="-6.35" y="12.7" size="0.762" layer="26" font="vector" ratio="15" rot="MR180">GND  VCC  AIN+ SDA  SCL</text>
-<text x="-12.7" y="-5.08" size="1.27" layer="25" font="vector" ratio="15" rot="R90">APEX Avionics</text>
-<text x="13.081" y="-10.287" size="1.27" layer="25" font="vector" ratio="15" rot="R180">APEX Designed by ART @ ICLR</text>
-<text x="-8.89" y="8.89" size="0.508" layer="25" font="vector" ratio="15" rot="R45">pls go up</text>
-<text x="-16.51" y="-5.08" size="0.762" layer="26" font="vector" ratio="15" rot="MR90">solder slightly raised</text>
+<text x="15.748" y="-3.81" size="0.762" layer="21" font="vector" ratio="15" rot="R90">Connectors Facing Up</text>
+<text x="-2.54" y="16.51" size="0.762" layer="21" font="vector" ratio="15">Test Points</text>
+<text x="-5.08" y="-17.78" size="0.762" layer="21" font="vector" ratio="15">LiPo</text>
+<text x="18.034" y="-3.937" size="0.762" layer="21" font="vector" ratio="15" rot="R90">RP2040 This Side</text>
+<text x="-6.35" y="12.7" size="0.762" layer="22" font="vector" ratio="15" rot="MR180">GND  VCC  AIN+ SDA  SCL</text>
+<text x="-12.7" y="-5.08" size="1.27" layer="21" font="vector" ratio="15" rot="R90">APEX Avionics</text>
+<text x="13.081" y="-10.287" size="1.27" layer="21" font="vector" ratio="15" rot="R180">APEX Designed by ART @ ICLR</text>
+<text x="-8.89" y="8.89" size="0.508" layer="21" font="vector" ratio="15" rot="R45">pls go up</text>
+<text x="-16.51" y="-5.08" size="0.762" layer="22" font="vector" ratio="15" rot="MR90">solder slightly raised</text>
 <hole x="-11.43" y="11.43" drill="3"/>
 <wire x1="-6.477" y1="6.223" x2="11.43" y2="6.223" width="0.254" layer="20"/>
 <wire x1="11.557" y1="-4.953" x2="-6.35" y2="-4.953" width="0.254" layer="20"/>
@@ -3141,6 +3137,13 @@ Shreya Ramteke | Hrithik Parmessur</text>
 <wire x1="11.43" y1="6.223" x2="12.954" y2="4.699" width="0.254" layer="20" curve="-90"/>
 <wire x1="12.954" y1="4.699" x2="12.954" y2="-3.556" width="0.254" layer="20"/>
 <wire x1="12.954" y1="-3.556" x2="11.557" y2="-4.953" width="0.254" layer="20" curve="-90"/>
+<text x="17.907" y="5.334" size="0.635" layer="22" font="vector" ratio="12" rot="MR270">Shrey Bohra|Rohit Singh</text>
+<text x="16.637" y="8.382" size="0.5588" layer="22" font="vector" ratio="12" rot="MR270">Akshat Tripathi|Caitlin Speight|David Cormier</text>
+<text x="15.875" y="9.525" size="0.635" layer="22" font="vector" ratio="12" rot="MR270">Ellie Hoggarth|Shreya Ramteke|Harry Allcock</text>
+<text x="14.859" y="10.541" size="0.5588" layer="22" font="vector" ratio="12" rot="MR270">Hrithik Parmessur|Ishaan Alidina|Jack Osborn|Frej Dunn</text>
+<text x="13.97" y="12.192" size="0.635" layer="22" font="vector" ratio="12" rot="MR270">Julian Ting|Nathanael Jenkins|Rohin Nayar|Ruchit Tandon</text>
+<text x="12.7" y="-5.08" size="0.635" layer="22" font="vector" ratio="12" rot="MR270">Shaheer Aamer</text>
+<text x="12.954" y="12.573" size="0.635" layer="22" font="vector" ratio="12" rot="MR270">Shahriar Alam</text>
 </plain>
 <libraries>
 <library name="microbuilder">
