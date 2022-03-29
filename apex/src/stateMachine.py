@@ -1,6 +1,8 @@
 from time import sleep, monotonic_ns
 from sensors import Sensors
 from speaker import Speaker
+import neopixel
+import board
 
 # barometer ; BNO - acc, gyro, magno ; speaker 
 
@@ -8,6 +10,8 @@ DATA_RATE = 10  # 10 Hz
 TIME_INTERVAL_DATA_TRANSFER = 1 / DATA_RATE
 RECORDING_TIME = 15*60
 NUMBER_OF_TRANSFERS = RECORDING_TIME * DATA_RATE
+pixel = neopixel.NeoPixel(board.NEOPIXEL, 1)
+pixel.brightness = 0.3
 
 class state:
     def __init__(self, speaker : Speaker, sensors : Sensors):
@@ -20,6 +24,7 @@ class state:
         raise NotImplementedError()
 
     def run (self):
+        pixel.fill(self.colour)
         next_state = self._run()
         if self.errors:
             self.speaker.longBeep()
@@ -31,6 +36,7 @@ class state:
 
 class diagnostic(state):
     stateid = 1
+    colour=(255, 255, 0)
 
     def _run (self):
         sleep(3)
@@ -39,6 +45,7 @@ class diagnostic(state):
 
 class calA(state):
     stateid = 2
+    colour=(0, 0, 255)
 
     def _run (self):
         print("Calibration Acc state")
@@ -46,6 +53,7 @@ class calA(state):
 
 class calG(state):
     stateid = 3
+    colour=(255, 255, 255)
 
     def _run (self):
         sleep(2)
@@ -54,14 +62,17 @@ class calG(state):
 
 class calM(state):
     stateid = 4
+    colour=(255, 0, 255)
 
     def _run (self):
+        sleep(2)
         print("Calibration Magnetometer state")
         return calStatic
 
 
 class calStatic(state):
     stateid = 5
+    colour=(0, 255, 255)
 
     def _run (self):
         sleep(5)
@@ -71,16 +82,17 @@ class calStatic(state):
 
 class preFlight(state):
     stateid = 6
+    colour=(255,165,0)
 
     def _run (self):
-        sleep(2)
+        sleep(5) # Change to 15*60!
         print("Pre flight state")
         return flight
 
 
 class flight(state):
     stateid = 7
-
+    colour=(255, 0, 0)
     def _run (self):
         print("Flight state")
         f = open("datafile", "wb")
@@ -99,6 +111,7 @@ class flight(state):
     
 class postFlight(state):
     stateid = 8
+    colour=(108, 122, 137)
        
     def _run (self):
         sleep(2)
@@ -106,7 +119,7 @@ class postFlight(state):
            
 class errorState(state):
     stateid = 9
-
+    colour=(255, 255, 0)
     def _run (self):
         sleep(1)
         print("ERROR state")
