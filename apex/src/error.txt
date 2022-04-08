@@ -1,1 +1,0 @@
-beep() takes 2 positional arguments but 3 were given
