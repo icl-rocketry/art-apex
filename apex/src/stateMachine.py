@@ -95,6 +95,7 @@ class preFlight(state):
     def _run (self) -> type[flight]:
         sleep(PREFLIGHT_WAIT_TIME)
         print("Pre flight state")
+        self.speaker.beep(10)
         return flight
 
 
