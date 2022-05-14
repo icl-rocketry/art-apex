@@ -4083,6 +4083,76 @@ In this library the device names are the same as the pin names of the symbols, t
 </deviceset>
 </devicesets>
 </library>
+<library name="SamacSys_Parts">
+<description>&lt;b&gt;https://componentsearchengine.com&lt;/b&gt;&lt;p&gt;
+&lt;author&gt;Created by SamacSys&lt;/author&gt;</description>
+<packages>
+<package name="DIOAD1414W86L464D238">
+<description>&lt;b&gt;DO-41&lt;/b&gt;&lt;br&gt;
+</description>
+<pad name="1" x="2.794" y="0" drill="1.05" diameter="1.575" shape="square"/>
+<pad name="2" x="11.179" y="0" drill="1.05" diameter="1.575"/>
+<text x="6.35" y="-2.54" size="1.27" layer="25" align="center">&gt;NAME</text>
+<text x="6.35" y="2.54" size="1.27" layer="27" align="center">&gt;VALUE</text>
+<wire x1="4.732" y1="1.188" x2="9.367" y2="1.188" width="0.1" layer="51"/>
+<wire x1="9.367" y1="1.188" x2="9.367" y2="-1.187" width="0.1" layer="51"/>
+<wire x1="9.367" y1="-1.187" x2="4.732" y2="-1.187" width="0.1" layer="51"/>
+<wire x1="4.732" y1="-1.187" x2="4.732" y2="1.188" width="0.1" layer="51"/>
+<wire x1="4.732" y1="0" x2="5.92" y2="1.188" width="0.1" layer="51"/>
+<wire x1="4.732" y1="1.188" x2="9.368" y2="1.188" width="0.2" layer="21"/>
+<wire x1="9.368" y1="1.188" x2="9.368" y2="-1.188" width="0.2" layer="21"/>
+<wire x1="9.368" y1="-1.188" x2="4.732" y2="-1.188" width="0.2" layer="21"/>
+<wire x1="4.732" y1="-1.188" x2="4.732" y2="1.188" width="0.2" layer="21"/>
+<wire x1="4.732" y1="0" x2="5.92" y2="1.188" width="0.2" layer="21"/>
+<wire x1="3.932" y1="0" x2="4.732" y2="0" width="0.2" layer="21"/>
+<wire x1="9.368" y1="0" x2="10.041" y2="0" width="0.2" layer="21"/>
+</package>
+</packages>
+<symbols>
+<symbol name="1N5819">
+<wire x1="5.08" y1="2.54" x2="5.08" y2="-2.54" width="0.254" layer="94"/>
+<wire x1="2.54" y1="0" x2="5.08" y2="0" width="0.254" layer="94"/>
+<wire x1="10.16" y1="0" x2="12.7" y2="0" width="0.254" layer="94"/>
+<text x="11.43" y="5.08" size="1.778" layer="95" align="center-left">&gt;NAME</text>
+<text x="11.43" y="2.54" size="1.778" layer="96" align="center-left">&gt;VALUE</text>
+<pin name="K" x="0" y="0" visible="pad" length="short"/>
+<pin name="A" x="15.24" y="0" visible="pad" length="short" rot="R180"/>
+<polygon width="0.254" layer="94">
+<vertex x="5.08" y="0"/>
+<vertex x="10.16" y="2.54"/>
+<vertex x="10.16" y="-2.54"/>
+</polygon>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="1N5819" prefix="D">
+<description>&lt;b&gt;Schottky barrier diode,1N58191A 40V STMicroelectronics 1N5819, Schottky Diode, 40V 1A, 2-Pin DO-204AL&lt;/b&gt;&lt;p&gt;
+Source: &lt;a href="http://uk.rs-online.com/web/p/products/4864460P"&gt; Datasheet &lt;/a&gt;</description>
+<gates>
+<gate name="G$1" symbol="1N5819" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="DIOAD1414W86L464D238">
+<connects>
+<connect gate="G$1" pin="A" pad="2"/>
+<connect gate="G$1" pin="K" pad="1"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="ALLIED_NUMBER" value="70013816" constant="no"/>
+<attribute name="DESCRIPTION" value="Schottky barrier diode,1N58191A 40V STMicroelectronics 1N5819, Schottky Diode, 40V 1A, 2-Pin DO-204AL" constant="no"/>
+<attribute name="HEIGHT" value="mm" constant="no"/>
+<attribute name="MANUFACTURER_NAME" value="STMicroelectronics" constant="no"/>
+<attribute name="MANUFACTURER_PART_NUMBER" value="1N5819" constant="no"/>
+<attribute name="RS_PART_NUMBER" value="4864460P" constant="no"/>
+<attribute name="RS_PRICE-STOCK" value="http://uk.rs-online.com/web/p/products/4864460P" constant="no"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -4108,12 +4178,13 @@ In this library the device names are the same as the pin names of the symbols, t
 <part name="JP5" library="microbuilder" deviceset="HEADER-1X7" device=""/>
 <part name="SUPPLY1" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="+5V" device=""/>
 <part name="+3V1" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+3V3" device=""/>
+<part name="D1" library="SamacSys_Parts" deviceset="1N5819" device=""/>
 </parts>
 <sheets>
 <sheet>
 <plain>
 <text x="-2.54" y="624.84" size="1.27" layer="91">amp</text>
-<text x="-86.36" y="640.08" size="1.27" layer="91">bat</text>
+<text x="17.78" y="568.96" size="1.27" layer="91" rot="R180">bat</text>
 <text x="-45.72" y="632.46" size="1.27" layer="91">rp2040</text>
 </plain>
 <instances>
@@ -4128,9 +4199,9 @@ In this library the device names are the same as the pin names of the symbols, t
 <attribute name="VALUE" x="11.224609375" y="598.68649375" size="1.27" layer="96"/>
 </instance>
 <instance part="U$3" gate="G$1" x="-93.98" y="469.9" smashed="yes"/>
-<instance part="CN1" gate="G$1" x="-78.74" y="629.92" smashed="yes">
-<attribute name="NAME" x="-85.09" y="635.635" size="1.778" layer="95"/>
-<attribute name="VALUE" x="-85.09" y="624.84" size="1.778" layer="96"/>
+<instance part="CN1" gate="G$1" x="10.16" y="579.12" smashed="yes" rot="R180">
+<attribute name="NAME" x="19.05" y="573.405" size="1.778" layer="95" rot="R180"/>
+<attribute name="VALUE" x="16.51" y="584.2" size="1.778" layer="96" rot="R180"/>
 </instance>
 <instance part="TESTPATCH" gate="A" x="-48.26" y="579.12" smashed="yes">
 <attribute name="NAME" x="-54.61" y="587.375" size="1.778" layer="95"/>
@@ -4153,6 +4224,10 @@ In this library the device names are the same as the pin names of the symbols, t
 <instance part="+3V1" gate="G$1" x="-66.04" y="612.14" smashed="yes" rot="R90">
 <attribute name="VALUE" x="-60.96" y="609.6" size="1.778" layer="96" rot="R180"/>
 </instance>
+<instance part="D1" gate="G$1" x="48.26" y="579.12" smashed="yes" rot="R180">
+<attribute name="NAME" x="36.83" y="574.04" size="1.778" layer="95" rot="R180" align="center-left"/>
+<attribute name="VALUE" x="36.83" y="576.58" size="1.778" layer="96" rot="R180" align="center-left"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -4166,8 +4241,8 @@ In this library the device names are the same as the pin names of the symbols, t
 </segment>
 <segment>
 <pinref part="CN1" gate="G$1" pin="2"/>
-<wire x1="-81.28" y1="629.92" x2="-88.9" y2="629.92" width="0.1524" layer="91"/>
-<label x="-86.36" y="627.38" size="1.27" layer="95" rot="R270" xref="yes"/>
+<wire x1="12.7" y1="579.12" x2="20.32" y2="579.12" width="0.1524" layer="91"/>
+<label x="20.32" y="586.74" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
 <pinref part="TESTPATCH" gate="A" pin="2"/>
@@ -4191,8 +4266,8 @@ In this library the device names are the same as the pin names of the symbols, t
 </segment>
 <segment>
 <pinref part="CN1" gate="G$1" pin="1"/>
-<wire x1="-81.28" y1="632.46" x2="-88.9" y2="632.46" width="0.1524" layer="91"/>
-<label x="-81.28" y="640.08" size="1.27" layer="95" xref="yes"/>
+<wire x1="12.7" y1="576.58" x2="20.32" y2="576.58" width="0.1524" layer="91"/>
+<label x="12.7" y="568.96" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
 <wire x1="10.208609375" y1="613.92649375" x2="-2.491390625" y2="613.92649375" width="0.1524" layer="91"/>
