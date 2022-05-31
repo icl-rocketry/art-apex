@@ -1,13 +1,9 @@
-from stateMachine import diagnostic
-from speaker import Speaker 
-from sensors import Sensors
+from stateMachine import diagnostic, state
 
-speaker = Speaker()
-sensors = Sensors()
-state = diagnostic(speaker, sensors) 
+curr_state: state | None = diagnostic()
 try: 
-    while (state is not None):
-       state = state.run()
+    while curr_state is not None:
+       curr_state = curr_state.run()
 except Exception as e:
     file = open("error.txt", "w")
     file.write(str(e))
