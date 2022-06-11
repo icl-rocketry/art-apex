@@ -1,15 +1,11 @@
-from state_machine import diagnostic
+from stateMachine import diagnostic, state
 
-state = diagnostic()
-
-try:
-    while state is not None:
-        state = state.run()
+curr_state: state | None = diagnostic()
+try: 
+    while curr_state is not None:
+       curr_state = curr_state.run()
 except Exception as e:
-    raise e
-    import os
-    os.rename("boot.py", "boo.py")
-    print("Renamed")
     file = open("error.txt", "w")
     file.write(str(e))
-    file.close()
+    file.close() 
+    raise e
