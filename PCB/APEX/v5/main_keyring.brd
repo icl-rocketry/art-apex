@@ -128,27 +128,6 @@ Facing Out</text>
 <wire x1="10.414" y1="9.525" x2="12.954" y2="6.985" width="0.254" layer="21" curve="-90"/>
 <wire x1="12.954" y1="-5.715" x2="10.414" y2="-8.255" width="0.254" layer="21" curve="-90"/>
 <text x="172.3898" y="102.9208" size="1.016" layer="21" font="vector" ratio="12" rot="R180" align="center"></text>
-<wire x1="-4.953" y1="-8.001" x2="-4.953" y2="-8.382" width="1.524" layer="29"/>
-<wire x1="-4.953" y1="-8.382" x2="-5.08" y2="-8.509" width="1.524" layer="29"/>
-<wire x1="-2.413" y1="-8.001" x2="-2.54" y2="-8.128" width="1.524" layer="29"/>
-<wire x1="-2.54" y1="-8.128" x2="-2.54" y2="-8.509" width="1.524" layer="29"/>
-<wire x1="0.127" y1="-8.001" x2="0.127" y2="-8.382" width="1.524" layer="29"/>
-<wire x1="0.127" y1="-8.382" x2="0" y2="-8.509" width="1.524" layer="29"/>
-<wire x1="2.667" y1="-8.001" x2="2.54" y2="-8.128" width="1.524" layer="29"/>
-<wire x1="2.54" y1="-8.128" x2="2.54" y2="-8.509" width="1.524" layer="29"/>
-<wire x1="5.08" y1="-8.001" x2="5.08" y2="-8.509" width="1.524" layer="29"/>
-<wire x1="7.747" y1="-8.001" x2="7.62" y2="-8.128" width="1.524" layer="29"/>
-<wire x1="7.62" y1="-8.128" x2="7.62" y2="-8.509" width="1.524" layer="29"/>
-<wire x1="10.287" y1="-8.001" x2="10.287" y2="-8.382" width="1.524" layer="29"/>
-<wire x1="10.287" y1="-8.382" x2="10.16" y2="-8.509" width="1.524" layer="29"/>
-<wire x1="10.287" y1="9.271" x2="10.287" y2="9.525" width="1.524" layer="29"/>
-<wire x1="7.747" y1="9.144" x2="7.747" y2="9.525" width="1.524" layer="29"/>
-<wire x1="5.207" y1="9.271" x2="5.207" y2="9.525" width="1.524" layer="29"/>
-<wire x1="2.667" y1="9.271" x2="2.667" y2="9.525" width="1.524" layer="29"/>
-<wire x1="-2.413" y1="9.271" x2="-2.413" y2="9.525" width="1.524" layer="29"/>
-<wire x1="-4.953" y1="9.144" x2="-5.08" y2="9.271" width="1.524" layer="29"/>
-<wire x1="-5.08" y1="9.271" x2="-5.08" y2="9.525" width="1.524" layer="29"/>
-<wire x1="0.127" y1="9.398" x2="0.127" y2="9.525" width="1.524" layer="29"/>
 <rectangle x1="-11.302" y1="-13.472" x2="-10.322" y2="-13.452" layer="30" rot="R180"/>
 <rectangle x1="-11.422" y1="-13.452" x2="-10.202" y2="-13.432" layer="30" rot="R180"/>
 <rectangle x1="-11.542" y1="-13.432" x2="-10.082" y2="-13.412" layer="30" rot="R180"/>
@@ -3126,9 +3105,9 @@ Shreya Ramteke | Hrithik Parmessur</text>
 <text x="-6.35" y="12.7" size="0.762" layer="22" font="vector" ratio="15" rot="MR180">GND  VCC  AIN+ SDA  SCL</text>
 <text x="-12.7" y="-5.08" size="1.27" layer="21" font="vector" ratio="15" rot="R90">APEX Avionics</text>
 <text x="13.081" y="-10.287" size="1.27" layer="21" font="vector" ratio="15" rot="R180">APEX Designed by ART @ ICLR</text>
-<text x="-8.89" y="8.89" size="0.508" layer="21" font="vector" ratio="15" rot="R45">pls go up</text>
+<text x="-8.382" y="8.128" size="0.508" layer="21" font="vector" ratio="15" rot="R45">pls go up</text>
 <text x="-16.51" y="-5.08" size="0.762" layer="22" font="vector" ratio="15" rot="MR90">solder slightly raised</text>
-<hole x="-11.43" y="11.43" drill="3"/>
+<hole x="-9.906" y="11.557" drill="5"/>
 <wire x1="-6.477" y1="6.223" x2="11.43" y2="6.223" width="0.254" layer="20"/>
 <wire x1="11.557" y1="-4.953" x2="-6.35" y2="-4.953" width="0.254" layer="20"/>
 <wire x1="-6.35" y1="-4.953" x2="-7.62" y2="-3.81" width="0.254" layer="20" curve="-90"/>
@@ -3146,6 +3125,7 @@ Shreya Ramteke | Hrithik Parmessur</text>
 <text x="12.954" y="12.573" size="0.635" layer="22" font="vector" ratio="12" rot="MR270">Shahriar Alam</text>
 <text x="0" y="-15.24" size="0.762" layer="21" font="vector" ratio="15">D+</text>
 <text x="-7.62" y="-15.24" size="0.762" layer="21" font="vector" ratio="15">D-</text>
+<text x="1.27" y="9.906" size="0.8" layer="21">JLCJLCJLCJLC</text>
 </plain>
 <libraries>
 <library name="microbuilder">
@@ -3541,8 +3521,6 @@ Everything else you will find on https://aisler.net/help</description>
 </polygon>
 <contactref element="TESTPATCH" pad="2"/>
 <contactref element="JP5" pad="7"/>
-<wire x1="10.2235" y1="-6.985" x2="10.2235" y2="-8.4455" width="1.524" layer="1"/>
-<wire x1="10.2235" y1="-8.4455" x2="10.16" y2="-8.509" width="1.524" layer="1"/>
 <contactref element="D1" pad="1"/>
 </signal>
 <signal name="GND">
@@ -3557,8 +3535,6 @@ Everything else you will find on https://aisler.net/help</description>
 </polygon>
 <contactref element="TESTPATCH" pad="1"/>
 <contactref element="JP5" pad="6"/>
-<wire x1="7.6835" y1="-6.985" x2="7.6835" y2="-8.4455" width="1.524" layer="1"/>
-<wire x1="7.6835" y1="-8.4455" x2="7.62" y2="-8.509" width="1.524" layer="1"/>
 </signal>
 <signal name="SD">
 <contactref element="JP2" pad="3"/>
@@ -3567,35 +3543,32 @@ Everything else you will find on https://aisler.net/help</description>
 <contactref element="JP2" pad="5"/>
 <contactref element="TESTPATCH" pad="3"/>
 <contactref element="JP4" pad="1"/>
-<wire x1="10.2235" y1="8.255" x2="10.16" y2="8.3185" width="0.762" layer="1"/>
 <wire x1="-11.176" y1="-4.445" x2="-13.335" y2="-4.445" width="0.508" layer="16"/>
 <wire x1="-13.335" y1="-4.445" x2="-13.97" y2="-3.81" width="0.508" layer="16"/>
-<wire x1="-13.97" y1="6.35" x2="-11.43" y2="8.89" width="0.508" layer="16"/>
-<wire x1="-11.43" y1="8.89" x2="-8.89" y2="8.89" width="0.508" layer="16"/>
+<wire x1="-13.97" y1="6.35" x2="-12.446" y2="7.874" width="0.508" layer="16"/>
+<wire x1="-12.446" y1="7.874" x2="-8.636" y2="7.874" width="0.508" layer="16"/>
 <wire x1="0" y1="12.7" x2="-1.27" y2="11.43" width="0.508" layer="16"/>
 <wire x1="0" y1="12.7" x2="0" y2="14.605" width="0.508" layer="16"/>
 <wire x1="-13.97" y1="-3.81" x2="-13.97" y2="6.35" width="0.508" layer="16"/>
-<wire x1="-8.89" y1="8.89" x2="-6.35" y2="11.43" width="0.508" layer="16"/>
-<wire x1="-6.35" y1="11.43" x2="-1.27" y2="11.43" width="0.508" layer="16"/>
-<wire x1="10.2235" y1="10.0965" x2="10.2235" y2="8.255" width="0.508" layer="16"/>
+<wire x1="-8.636" y1="7.874" x2="-5.08" y2="11.43" width="0.508" layer="16"/>
+<wire x1="-5.08" y1="11.43" x2="-1.27" y2="11.43" width="0.508" layer="16"/>
 <wire x1="-1.27" y1="11.43" x2="8.89" y2="11.43" width="0.508" layer="16"/>
 <wire x1="8.89" y1="11.43" x2="10.2235" y2="10.0965" width="0.508" layer="16"/>
+<wire x1="10.2235" y1="10.0965" x2="10.2235" y2="8.255" width="0.508" layer="16"/>
 </signal>
 <signal name="SDA">
 <contactref element="TESTPATCH" pad="4"/>
 <contactref element="JP4" pad="5"/>
-<wire x1="0.0635" y1="8.255" x2="0" y2="8.3185" width="0.508" layer="1"/>
-<wire x1="0" y1="8.3185" x2="0" y2="10.16" width="0.508" layer="1"/>
-<wire x1="-2.54" y1="12.7" x2="-2.54" y2="14.605" width="0.508" layer="1"/>
-<wire x1="0" y1="10.16" x2="-2.54" y2="12.7" width="0.508" layer="1"/>
+<wire x1="-2.54" y1="14.605" x2="-2.54" y2="12.7" width="0.508" layer="1"/>
+<wire x1="0.0635" y1="10.0965" x2="0.0635" y2="8.255" width="0.508" layer="1"/>
+<wire x1="-2.54" y1="12.7" x2="0.0635" y2="10.0965" width="0.508" layer="1"/>
 </signal>
 <signal name="SCL">
 <contactref element="TESTPATCH" pad="5"/>
 <contactref element="JP4" pad="6"/>
-<wire x1="-2.4765" y1="8.255" x2="-2.54" y2="8.3185" width="0.508" layer="1"/>
-<wire x1="-2.54" y1="8.3185" x2="-2.54" y2="10.16" width="0.508" layer="1"/>
-<wire x1="-5.08" y1="12.7" x2="-5.08" y2="14.605" width="0.508" layer="1"/>
-<wire x1="-2.54" y1="10.16" x2="-5.08" y2="12.7" width="0.508" layer="1"/>
+<wire x1="-5.08" y1="14.605" x2="-5.08" y2="12.7" width="0.508" layer="1"/>
+<wire x1="-2.4765" y1="10.0965" x2="-2.4765" y2="8.255" width="0.508" layer="1"/>
+<wire x1="-5.08" y1="12.7" x2="-2.4765" y2="10.0965" width="0.508" layer="1"/>
 </signal>
 <signal name="PB22/I6/SERCOM5.1">
 </signal>
@@ -3608,18 +3581,12 @@ Everything else you will find on https://aisler.net/help</description>
 </signal>
 <signal name="MOSI">
 <contactref element="JP5" pad="4"/>
-<wire x1="2.6035" y1="-6.985" x2="2.6035" y2="-8.4455" width="1.524" layer="1"/>
-<wire x1="2.6035" y1="-8.4455" x2="2.54" y2="-8.509" width="1.524" layer="1"/>
 </signal>
 <signal name="MISO">
 <contactref element="JP5" pad="3"/>
-<wire x1="0.0635" y1="-6.985" x2="0.0635" y2="-8.4455" width="1.524" layer="1"/>
-<wire x1="0.0635" y1="-8.4455" x2="0" y2="-8.509" width="1.524" layer="1"/>
 </signal>
 <signal name="SCK">
 <contactref element="JP5" pad="2"/>
-<wire x1="-2.4765" y1="-6.985" x2="-2.4765" y2="-8.4455" width="1.524" layer="1"/>
-<wire x1="-2.4765" y1="-8.4455" x2="-2.54" y2="-8.509" width="1.524" layer="1"/>
 </signal>
 <signal name="A2">
 <contactref element="JP4" pad="3"/>
@@ -3629,8 +3596,6 @@ Everything else you will find on https://aisler.net/help</description>
 </signal>
 <signal name="+3V3">
 <contactref element="JP5" pad="5"/>
-<wire x1="5.1435" y1="-6.985" x2="5.1435" y2="-8.4455" width="1.524" layer="1"/>
-<wire x1="5.1435" y1="-8.4455" x2="5.08" y2="-8.509" width="1.524" layer="1"/>
 </signal>
 <signal name="PB22/I6/SERCOM5.3">
 </signal>
@@ -3643,29 +3608,6 @@ Everything else you will find on https://aisler.net/help</description>
 </signal>
 <signal name="RX">
 <contactref element="JP5" pad="1"/>
-<wire x1="-5.0165" y1="-6.985" x2="-5.0165" y2="-8.4455" width="1.524" layer="1"/>
-<wire x1="-5.0165" y1="-8.4455" x2="-5.08" y2="-8.509" width="1.524" layer="1"/>
-</signal>
-<signal name="N$1">
-<wire x1="-5.08" y1="9.271" x2="-5.08" y2="9.525" width="1.524" layer="1"/>
-</signal>
-<signal name="N$2">
-<wire x1="-2.413" y1="9.271" x2="-2.413" y2="9.525" width="1.524" layer="1"/>
-</signal>
-<signal name="N$3">
-<wire x1="0.127" y1="9.271" x2="0.127" y2="9.525" width="1.524" layer="1"/>
-</signal>
-<signal name="N$4">
-<wire x1="2.667" y1="9.271" x2="2.667" y2="9.525" width="1.524" layer="1"/>
-</signal>
-<signal name="N$5">
-<wire x1="5.207" y1="9.271" x2="5.207" y2="9.525" width="1.524" layer="1"/>
-</signal>
-<signal name="N$6">
-<wire x1="7.747" y1="9.271" x2="7.747" y2="9.525" width="1.524" layer="1"/>
-</signal>
-<signal name="N$7">
-<wire x1="10.287" y1="9.271" x2="10.287" y2="9.525" width="1.524" layer="1"/>
 </signal>
 <signal name="VBAT">
 <contactref element="CN1" pad="1"/>
@@ -3681,30 +3623,6 @@ Everything else you will find on https://aisler.net/help</description>
 <mfgpreviewcolor name="coppercolor" color="0xFFFFBF00"/>
 <mfgpreviewcolor name="substratecolor" color="0xFF786E46"/>
 </mfgpreviewcolors>
-<errors>
-<approved hash="19,1,2975b826da282e46"/>
-<approved hash="19,1,921ca0e217ce1d93"/>
-<approved hash="19,1,d04d1cf7b81a9cb0"/>
-<approved hash="19,1,bade357804ad42fb"/>
-<approved hash="19,1,c21c24e1a7ba2691"/>
-<approved hash="19,1,f09bae3654f008d7"/>
-<approved hash="19,1,464f5081ad6f75b3"/>
-<approved hash="19,1,bfa83e7a58ad108d"/>
-<approved hash="23,1,bbe05f69fa1ed215"/>
-<approved hash="23,1,a3e45765d61e9819"/>
-<approved hash="23,1,83e4b765b21e8a19"/>
-<approved hash="23,1,ffe6b76dee6e5413"/>
-<approved hash="23,1,9fe8af61ae1ef41d"/>
-<approved hash="23,1,7fe6e772e20f920a"/>
-<approved hash="23,1,bbe6ef68661d501b"/>
-<approved hash="19,1,a5d36585b113190b"/>
-<approved hash="19,1,28aca8fcd8192178"/>
-<approved hash="19,1,e1e691be951d693b"/>
-<approved hash="19,1,bbcf3f947f1ae918"/>
-<approved hash="19,1,1dfd9037ec791ca9"/>
-<approved hash="19,1,24f974a67c181123"/>
-<approved hash="19,1,a6dee28b160da104"/>
-</errors>
 </board>
 </drawing>
 <compatibility>
