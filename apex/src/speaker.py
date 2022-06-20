@@ -17,8 +17,8 @@ class Speaker:
     def noise(self):
         # generate white noise
         # better for localisation than pure tones
-        minf = 1000
-        maxf = 20000
+        minf = 300
+        maxf = 7000
         for _ in range(5000):
             self._playtone(randint(minf, maxf))
             time.sleep(0.001)
