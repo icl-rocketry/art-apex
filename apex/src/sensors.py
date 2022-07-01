@@ -1,8 +1,10 @@
-
 from time import monotonic_ns
 import struct
 from adafruit_dps310.advanced import DPS310, Mode, Rate, SampleCount
+import board
+from busio import I2C
 from adafruit_bno08x.i2c import BNO08X_I2C
+
 from adafruit_bno08x import (
     BNO_REPORT_ACCELEROMETER,
     BNO_REPORT_GYROSCOPE,
@@ -60,8 +62,8 @@ class Sensors:
         gyroscope = self._bno.gyro
         magnetometer = self._bno.magnetic
         linear_acceleration = self._bno.linear_acceleration
-        geomagnetic_rotation_vector = self._bno.geomagnetic_rotation_vector
-        rotation_vector = self._bno.rotation_vector
+        geomagnetic_rotation_vector = self._bno.geomagnetic_quaternion
+        rotation_vector = self._bno.quaternion
         pressure = self._dps.pressure
         temperature = self._dps.temperature
 
