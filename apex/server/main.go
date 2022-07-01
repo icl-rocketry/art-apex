@@ -2,7 +2,10 @@ package main
 
 import (
 	"fmt"
+	"log"
+	"net"
 	"net/http"
+	"time"
 )
 
 // This file is used as a server to tell the Apex board to start recording.
@@ -30,6 +33,8 @@ var statuses = []string{
 	"STATUS_BROKEN",
 }
 
+const clientTimeout = time.Second * 10
+
 var BoardStatus boardStatus = STATUS_WAITING
 
 var shouldStart = false
@@ -40,7 +45,7 @@ func handleStatus(w http.ResponseWriter, r *http.Request) {
 
 func handleStart(w http.ResponseWriter, r *http.Request) {
 	shouldStart = true
-	fmt.Println("Started")
+	log.Println("Started")
 }
 
 func httpServer() {
@@ -49,8 +54,61 @@ func httpServer() {
 	http.ListenAndServe(":8081", nil)
 }
 
+func tcpServer() {
+	listen, err := net.Listen("tcp", ":8080")
+	if err != nil {
+		log.Panic(err)
+	}
+	// close listener
+	defer listen.Close()
+	for {
+		conn, err := listen.Accept()
+		if err != nil {
+			log.Panic(err)
+		}
+		fmt.Println("Client Connected")
+		go handleIncomingRequest(conn)
+	}
+}
+
+func handleIncomingRequest(conn net.Conn) {
+	// close conn
+	defer conn.Close()
+
+	// store incoming data
+	buffer := make([]byte, 1024)
+	sentStartMessage := false
+	for {
+		conn.SetReadDeadline(time.Now().Add(clientTimeout))
+		n, err := conn.Read(buffer)
+		if err != nil {
+			BoardStatus = STATUS_BROKEN
+			log.Println(err)
+			return
+		}
+		if n != 3 { //Send any 3 bytes just to see if everything works - probably don't need this check
+			BoardStatus = STATUS_BROKEN
+			log.Println("WARNING TCP packet didn't have 3 bytes, had", n)
+			return
+		}
+
+		log.Println("HEALTHY")
+		if sentStartMessage {
+			BoardStatus = STATUS_STARTED
+			return
+		}
+		if shouldStart {
+			conn.Write([]byte("START\n"))
+			sentStartMessage = true
+		} else {
+			conn.Write([]byte("WAIT\n"))
+		}
+	}
+}
+
 func main() {
 	go httpServer()
+	go tcpServer()
 
 	for {
 	}
