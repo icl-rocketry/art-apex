@@ -9,3 +9,4 @@ except Exception as e:
     file.write(str(e))
     file.close() 
     raise e
+
