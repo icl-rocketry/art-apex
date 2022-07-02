@@ -9,9 +9,9 @@ if __name__ == "__main__":
 
     with open(path, "rb") as file:
         records = list(struct.iter_unpack("Iffffffffffffffffffffff", file.read()))
-    
-    folder, fname = os.path.split(path)
-    with open(os.path.join(folder, fname.replace("datafile", "parsed") + ".csv"), "w") as file:
+
+    fname, _ = os.path.splitext(path)    
+    with open(fname + "_parsed.csv", "w") as file:
         for record in records:
             file.write(", ".join(map(str, record)))
 
