@@ -8,7 +8,7 @@
     "python.analysis.typeshedPaths":  [".micropy\\micropy-cli\\frozen", ".micropy\\BradenM-micropy-stubs-7696565\\frozen", ".micropy\\micropy-cli\\stubs", ".micropy\\apex"],
 
     "python.linting.pylintEnabled": true,
-    "python.languageServer": "Microsoft",
+    "python.languageServer": "Default",
     "python.analysis.extraPaths": [
         ".micropy\\micropy-cli\\frozen",
         ".micropy\\BradenM-micropy-stubs-7696565\\frozen",
