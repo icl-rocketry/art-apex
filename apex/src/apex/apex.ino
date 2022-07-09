@@ -1,7 +1,12 @@
 #include <Wire.h>
 #include <Adafruit_DPS310.h>
+#include <Adafruit_NeoPixel.h>
+
+
+#define NUMPIXELS 1
 
 Adafruit_DPS310 dps;
+Adafruit_NeoPixel pixels(NUMPIXELS, PIN_NEOPIXEL, NEO_GRB + NEO_KHZ800);
 
 void setup()
 {
@@ -19,14 +24,38 @@ void setup()
         }
     }
 
-    dps.configurePressure(DPS310_64HZ, DPS310_64SAMPLES);
-    dps.configureTemperature(DPS310_64HZ, DPS310_64SAMPLES);
+    dps.setMode(DPS310_CONT_PRESTEMP);
+    dps.configurePressure(DPS310_128HZ, DPS310_8SAMPLES);
+    dps.configureTemperature(DPS310_128HZ, DPS310_8SAMPLES);
+
+#if defined(NEOPIXEL_POWER)
+    // If this board has a power control pin, we must set it to output and high
+    // in order to enable the NeoPixels. We put this in an #if defined so it can
+    // be reused for other boards without compilation errors
+    pinMode(NEOPIXEL_POWER, OUTPUT);
+    digitalWrite(NEOPIXEL_POWER, HIGH);
+#endif
+
+    pixels.begin();
+    pixels.setBrightness(20);
+
     Serial.println("Started");
 }
 
 void loop()
 {
     sensors_event_t temp_event, pressure_event;
+
+      pixels.fill(0xFF0000);
+      pixels.show();
+      delay(500);
+      pixels.fill(0x00FF00);
+      pixels.show();
+      delay(500);
+      pixels.fill(0x0000FF);
+      pixels.show();
+      delay(500);
+
 
     while (!dps.temperatureAvailable() || !dps.pressureAvailable())
     {
