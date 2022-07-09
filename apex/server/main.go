@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"net"
 	"net/http"
 )
 
@@ -49,9 +50,71 @@ func httpServer() {
 	http.ListenAndServe(":8081", nil)
 }
 
+func handleConn(conn net.Conn) {
+	defer conn.Close()
+
+	var buf [6]byte
+
+	n, err := conn.Read(buf[:])
+	if err != nil {
+		fmt.Println("Error reading from connection", err)
+		return
+	} else if n != 6 {
+		fmt.Printf("Only read %d bytes instead of 6\n", n)
+		return
+	}
+
+	if string(buf[:]) == "START?" {
+		fmt.Println("Got start message", shouldStart)
+		var n int
+		if shouldStart {
+			n, err = conn.Write([]byte("y"))
+		} else {
+			n, err = conn.Write([]byte("n"))
+		}
+		if err != nil {
+			fmt.Println("Error writing back", err)
+		}
+		fmt.Println("Wrote", n)
+		if !shouldStart {
+			return
+		}
+	} else {
+		fmt.Println("Invalid message")
+		return
+	}
+
+	n, err = conn.Read(buf[:])
+	if err != nil {
+		fmt.Println("Error reading from connection", err)
+		BoardStatus = STATUS_BROKEN
+		return
+	} else if n != 4 {
+		fmt.Printf("Only read %d bytes instead of 4\n", n)
+		BoardStatus = STATUS_BROKEN
+		return
+	}
+
+	if string(buf[:n]) == "DONE" {
+		BoardStatus = STATUS_STARTED
+	} else {
+		fmt.Println("Invalid done message")
+	}
+}
+
 func main() {
 	go httpServer()
 
+	listener, err := net.Listen("tcp", ":8080")
+	if err != nil {
+		panic(err)
+	}
 	for {
+		conn, err := listener.Accept()
+		if err != nil {
+			fmt.Println("Error accepting connection", err)
+			continue
+		}
+		go handleConn(conn)
 	}
 }
