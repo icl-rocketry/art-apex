@@ -1,42 +1,46 @@
 #include <Wire.h>
+#include <Adafruit_DPS310.h>
 
-void setup() {
-  Serial.begin(115200);
-  Serial.println("\nI2C Scanner");
+Adafruit_DPS310 dps;
 
-  Wire1.setPins(SDA1, SCL1);
-  Wire1.begin();
-}
- 
-void loop() {
-  byte error, address;
-  int nDevices;
-  Serial.println("Scanning...");
-  nDevices = 0;
-  for(address = 1; address < 127; address++ ) {
-    Wire1.beginTransmission(address);
-    error = Wire1.endTransmission();
-    if (error == 0) {
-      Serial.print("I2C device found at address 0x");
-      if (address<16) {
-        Serial.print("0");
-      }
-      Serial.println(address,HEX);
-      nDevices++;
+void setup()
+{
+    Serial.begin(115200);
+
+    Wire1.setPins(SDA1, SCL1);
+    Wire1.begin();
+
+    if (!dps.begin_I2C(DPS310_I2CADDR_DEFAULT, &Wire1))
+    { // Can pass in I2C address here
+        while (1)
+        {
+            Serial.println("Failed to find DPS");
+            delay(10);
+        }
     }
-    else if (error==4) {
-      Serial.print("Unknow error at address 0x");
-      if (address<16) {
-        Serial.print("0");
-      }
-      Serial.println(address,HEX);
-    }    
-  }
-  if (nDevices == 0) {
-    Serial.println("No I2C devices found\n");
-  }
-  else {
-    Serial.println("done\n");
-  }
-  delay(5000);          
+
+    dps.configurePressure(DPS310_64HZ, DPS310_64SAMPLES);
+    dps.configureTemperature(DPS310_64HZ, DPS310_64SAMPLES);
+    Serial.println("Started");
+}
+
+void loop()
+{
+    sensors_event_t temp_event, pressure_event;
+
+    while (!dps.temperatureAvailable() || !dps.pressureAvailable())
+    {
+        return; // wait until there's something to read
+    }
+
+    dps.getEvents(&temp_event, &pressure_event);
+    Serial.print(F("Temperature = "));
+    Serial.print(temp_event.temperature);
+    Serial.println(" *C");
+
+    Serial.print(F("Pressure = "));
+    Serial.print(pressure_event.pressure);
+    Serial.println(" hPa");
+
+    Serial.println();
 }
