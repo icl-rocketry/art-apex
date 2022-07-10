@@ -55,50 +55,53 @@ func handleConn(conn net.Conn) {
 
 	var buf [6]byte
 
-	n, err := conn.Read(buf[:])
-	if err != nil {
-		fmt.Println("Error reading from connection", err)
-		return
-	} else if n != 6 {
-		fmt.Printf("Only read %d bytes instead of 6\n", n)
-		return
-	}
-
-	if string(buf[:]) == "START?" {
-		fmt.Println("Got start message", shouldStart)
-		var n int
-		if shouldStart {
-			n, err = conn.Write([]byte("y"))
-		} else {
-			n, err = conn.Write([]byte("n"))
-		}
+	for {
+		n, err := conn.Read(buf[:])
 		if err != nil {
-			fmt.Println("Error writing back", err)
-		}
-		fmt.Println("Wrote", n)
-		if !shouldStart {
+			fmt.Println("Error reading from connection", err)
 			return
+		} else if n != 6 {
+			fmt.Printf("Only read %d bytes instead of 6\n", n)
+			continue
 		}
-	} else {
-		fmt.Println("Invalid message")
-		return
-	}
 
-	n, err = conn.Read(buf[:])
-	if err != nil {
-		fmt.Println("Error reading from connection", err)
-		BoardStatus = STATUS_BROKEN
-		return
-	} else if n != 4 {
-		fmt.Printf("Only read %d bytes instead of 4\n", n)
-		BoardStatus = STATUS_BROKEN
-		return
-	}
+		if string(buf[:]) == "START?" {
+			fmt.Println("Got start message", shouldStart)
+			var n int
+			if shouldStart {
+				n, err = conn.Write([]byte("y"))
+			} else {
+				n, err = conn.Write([]byte("n"))
+			}
+			if err != nil {
+				fmt.Println("Error writing back", err)
+			}
+			fmt.Println("Wrote", n)
+			if !shouldStart {
+				continue
+			}
+		} else {
+			fmt.Println("Invalid message")
+			continue
+		}
 
-	if string(buf[:n]) == "DONE" {
-		BoardStatus = STATUS_STARTED
-	} else {
-		fmt.Println("Invalid done message")
+		n, err = conn.Read(buf[:])
+		if err != nil {
+			fmt.Println("Error reading from connection", err)
+			BoardStatus = STATUS_BROKEN
+			return
+		} else if n != 4 {
+			fmt.Printf("Only read %d bytes instead of 4\n", n)
+			BoardStatus = STATUS_BROKEN
+			continue
+		}
+
+		if string(buf[:n]) == "DONE" {
+			BoardStatus = STATUS_STARTED
+			return
+		} else {
+			fmt.Println("Invalid done message")
+		}
 	}
 }
 
