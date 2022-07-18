@@ -1,5 +1,0 @@
-{
-  "cpu": {
-    "fqbn": "esp32:esp32:adafruit_qtpy_esp32s2"
-  }
-}

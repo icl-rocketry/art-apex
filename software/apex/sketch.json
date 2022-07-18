@@ -1,0 +1,5 @@
+{
+  "cpu": {
+    "fqbn": "rp2040:rp2040:adafruit_qtpy"
+  }
+}

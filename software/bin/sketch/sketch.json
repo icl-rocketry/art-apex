@@ -1,0 +1,6 @@
+#line 1 "C:\\Users\\Akshat\\Documents\\icl-art\\art-apex\\apex\\src\\apex\\sketch.json"
+{
+  "cpu": {
+    "fqbn": "rp2040:rp2040:adafruit_qtpy"
+  }
+}

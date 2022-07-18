@@ -1,0 +1,8 @@
+{
+    "configuration": "flash=8388608_0,freq=133,opt=Small,rtti=Disabled,stackprotect=Disabled,exceptions=Disabled,dbgport=Disabled,dbglvl=None,usbstack=picosdk",
+    "board": "rp2040:rp2040:adafruit_qtpy",
+    "port": "COM14",
+    "sketch": "apex/src/apex/apex.ino",
+    "output": "./apex/bin",
+    "intelliSenseGen": "enable"
+}

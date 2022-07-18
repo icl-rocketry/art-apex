@@ -1,0 +1,28 @@
+#line 1 "C:\\Users\\Akshat\\Documents\\icl-art\\art-apex\\apex\\src\\apex\\.vscode\\c_cpp_properties.json"
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "C:\\Users\\Akshat\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\**",
+                "C:\\Users\\Akshat\\Documents\\Arduino\\libraries\\**",
+                "${workspaceFolder}/**"
+            ],
+        "forcedInclude": [
+            "C:\\Users\\Akshat\\AppData\\Local\\Arduino15\\packages\\rp2040\\hardware\\rp2040\\2.3.1\\cores\\rp2040\\Arduino.h"
+        ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE",
+                "ARDUINO=10816",
+                "USBCON"
+            ],
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-msvc-x64"
+        }
+    ],
+    "version": 4
+}
