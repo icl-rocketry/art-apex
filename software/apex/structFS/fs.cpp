@@ -1,6 +1,4 @@
 #include "fs.hpp"
-
-#include "pico/stdlib.h"
 #include "hardware/flash.h"
 
 uint32_t round_page(uint32_t val);
