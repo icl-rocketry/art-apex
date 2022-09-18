@@ -11,6 +11,7 @@ class File {
 public:
     // DO NOT initialise outside FS unless you definitely know what you're doing
     File(uint32_t size);
+    ~File();
 
     template <typename T>
     bool append(T val);
