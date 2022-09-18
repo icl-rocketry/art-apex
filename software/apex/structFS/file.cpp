@@ -23,7 +23,7 @@ bool File::created() {
 
 template <typename T>
 bool File::append(T val) {
-    if (!created()) {
+    if (!created() || curr >= end) {
         return false;
     }
 
