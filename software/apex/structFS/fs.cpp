@@ -35,6 +35,6 @@ bool FS::AddFile(File& file) {
     https://stackoverflow.com/a/1766566
 */
 uint32_t round_page(uint32_t val) {
-    const uint32_t sector_minus_1 = FLASH_SECTOR_SIZE - 1;
+    const uint32_t sector_minus_1 = FLASH_PAGE_SIZE - 1;
     return val + sector_minus_1 & ~sector_minus_1;
 }
