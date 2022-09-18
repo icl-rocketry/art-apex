@@ -19,9 +19,12 @@ public:
     bool created();
 
 private:
+    size_t cursor;
+    uint8_t* buffer_start;
+
+    // Start and end of the file in flash
     uint8_t* start;
     uint8_t* end;  
-    uint8_t buffer[BUFFER_SIZE]; //TODO: Maybe heap allocate this instead?
 
     // Allow FS to access start and end even though they're private
     friend class FS;
