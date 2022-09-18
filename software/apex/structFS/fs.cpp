@@ -21,10 +21,10 @@ bool FS::AddFile(File& file) {
     }
 
     // Files must have a whole number of pages
-    file.start = available_flash_start;
+    file.start = flash_start;
     file.curr = flash_start;
-    file.end = (uint8_t*)round_page(flash_start + size);
-    available_flash_start = file.end;
+    file.end = round_page(flash_start + size);
+    available_flash_start = (uint8_t*)file.end;
     return true;
 }
 

@@ -1,9 +1,9 @@
 #include "file.hpp"
 
 File::File(uint32_t size) {
-    start = nullptr;
-    end = (uint8_t*)size;
+    start = 0;
     curr = 0;
+    end = size;
 
     buffer_start = new uint8_t[BUFFER_SIZE];
     cursor = 0;
@@ -14,11 +14,11 @@ File::~File() {
 }
 
 uint32_t File::getSize() {
-    return (uint32_t)end - (uint32_t)start;
+    return end - start;
 }
 
 bool File::created() {
-    return start != nullptr;
+    return start != 0;
 }
 
 template <typename T>
@@ -48,5 +48,5 @@ bool File::append(T val) {
 }
 
 bool File::read(size_t offset, void* dest, size_t len) {
-    return memcpy(dest, start+offset, len) != nullptr;
+    return memcpy(dest, (const void*)(start+offset), len) != nullptr;
 }

@@ -26,8 +26,8 @@ private:
     uint8_t* buffer_start;
 
     // Start and end of the file in flash
-    uint8_t* start;
-    uint8_t* end;
+    uint32_t start;
+    uint32_t end;
     uint32_t curr;
 
     // Allow FS to access start, curr and end even though they're private
