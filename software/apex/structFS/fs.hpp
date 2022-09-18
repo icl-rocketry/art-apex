@@ -1,8 +1,7 @@
 #pragma once
 
 #include "file.hpp"
-
-#define uint32_t unsigned int // Just getting the vscode extension to shut up
+#include "../util.h"
 
 /*
 Filled out by linker - this is the memory address of the first free byte in flash to write to
@@ -14,9 +13,9 @@ class FS {
 public:
     FS(uint32_t size);
 
-    //size is the number of bytes that the file should have
+    // Returns true if the file could be added
     template <typename T>
-    File<T> AddFile(uint32_t size);
+    bool AddFile(File<T>& file);
 
 private:
     uint8_t* available_flash_start;

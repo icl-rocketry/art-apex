@@ -13,8 +13,22 @@ FS::FS(uint32_t size) {
 }
 
 template <typename T>
-File<T> FS::AddFile(uint32_t size) { 
-    
+bool FS::AddFile(File<T>& file) { 
+    // Check if there's enough space to create a file
+    uint32_t flash_start = (uint32_t)this->available_flash_start;
+    const uint32_t flash_end = (uint32_t)this->flash_end;
+    const uint32_t size = file.getSize();
+    uint32_t remaining_space = flash_end - flash_start;
+    if (size > remaining_space) {
+        return false;
+    }
+
+    file.start = this->available_flash_start;
+
+    // Files must have a whole number of pages
+    file.end = (uint8_t*)round_page(flash_start + size);
+    this->available_flash_start = file.end;
+    return true;
 }
 
 /*
