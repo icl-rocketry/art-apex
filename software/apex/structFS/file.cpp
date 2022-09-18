@@ -30,7 +30,7 @@ bool File::append(T val) {
     size_t size = sizeof(T);
     // If the buffer is full, write to flash
     if (cursor + size > BUFFER_SIZE) {
-        if (!flush(Serial)) {
+        if (!flush()) {
             return false;
         }
     }
