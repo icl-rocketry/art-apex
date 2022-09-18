@@ -15,6 +15,8 @@ public:
     template <typename T>
     bool append(T val);
 
+    bool read(size_t offset, void* dest, size_t len);
+
     uint32_t getSize();
     bool created();
 

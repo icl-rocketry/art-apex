@@ -42,3 +42,7 @@ bool File::append(T val) {
     cursor += size;
     return true;
 }
+
+bool File::read(size_t offset, void* dest, size_t len) {
+    return memcpy(dest, start+offset, len) != nullptr;
+}
