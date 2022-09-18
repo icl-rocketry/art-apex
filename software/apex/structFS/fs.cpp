@@ -20,9 +20,9 @@ bool FS::AddFile(File& file) {
         return false;
     }
 
-    file.start = this->available_flash_start;
-
     // Files must have a whole number of pages
+    file.start = this->available_flash_start;
+    file.curr = this->available_flash_start;
     file.end = (uint8_t*)round_page(flash_start + size);
     this->available_flash_start = file.end;
     return true;
