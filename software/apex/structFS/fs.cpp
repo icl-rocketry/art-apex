@@ -17,11 +17,17 @@ bool FS::AddFile(File& file) {
         return false;
     }
 
-    // Files must have a whole number of pages
+    // Files must have a whole number of sectors
     file.start = available_flash_start;
     file.curr = available_flash_start;
-    file.end = round_power_of_2(available_flash_start + size, FLASH_PAGE_SIZE);
+    file.end = round_power_of_2(available_flash_start + size, FLASH_SECTOR_SIZE);
     available_flash_start = file.end;
+
+    // Erase the flash, because otherwise you can't write to it
+    // It's rude to interrupt
+    uint32_t ints = save_and_disable_interrupts();
+    flash_range_erase(file.start - XIP_BASE, file.end - file.start);
+    restore_interrupts (ints);
     return true;
 }
 

@@ -51,8 +51,6 @@ bool File::flush() {
 
     // It's rude to interrupt
     uint32_t ints = save_and_disable_interrupts();
-    // Erase the flash, because otherwise you can't write to it
-    flash_range_erase(curr - XIP_BASE, BUFFER_SIZE);
     flash_range_program(curr - XIP_BASE, buffer_start, BUFFER_SIZE);
     restore_interrupts (ints);
     cursor = 0;
