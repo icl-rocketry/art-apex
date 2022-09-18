@@ -3,31 +3,56 @@
 #define KB 1024
 #define MB (KB * KB)
 
+File file(2*MB);
+
 void setup() {
   Serial.begin(9600);
-  FS fs(4 * MB);
-  File file(2 * MB);
+
+  //Just to make sure it only starts when you want it to
+  wait_for_char('h');
+  wait_for_char('e');
+  wait_for_char('l');
+  wait_for_char('l');
+  wait_for_char('o');
+
+  FS fs = FS(4 * MB);
 
   if (!fs.AddFile(file)) {
-    Serial.println("Couldn't initialise filesystem");
+    Serial.println("Couldn't add file");
   }
+  Serial.println("Filesys initialised");
 
-  delay(100);
-
-  for (uint32_t i = 0; i < 512; i++) {
-    if (!file.append(i)) {
-      Serial.printf("Couldn't add %d to file \n", i);
+  const int n = 512;
+  for (uint32_t i = 0; i < 10; i++) {
+    if (!file.append(53)) {
+      Serial.printf("Couldn't add %d to file\n", i);
     }
   }
 
-  uint32_t x;
-  for (int i = 0; i < 512; i++) {
-    if (!file.read((size_t) (i * 4), &x, 4)) {
-      Serial.printf("Couldn't read %dth int\n", i);
-    } else {
-      Serial.printf("Read %d\n", x);
-    }
+  if (!file.flush()) {
+    Serial.println("Couldn't flush file");
+  }
+
+  Serial.println("Done writing");
+  delay(5000);
+  uint32_t x[n];
+  if (!file.read(0, &x, sizeof x)) {
+    Serial.printf("Couldn't read\n");
+  }
+
+  for (int i = 0; i < 20; i++) {
+    Serial.printf("%d: Read %zu\n", i, x[i]);
   }
 }
 
-void loop() {}
+void loop() {
+}
+
+void wait_for_char(char c) {
+  char c1;
+  do {
+    Serial.printf("Press %c to start\n", c);
+    Serial.readBytes(&c1, sizeof(char));
+    delay(100);
+  } while(c1 != c);
+}

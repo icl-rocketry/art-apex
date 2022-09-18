@@ -4,8 +4,8 @@
 #include "hardware/flash.h"
 #include "fs.hpp"
 
-// 1024 byte buffer
-#define BUFFER_SIZE (FLASH_PAGE_SIZE * 4)
+// 4096 byte buffer
+#define BUFFER_SIZE FLASH_SECTOR_SIZE
 
 class File {
 public:
@@ -15,6 +15,7 @@ public:
 
     template <typename T>
     bool append(T val);
+    bool flush();
 
     bool read(size_t offset, void* dest, size_t len);
 
