@@ -35,7 +35,7 @@ bool File::append(T val) {
         cursor = 0;
     }
 
-    if (memcpy(buffer_start[cursor], (const void*) val, size) == nullptr) {
+    if (memcpy(buffer_start + cursor, (const void*) val, size) == nullptr) {
         return false;
     }
 

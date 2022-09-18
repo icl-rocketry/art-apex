@@ -29,9 +29,9 @@ bool FS::AddFile(File& file) {
 }
 
 /*
-    We can only start writing at 4kb sector boundaries, we must round up to the next sector
-    boundary. This bit trick first adds (4kb - 1b) to __flash_binary_end and then rounds down to
-    the closest 4kb.
+    We can only start writing at 256B page boundaries, we must round up to the next page
+    boundary. This bit trick first adds 255B to __flash_binary_end and then rounds down to
+    the closest 256B.
     https://stackoverflow.com/a/1766566
 */
 uint32_t round_page(uint32_t val) {
