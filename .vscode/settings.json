@@ -14,5 +14,19 @@
         ".micropy\\BradenM-micropy-stubs-7696565\\frozen",
         ".micropy\\micropy-cli\\stubs",
         ".micropy\\apex"
-    ]
+    ],
+    "files.associations": {
+        "array": "cpp",
+        "deque": "cpp",
+        "initializer_list": "cpp",
+        "list": "cpp",
+        "queue": "cpp",
+        "stack": "cpp",
+        "type_traits": "cpp",
+        "vector": "cpp",
+        "xhash": "cpp",
+        "xstring": "cpp",
+        "xtree": "cpp",
+        "xutility": "cpp"
+    }
 }
