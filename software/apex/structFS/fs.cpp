@@ -10,8 +10,7 @@ FS::FS(uint32_t size) {
     this->flash_end = (uint8_t *)(flash_start + size);
 }
 
-template <typename T>
-bool FS::AddFile(File<T>& file) { 
+bool FS::AddFile(File& file) { 
     // Check if there's enough space to create a file
     uint32_t flash_start = (uint32_t)this->available_flash_start;
     const uint32_t flash_end = (uint32_t)this->flash_end;

@@ -14,8 +14,7 @@ public:
     FS(uint32_t size);
 
     // Returns true if the file could be added
-    template <typename T>
-    bool AddFile(File<T>& file);
+    bool AddFile(File& file);
 
 private:
     uint8_t* available_flash_start;
