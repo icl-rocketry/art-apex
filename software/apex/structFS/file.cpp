@@ -3,10 +3,14 @@
 File::File(uint32_t size) {
     start = nullptr;
     end = (uint8_t*)size;
-    curr = nullptr;
+    curr = 0;
 
     buffer_start = new uint8_t[BUFFER_SIZE];
     cursor = 0;
+}
+
+File::~File() {
+    delete buffer_start;
 }
 
 uint32_t File::getSize() {
@@ -23,7 +27,7 @@ bool File::append(T val) {
         return false;
     }
 
-    size_t size = sizeof T;
+    size_t size = sizeof(T);
     // If the buffer is full, write to flash
     if (cursor + size > BUFFER_SIZE) {
         //set any remaining bytes to 0

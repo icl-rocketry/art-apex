@@ -27,7 +27,7 @@ private:
     // Start and end of the file in flash
     uint8_t* start;
     uint8_t* end;
-    uint8_t* curr;
+    uint32_t curr;
 
     // Allow FS to access start, curr and end even though they're private
     friend class FS;
