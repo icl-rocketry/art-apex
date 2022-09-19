@@ -25,6 +25,7 @@ public:
 
 private:
     size_t cursor;
+    size_t buffer_size;
     uint8_t* buffer_start;
 
     // Start and end of the file in flash
