@@ -22,6 +22,7 @@ void setup() {
   if (!fs.AddFile(file)) {
     Serial.println("Couldn't add file");
   }
+  fs.MakeWritable(file);
   Serial.println("Filesys initialised");
 
 
