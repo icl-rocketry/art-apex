@@ -5,12 +5,13 @@
 #include "fs.hpp"
 
 // 4096 byte buffer
-#define BUFFER_SIZE FLASH_SECTOR_SIZE
+#define DEFAULT_BUFFER_SIZE FLASH_SECTOR_SIZE
 
 class File {
 public:
     // DO NOT initialise outside FS unless you definitely know what you're doing
     File(uint32_t size);
+    File(uint32_t file_size, uint32_t buffer_size);
     ~File();
 
     template <typename T>
