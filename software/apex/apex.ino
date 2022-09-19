@@ -4,6 +4,8 @@
 #define MB (KB * KB)
 
 File file(2*MB);
+unsigned long start;
+unsigned long end;
 
 void setup() {
   Serial.begin(9600);
@@ -22,8 +24,10 @@ void setup() {
   }
   Serial.println("Filesys initialised");
 
-  const int n = 512;
-  for (uint32_t i = 0; i < 10; i++) {
+  start = micros();
+
+  const int n = 4096;
+  for (uint32_t i = 0; i < n; i++) {
     if (!file.append(53)) {
       Serial.printf("Couldn't add %d to file\n", i);
     }
@@ -33,6 +37,8 @@ void setup() {
     Serial.println("Couldn't flush file");
   }
 
+  end = micros();
+
   Serial.println("Done writing");
   delay(5000);
   uint32_t x[n];
@@ -40,12 +46,13 @@ void setup() {
     Serial.printf("Couldn't read\n");
   }
 
-  for (int i = 0; i < 20; i++) {
+  for (int i = 0; i < n; i++) {
     Serial.printf("%d: Read %zu\n", i, x[i]);
   }
 }
 
 void loop() {
+  Serial.println(end - start);
 }
 
 void wait_for_char(char c) {
