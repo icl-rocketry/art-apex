@@ -71,6 +71,8 @@ These are only questionable because I *think* they are, so it's entirely possibl
 
 4. It's possible to overwrite the data of another file by calling flush on its own several times. I don't think anyone would do that on purpose, but bugs are never on purpose. We need to check that the file isn't full when we flush data.
 
+5. Generally there are places where we don't have checks on the sizes of values and are assuming that people know what they're doing and won't ever make mistakes, so if someone accidentally passes in a dodgy value, the code will behave in unexpected ways.
+
 ## Extensions
 
 To make structFS faster, you can use the 2nd core of the rp2040 to perform a flash write. The architecture for this is more complicated than what we have right now. To do this we'll need 2 buffers instead of 1. We'll also have something running on the 2nd core that's constantly waiting for the main buffer to be filled. Once the buffer is filled, we'll immediately swap it with a spare buffer, and have core 2 write the contents of the spare buffer to flash. This way core 1 will always see a buffer that it can write to, and so won't have to ever wait for a flash write. I doubt that we'll have to take this route ever since our speed should be fast enough, but if we do, this is what will do it. If you do this, make sure to use a mutex/lock/semaphore to prevent a [data race](https://en.wikipedia.org/wiki/Race_condition) on the buffers.
