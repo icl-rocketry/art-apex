@@ -1,14 +1,15 @@
 #include "file.hpp"
 
-File::File(uint32_t size) : File(size, 0) {}
-
-File::File(uint32_t file_size, uint32_t buffer_size) {
+// If the buffer_size isn't a multiple of 256, it'll be rounded up
+File::File(uint32_t file_size, uint32_t buffer_size = DEFAULT_BUFFER_SIZE) {
     start = 0;
     curr = 0;
     end = file_size;
 
     if (buffer_size == 0) {
         buffer_size = DEFAULT_BUFFER_SIZE;
+    } else if (buffer_size % FLASH_PAGE_SIZE != 0) {
+        buffer_size = round_up_power_of_2(buffer_size, FLASH_PAGE_SIZE);
     }
     this->buffer_size = buffer_size;
     buffer_start = new uint8_t[buffer_size];

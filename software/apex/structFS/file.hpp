@@ -10,7 +10,6 @@
 class File {
 public:
     // DO NOT initialise outside FS unless you definitely know what you're doing
-    File(uint32_t size);
     File(uint32_t file_size, uint32_t buffer_size);
     ~File();
 
