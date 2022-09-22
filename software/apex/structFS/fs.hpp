@@ -17,8 +17,6 @@ public:
     // Returns true if the file could be added
     bool AddFile(File& file);
 
-    void MakeWritable(File& file);
-
 private:
     uint32_t available_flash_start;
     uint32_t flash_end;

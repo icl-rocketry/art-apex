@@ -18,17 +18,8 @@ bool FS::AddFile(File& file) {
     }
 
     // Files must have a whole number of sectors
-    file.start = available_flash_start;
-    file.curr = available_flash_start;
-    file.end = round_up_power_of_2(available_flash_start + size, FLASH_SECTOR_SIZE);
-    available_flash_start = file.end;
+    uint32_t end = round_up_power_of_2(available_flash_start + size, FLASH_SECTOR_SIZE);
+    file.configureFlash(available_flash_start, end);
+    available_flash_start = end;
     return true;
-}
-
-// Erase the flash, because otherwise you can't write to it
-void FS::MakeWritable(File& file) {
-    // It's rude to interrupt
-    uint32_t ints = save_and_disable_interrupts();
-    flash_range_erase(file.start - XIP_BASE, file.end - file.start);
-    restore_interrupts (ints);
 }

@@ -20,6 +20,20 @@ File::~File() {
     delete buffer_start;
 }
 
+void File::configureFlash(uint32_t start, uint32_t end) {
+    this->start = start;
+    this->curr = start; 
+    this->end = end;
+}
+
+// Erase the flash, because otherwise you can't write to it
+void File::makeWriteable() {
+    // It's rude to interrupt
+    uint32_t ints = save_and_disable_interrupts();
+    flash_range_erase(start - XIP_BASE, end - start);
+    restore_interrupts (ints);
+}
+
 uint32_t File::getSize() {
     return end - start;
 }

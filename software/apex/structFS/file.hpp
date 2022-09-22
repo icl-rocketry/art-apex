@@ -13,6 +13,9 @@ public:
     File(uint32_t file_size, uint32_t buffer_size);
     ~File();
 
+    void configureFlash(uint32_t start, uint32_t end);
+    void makeWriteable();
+
     template <typename T>
     bool append(T val);
     bool flush();
@@ -31,7 +34,4 @@ private:
     uint32_t start;
     uint32_t end;
     uint32_t curr;
-
-    // Allow FS to access start, curr and end even though they're private
-    friend class FS;
 };
