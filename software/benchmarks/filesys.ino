@@ -26,19 +26,18 @@ void setup() {
   Serial.println("Filesys initialised");
 
 
-  const int n = 1024; //Fill up the buffer, but don't cause a flush
+  start = micros();
+  const int n = 4096;
   for (uint32_t i = 0; i < n; i++) {
-    if (!file.append(53)) {
+    if (!file.append(i+300)) {
       Serial.printf("Couldn't add %d to file\n", i);
     }
   }
 
-  start = micros();
   if (!file.flush()) {
     Serial.println("Couldn't flush file");
   }
   end = micros();
-
 
   Serial.println("Done writing");
   delay(5000);

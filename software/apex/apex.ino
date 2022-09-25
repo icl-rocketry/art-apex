@@ -22,13 +22,14 @@ void setup() {
   if (!fs.AddFile(file)) {
     Serial.println("Couldn't add file");
   }
+  file.makeWriteable();
   Serial.println("Filesys initialised");
 
-  start = micros();
 
+  start = micros();
   const int n = 4096;
   for (uint32_t i = 0; i < n; i++) {
-    if (!file.append(53)) {
+    if (!file.append(i+300)) {
       Serial.printf("Couldn't add %d to file\n", i);
     }
   }
@@ -36,7 +37,6 @@ void setup() {
   if (!file.flush()) {
     Serial.println("Couldn't flush file");
   }
-
   end = micros();
 
   Serial.println("Done writing");

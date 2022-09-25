@@ -50,6 +50,7 @@ bool File::append(T val) {
         if (!flush()) {
             return false;
         }
+        buffer->append(val);
     }
     return true;
 }
