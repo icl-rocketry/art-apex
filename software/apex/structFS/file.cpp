@@ -57,7 +57,7 @@ bool File::append(T val) {
 }
 
 bool File::flush() {
-    PROFILE_FUNCTION()
+    PROFILE_FUNCTION();
     //set any remaining bytes to 0
     buffer->clear();
 
