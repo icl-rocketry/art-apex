@@ -9,7 +9,7 @@ I believe that there's no cache already since it's not on the diagram of the
 ARM Cortex M0+, but I'm not an electrical engineer so there's no harm in checking.
 */
 
-#include "util.h"
+#include "util/util.h"
 
 #define KB 1024
 unsigned long seq_start;

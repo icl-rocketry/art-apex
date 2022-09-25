@@ -2,7 +2,7 @@
 
 #include "file.hpp"
 #include <Arduino.h>
-#include "../util.h"
+#include "../util/uint.hpp"
 
 /*
 Filled out by linker - this is the memory address of the first free byte in flash to write to

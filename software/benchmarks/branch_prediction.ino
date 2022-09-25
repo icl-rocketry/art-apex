@@ -6,7 +6,7 @@ to find the max of the sorted array than the unsorted array since
 branch prediction will skip a ton of branches.
 */
 
-#include "util.h"
+#include "util/util.h"
 
 #define KB 1024
 unsigned long seq_start;

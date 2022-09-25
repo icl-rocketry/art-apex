@@ -1,11 +1,12 @@
 #pragma once
 
-#include "../util.h"
+#include "../util/uint.hpp"
+#include "../util/buffer.hpp"
 #include "hardware/flash.h"
 #include "fs.hpp"
 
 // 4096 byte buffer
-#define DEFAULT_BUFFER_SIZE FLASH_SECTOR_SIZE
+#define DEFAULT_FILE_BUFFER_SIZE FLASH_SECTOR_SIZE
 
 class File {
 public:
@@ -26,9 +27,7 @@ public:
     bool created();
 
 private:
-    size_t cursor;
-    size_t buffer_size;
-    uint8_t* buffer_start;
+    Buffer* buffer;
 
     // Start and end of the file in flash
     uint32_t start;
