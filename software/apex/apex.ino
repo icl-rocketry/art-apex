@@ -1,4 +1,7 @@
+#define  PROFILING 0
+
 #include "structFS/module.hpp"
+#include "util/Profiling.h"
 
 #define KB 1024
 #define MB (KB * KB)
@@ -9,6 +12,11 @@ unsigned long end;
 
 void setup() {
   Serial.begin(9600);
+
+  #if PROFILING
+    PROFILE_BEGIN();
+  #endif
+
 
   //Just to make sure it only starts when you want it to
   wait_for_char('h');
@@ -22,6 +30,7 @@ void setup() {
   if (!fs.AddFile(file)) {
     Serial.println("Couldn't add file");
   }
+  Serial.println("1");
   file.makeWriteable();
   Serial.println("Filesys initialised");
 
@@ -49,10 +58,14 @@ void setup() {
   for (int i = 0; i < n; i++) {
     Serial.printf("%d: Read %zu\n", i, x[i]);
   }
+
+  #if PROFILING
+    PROFILE_END();
+  #endif
 }
 
 void loop() {
-  Serial.println(end - start);
+  // Serial.println(end - start);
 }
 
 void wait_for_char(char c) {

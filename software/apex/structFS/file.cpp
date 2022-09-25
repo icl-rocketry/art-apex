@@ -1,4 +1,5 @@
 #include "file.hpp"
+#include "../util/Profiling.h"
 
 // If the buffer_size isn't a multiple of 256, it'll be rounded up
 File::File(uint32_t file_size, uint32_t buffer_size = DEFAULT_FILE_BUFFER_SIZE) {
@@ -56,6 +57,7 @@ bool File::append(T val) {
 }
 
 bool File::flush() {
+    PROFILE_FUNCTION()
     //set any remaining bytes to 0
     buffer->clear();
 
