@@ -1,4 +1,4 @@
-#define  PROFILING 0
+#define PROFILING 0
 
 #include "structFS/module.hpp"
 #include "util/Profiling.h"
@@ -30,7 +30,6 @@ void setup() {
   if (!fs.AddFile(file)) {
     Serial.println("Couldn't add file");
   }
-  Serial.println("1");
   file.makeWriteable();
   Serial.println("Filesys initialised");
 
@@ -49,7 +48,7 @@ void setup() {
   end = micros();
 
   Serial.println("Done writing");
-  delay(5000);
+  // delay(5000);
   uint32_t x[n];
   if (!file.read(0, &x, sizeof x)) {
     Serial.printf("Couldn't read\n");

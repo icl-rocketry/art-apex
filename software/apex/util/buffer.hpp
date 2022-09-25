@@ -6,7 +6,7 @@
 
 class Buffer {
 public:
-    Buffer(size_t buffer_size): buffer_size(buffer_size) {
+    Buffer(size_t buffer_size): buffer_size(buffer_size), cursor(0) {
         buffer_start = new uint8_t[buffer_size];
     }
 
