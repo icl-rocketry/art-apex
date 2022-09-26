@@ -1,9 +1,0 @@
-#line 1 "C:\\Users\\Akshat\\Documents\\icl-art\\art-apex\\apex\\src\\apex\\.vscode\\arduino.json"
-{
-    "configuration": "flash=8388608_0,freq=133,opt=Small,rtti=Disabled,stackprotect=Disabled,exceptions=Disabled,dbgport=Disabled,dbglvl=None,usbstack=picosdk",
-    "board": "rp2040:rp2040:adafruit_qtpy",
-    "port": "COM14",
-    "sketch": "apex.ino",
-    "output": "../../bin",
-    "intelliSenseGen": "enable"
-}
