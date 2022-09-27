@@ -45,3 +45,21 @@ public:
     ContinueMessage(): ContinueMessage(0) {}
     ContinueMessage(size_t max_bytes): Message<size_t>(CONT_MESSAGE_ID, max_bytes) {}
 };
+
+class GenericMessage: public Message<void*> {
+public:
+    GenericMessage(MessageHeader header, const void* src): Message<void*>(header.msg_id, nullptr) {
+        payload = new uint8_t[header.length];
+        memcpy(payload, src, header.length);
+    }
+
+    template <typename T>
+    void to(Message<T>* other) {
+        other->header = header;
+        memcpy((void*)other->payload, payload, sizeof(T));
+    }
+
+    ~GenericMessage() {
+        delete payload;
+    }
+};

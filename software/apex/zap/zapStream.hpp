@@ -27,7 +27,7 @@ private:
     Role role;
 
     // Reader specific members
-    LinkedList<Message<void*>> messages; // All the messages
+    LinkedList<GenericMessage> messages; // All the messages
     
     // If I'm a reader and need to become a writer, only do that once all messages have been read
     bool role_switch_pending;

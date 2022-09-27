@@ -8,7 +8,6 @@ ZapStream::ZapStream(Stream_& stream): stream(stream),
 ZapStream::~ZapStream() {
     while (!messages.is_empty()) {
         Message<void*>* msg = messages.pop();
-        delete msg->payload;
         delete msg;
     }
 }
@@ -79,14 +78,9 @@ bool ZapStream::read_msg(uint32_t expected_msg_id, Message<T>* msg) {
         MessageHeader header;
         deserialise_header(&header, ptr);
         
-        // Copy the data over into some memory
-        void* raw_data = new uint8_t[header.length];
-        
         //If the message wasn't fully sent over, drop it
-        if (ptr + header.length <= bytes_read) {
-            memcpy(raw_data, ptr, header.length);
-            
-            Message<void*>* msg = new Message<void*>(header, raw_data);
+        if (ptr + header.length <= bytes_read) {            
+            GenericMessage* msg = new GenericMessage(header, ptr);
             messages.append(msg);
         }
 
@@ -100,14 +94,13 @@ bool ZapStream::read_msg(uint32_t expected_msg_id, Message<T>* msg) {
 
 template <typename T>
 bool ZapStream::get_msg_from_messages(uint32_t expected_msg_id, Message<T>* msg) {
-    Message<void*>* found_msg = messages.remove([](Message<void*> msg) -> bool {
+    GenericMessage* found_msg = messages.remove([](GenericMessage msg) -> bool {
         return msg.msg_id == expected_msg_id;
     });
 
     // Copy the fields over
     if (found_msg != nullptr) {
-        msg->header = found_msg->header;
-        memcpy(msg->payload, found_msg->payload, found_msg->header.length);
+        found_msg->to(msg);
 
         delete found_msg;
         return true;
