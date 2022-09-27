@@ -2,16 +2,24 @@
 
 #include "../util/uint.hpp"
 
-template <typename T>
-class Message {
+class MessageHeader {
 public:
-    Message(uint32_t msg_id, T payload): len(sizeof T),
-                                         msg_id(msg_id),
-                                         payload(payload) {};
+    MessageHeader(uint32_t length, uint32_t msg_id): length(length), msg_id(msg_id) {}
 
     uint32_t length;
     uint32_t msg_id;
     uint32_t seq_num;
+};
+
+template <typename T>
+class Message {
+public:
+    Message(MessageHeader header, T payload): header(header),
+                                              payload(payload) {}
+    Message(uint32_t msg_id, T payload): header(sizeof(T), msg_id),
+                                         payload(payload) {}
+
+    MessageHeader header;
     T        payload;
 };
 
