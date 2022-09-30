@@ -1,77 +1,59 @@
-#define PROFILING 0
-
+#include <simpleRPC.h>
 #include "structFS/module.hpp"
-#include "util/Profiling.h"
 
 #define KB 1024
 #define MB (KB * KB)
+#define DEFAULT_BUFFER_SIZE 2 * KB
 
 File file(2*MB);
-unsigned long start;
-unsigned long end;
 
-void setup() {
-  Serial.begin(9600);
+class FileReader {
+public:
+	FileReader(File& file): FileReader(file, DEFAULT_BUFFER_SIZE) {}
+	FileReader(File& file, size_t buffer_size): file(file) {
+		buffer = new char[buffer_size];
+	}
 
-  #if PROFILING
-    PROFILE_BEGIN();
-  #endif
+	~FileReader() {
+		delete buffer;
+	}
 
+	// The important part of this example
+	// Takes in an offset and length, and gives you that part of the file
+	char* read_file_section(size_t offset, size_t len) {
+		file.read(offset, buffer, len);
+		return buffer;
+	}
 
-  //Just to make sure it only starts when you want it to
-  wait_for_char('h');
-  wait_for_char('e');
-  wait_for_char('l');
-  wait_for_char('l');
-  wait_for_char('o');
+private:
+	char* buffer;
+	File& file;
+};
 
-  FS fs = FS(4 * MB);
+FileReader reader(file);
 
-  if (!fs.AddFile(file)) {
-    Serial.println("Couldn't add file");
-  }
-  file.makeWriteable();
-  Serial.println("Filesys initialised");
-
-
-  start = micros();
-  const int n = 4096;
-  for (uint32_t i = 0; i < n; i++) {
-    if (!file.append(i+300)) {
-      Serial.printf("Couldn't add %d to file\n", i);
-    }
-  }
-
-  if (!file.flush()) {
-    Serial.println("Couldn't flush file");
-  }
-  end = micros();
-
-  Serial.println("Done writing");
-  // delay(5000);
-  uint32_t x[n];
-  if (!file.read(0, &x, sizeof x)) {
-    Serial.printf("Couldn't read\n");
-  }
-
-  for (int i = 0; i < n; i++) {
-    Serial.printf("%d: Read %zu\n", i, x[i]);
-  }
-
-  #if PROFILING
-    PROFILE_END();
-  #endif
+void setup(void) {
+	Serial.begin(9600);
+	FS fs = FS(4 * MB);
+	if (!fs.AddFile(file)) {
+		Serial.println("Couldn't add file");
+	}
 }
 
-void loop() {
-  // Serial.println(end - start);
-}
+class LED {
+public:
+	LED() {}
 
-void wait_for_char(char c) {
-  char c1;
-  do {
-    Serial.printf("Press %c to start\n", c);
-    Serial.readBytes(&c1, sizeof(char));
-    delay(100);
-  } while(c1 != c);
+	void setBrightness(int brightness) {}
+};
+
+LED led;
+
+void loop(void) {
+	// Each call to interface listens for 1 request and then responds accordingly
+	interface(
+		Serial,
+		pack(&reader, &FileReader::read_file_section),
+		F("read_file_section: Read part of a file. @data: offset, length. @return: The data in the file.")
+	);
 }
