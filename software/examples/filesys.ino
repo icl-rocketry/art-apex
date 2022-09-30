@@ -4,14 +4,6 @@
 #define MB (KB * KB)
 
 File file(2*MB);
-const uint32_t FILE_SIZE = 2*MB;
-const int N_WORDS = 4096; // 1 word is 4 bytes
-
-unsigned long write_start;
-unsigned long write_end;
-unsigned long erase_start;
-unsigned long erase_end;
-
 void setup() {
   Serial.begin(9600);
 
@@ -24,42 +16,42 @@ void setup() {
 
   FS fs = FS(4 * MB);
 
+  // Add the file to the filesystem (only need to do this because my semantics are janky)
   if (!fs.AddFile(file)) {
     Serial.println("Couldn't add file");
   }
-  erase_start = micros();
-  file.makeWriteable();
+  file.makeWriteable(); // Warning, this will erase all data in the file, so only do this when you need to
   Serial.println("Filesys initialised");
-  erase_end = micros();
 
-
-  write_start = micros();
-  for (uint32_t i = 0; i < N_WORDS; i++) {
-    if (!file.append(i+300)) {
+  // Write your data here
+  const int n = 4096;
+  for (uint32_t i = 0; i < n; i++) {
+    if (!file.append(i)) {
       Serial.printf("Couldn't add %d to file\n", i);
     }
   }
 
+  // Make sure to write any data that's left in the buffer
   if (!file.flush()) {
     Serial.println("Couldn't flush file");
   }
-  write_end = micros();
 
   Serial.println("Done writing");
   delay(5000);
-  uint32_t x[N_WORDS];
+
+  // Reading obviously
+  uint32_t x[n];
   if (!file.read(0, &x, sizeof x)) {
     Serial.printf("Couldn't read\n");
   }
 
-  for (int i = 0; i < N_WORDS; i++) {
+  for (int i = 0; i < n; i++) {
     Serial.printf("%d: Read %zu\n", i, x[i]);
   }
 }
 
 void loop() {
-  Serial.printf("Time taken to write %d bytes: %d microseconds\n", N_WORDS * 4, write_end - write_start);
-  Serial.printf("Time taken to erase %d kilobytes: %d microseconds\n", FILE_SIZE / KB, erase_end - erase_start);
+  Serial.println(end - start);
 }
 
 void wait_for_char(char c) {
