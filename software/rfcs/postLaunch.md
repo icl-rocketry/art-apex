@@ -41,7 +41,7 @@ We'd also need some file serving code on the avionics that would interface with 
 
 Now there are really only 2 places that this code can go - the first state or the last state of the state machine.
 
-#### The first place
+#### <ins>The first place
 
 Putting the code in the last state makes sense because "duh that's when all the data has been recorded and it's the last thing you do in a flight". But sadly no, this won't work for an extremely subtle reason.
 
@@ -59,13 +59,13 @@ Currently the last state is the recovery state, where we make sounds every coupl
 
 So really we can't put the file server in the last state.
 
-#### The second place
+#### <ins>The second place
 
 We put the file server in the first state, where all the other RPCs are, so we can either just file read, or start the launch process. One thing to bear in mind is that it might be very easy to accidentally erase flight data if we send the wrong RPC. So we'd need a security mechanism to stop that.
 
 I'd say we have a password that someone would have to type to erase the flight data, if it exists.
 
-#### The third place???
+#### <ins>The third place???
 
 Yeah so I lied, there's a super secret 3rd place, which is the 2nd core of the rp2040 chip we're using. If we have a parallel file server, then we don't run into the problems of the first place. I'd rather not do this because it's more complicated than it needs to be, because accessing stuff in parallel can be weird.
 
