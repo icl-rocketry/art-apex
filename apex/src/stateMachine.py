@@ -129,10 +129,15 @@ class flight(state):
 
 class postFlight(state):
     stateid = 8
-    colour = (108, 122, 137) #greyish blue
-       
+    colour = (108, 122, 137) #greyish blue      
     def _run(self) -> None:
         print("Post flight state")
+        self.speaker.siren(3)
+        self.speaker.noise()
+        self.speaker.shutup()
+        sleep(60*20)
         while True:
-            self.speaker.siren(3)
-            sleep(10)
+            self.speaker.siren(1)
+            self.speaker.noise()
+            self.speaker.shutup()
+            sleep(60)
