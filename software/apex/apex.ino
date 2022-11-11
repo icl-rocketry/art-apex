@@ -7,27 +7,6 @@
 Adafruit_BNO08x bno08x;
 sh2_SensorValue_t sensorValue;
 
-bool check_i2c(byte addr, uint8_t post_delay) {
-  Wire1.begin();
-  Wire1.beginTransmission(addr);
-  bool found = (Wire1.endTransmission() == 0);
-  delay(post_delay);
-  return found;
-}
-
-void printI2CBusScan(void) {
-  Wire1.begin();
-  Serial.print("I2C scan: ");
-  for (uint8_t addr = 0x00; addr <= 0x7F; addr++) {
-    Wire1.beginTransmission(addr);
-    if (Wire1.endTransmission() == 0) {
-      Serial.print("0x");
-      Serial.print(addr, HEX);
-      Serial.print(", ");
-    }
-  }
-  Serial.println();
-}
 
 void setup(void) {
   Serial.begin(9600);
@@ -36,25 +15,8 @@ void setup(void) {
 
   Serial.println("Adafruit BNO08x test!");
 
-  delay(100);
-
-  // printI2CBusScan();
-
-
-  // for (uint8_t addr = 0x00; addr <= 0x7F; addr++) {
-  //   auto i2c_dev = new Adafruit_I2CDevice(addr, &Wire1);
-
-  //   if (i2c_dev->begin()) {
-  //     Serial.println(addr);
-  //     Serial.println("Success");
-  //   }
-
-  //   delete i2c_dev;
-  //   delay(50);
-  // }
-
   // Try to initialize!
-  if (!bno08x.begin_I2C(74, &Wire1, 0)) {
+  if (!bno08x.begin_I2C(BNO08x_I2CADDR_DEFAULT, &Wire1, 0)) {
     Serial.println("Failed to find BNO08x chip");
     delay(50);
     while (1) {
@@ -177,9 +139,9 @@ void loop() {
     setReports();
   }
   
-  Serial.println("=================");
+  Serial.println("+++++++++++++++++");
   if (!bno08x.getSensorEvent(&sensorValue)) {
     return;
   }
-  Serial.println("=================");
+  Serial.println("-----------------");
 }
