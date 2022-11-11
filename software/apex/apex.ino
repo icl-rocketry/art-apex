@@ -38,12 +38,18 @@ void setup(void) {
 
   printI2CBusScan();
 
-  i2c_dev = new Adafruit_I2CDevice(0x4D, &Wire1);
 
-  if (!i2c_dev->begin()) {
-    Serial.println("Failed");
+  for (uint8_t addr = 0x00; addr <= 0x7F; addr++) {
+    auto i2c_dev = new Adafruit_I2CDevice(addr, &Wire1);
+
+    if (i2c_dev->begin()) {
+      Serial.println(addr);
+      Serial.println("Success");
+    }
+
+    delete i2c_dev;
+    delay(50);
   }
-
 
   // Try to initialize!
   if (!bno08x.begin_I2C(0x4D, &Wire1, 0)) {
