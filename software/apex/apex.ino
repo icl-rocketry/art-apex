@@ -16,8 +16,8 @@ void setup(void) {
   bool found = false;
 
   // Try to initialize!
-  for (uint8_t x = 0; i < 0x100; i++) {
-    if (!bno08x.begin_I2C(0x4D, &Wire1, 0)) {
+  for (uint8_t x = 0; x < 0x100; x++) {
+    if (!bno08x.begin_I2C(x, &Wire1, 0)) {
       Serial.println("Failed to find BNO08x chip");
       delay(50);
     } else {
