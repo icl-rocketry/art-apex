@@ -109,7 +109,7 @@ bool Adafruit_BNO08x::begin_I2C(uint8_t i2c_address, TwoWire *wire,
   }
 
   for (uint8_t addr = 0x00; addr <= 0x7F; addr++) {
-    auto i2c_dev1 = new Adafruit_I2CDevice(addr, &Wire1);
+    auto i2c_dev1 = new Adafruit_I2CDevice(addr, wire);
 
     if (i2c_dev1->begin()) {
       Serial.println(addr);
