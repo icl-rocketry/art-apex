@@ -1,7 +1,7 @@
-#include "bno/Adafruit_BNO08x.h"
+#include "bno/module.hpp"
 
 
-Adafruit_BNO08x bno08x();
+Adafruit_BNO08x bno08x;
 sh2_SensorValue_t sensorValue;
 
 void setup(void) {
