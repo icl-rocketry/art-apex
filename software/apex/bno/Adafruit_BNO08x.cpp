@@ -108,12 +108,15 @@ bool Adafruit_BNO08x::begin_I2C(uint8_t i2c_address, TwoWire *wire,
     delete i2c_dev; // remove old interface
   }
 
-  for (uint8_t addr = 0; addr <= 19; addr++) {
+  for (uint8_t addr = 0; addr <= 20; addr++) {
     auto i2c_dev1 = new Adafruit_I2CDevice(i2c_address, wire);
 
     if (i2c_dev1->begin()) {
       Serial.println(addr);
       Serial.println("Success");
+    } else {
+      Serial.println(addr);
+      Serial.println("Failure");
     }
 
     delete i2c_dev1;
