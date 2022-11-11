@@ -38,7 +38,7 @@ void setup(void) {
   printI2CBusScan();
 
   // Try to initialize!
-  if (!bno08x.begin_I2C(0x4D, &Wire1, 0)) {
+  if (!bno08x.begin_I2C()) {
     Serial.println("Failed to find BNO08x chip");
     delay(50);
     while (1) {
