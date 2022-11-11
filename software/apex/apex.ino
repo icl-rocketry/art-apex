@@ -2,6 +2,8 @@
 #include <Wire.h>
 #include <Adafruit_I2CDevice.h>
 
+#define DEBUG_SERIAL 1
+
 Adafruit_BNO08x bno08x;
 sh2_SensorValue_t sensorValue;
 
