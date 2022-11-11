@@ -1,10 +1,11 @@
 #include "bno/module.hpp"
-
+#include <Wire.h>
 
 Adafruit_BNO08x bno08x;
 sh2_SensorValue_t sensorValue;
 
 void setup(void) {
+  Wire1.begin();
   Serial.begin(9600);
   while (!Serial)
     delay(10); // will pause Zero, Leonardo, etc until serial console opens
@@ -12,7 +13,7 @@ void setup(void) {
   Serial.println("Adafruit BNO08x test!");
 
   // Try to initialize!
-  if (!bno08x.begin_I2C()) {
+  if (!bno08x.begin_I2C(BNO08x_I2CADDR_DEFAULT, &Wire1, 0)) {
     // if (!bno08x.begin_UART(&Serial1)) {  // Requires a device with > 300 byte
     // UART buffer! if (!bno08x.begin_SPI(BNO08X_CS, BNO08X_INT)) {
     Serial.println("Failed to find BNO08x chip");
