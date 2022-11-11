@@ -134,9 +134,9 @@ void loop() {
     setReports();
   }
   
-  Serial.println("=================")
+  Serial.println("=================");
   if (!bno08x.getSensorEvent(&sensorValue)) {
     return;
   }
-  Serial.println("=================")
+  Serial.println("=================");
 }
