@@ -112,7 +112,7 @@ bool Adafruit_BNO08x::begin_I2C(uint8_t i2c_address, TwoWire *wire,
   Serial.println(wire);
 
 
-  Serial.println(&Wire1);
+  // Serial.println(&Wire1);
 
   i2c_dev = new Adafruit_I2CDevice(i2c_address, wire);
 
