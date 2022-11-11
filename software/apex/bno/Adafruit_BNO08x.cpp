@@ -108,20 +108,24 @@ bool Adafruit_BNO08x::begin_I2C(uint8_t i2c_address, TwoWire *wire,
     delete i2c_dev; // remove old interface
   }
 
-  auto i2c_dev1 = new Adafruit_I2CDevice(i2c_address, wire);
+  for (uint8_t addr = 0; addr <= 19; addr++) {
+    auto i2c_dev1 = new Adafruit_I2CDevice(i2c_address, wire);
 
-  if (i2c_dev1->begin()) {
-    Serial.println("Success");
+    if (i2c_dev1->begin()) {
+      Serial.println(addr);
+      Serial.println("Success");
+    }
+
+    delete i2c_dev1;
+    delay(50);
   }
 
-  // i2c_dev = new Adafruit_I2CDevice(i2c_address, wire);
+  i2c_dev = new Adafruit_I2CDevice(i2c_address, wire);
 
-  if (!i2c_dev1->begin()) {
+  if (!i2c_dev->begin()) {
     Serial.println(F("I2C address not found"));
     return false;
   }
-
-  i2c_dev = i2c_dev1;
 
   _HAL.open = i2chal_open;
   _HAL.close = i2chal_close;
