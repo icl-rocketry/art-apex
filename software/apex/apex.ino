@@ -1,5 +1,6 @@
 #include "bno/module.hpp"
 #include <Wire.h>
+#include <Adafruit_I2CDevice.h>
 
 Adafruit_BNO08x bno08x;
 sh2_SensorValue_t sensorValue;
@@ -37,8 +38,15 @@ void setup(void) {
 
   printI2CBusScan();
 
+  i2c_dev = new Adafruit_I2CDevice(0x4D, &Wire1);
+
+  if (!i2c_dev->begin()) {
+    Serial.println("Failed");
+  }
+
+
   // Try to initialize!
-  if (!bno08x.begin_I2C()) {
+  if (!bno08x.begin_I2C(0x4D, &Wire1, 0)) {
     Serial.println("Failed to find BNO08x chip");
     delay(50);
     while (1) {

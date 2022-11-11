@@ -26,7 +26,7 @@
 #include <Adafruit_Sensor.h>
 #include <Wire.h>
 
-#define BNO08x_I2CADDR_DEFAULT 0x4D ///< The default I2C address
+#define BNO08x_I2CADDR_DEFAULT 0x4A ///< The default I2C address
 
 /* Additional Activities not listed in SH-2 lib */
 #define PAC_ON_STAIRS 8 ///< Activity code for being on stairs
@@ -43,7 +43,7 @@ public:
   ~Adafruit_BNO08x();
 
   bool begin_I2C(uint8_t i2c_addr = BNO08x_I2CADDR_DEFAULT,
-                 TwoWire *wire = &Wire1, int32_t sensor_id = 0);
+                 TwoWire *wire = &Wire, int32_t sensor_id = 0);
   bool begin_UART(HardwareSerial *serial, int32_t sensor_id = 0);
 
   bool begin_SPI(uint8_t cs_pin, uint8_t int_pin, SPIClass *theSPI = &SPI,
