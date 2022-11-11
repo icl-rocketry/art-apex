@@ -653,7 +653,7 @@ static void hal_callback(void *cookie, sh2_AsyncEvent_t *pEvent) {
 static void sensorHandler(void *cookie, sh2_SensorEvent_t *event) {
   int rc;
 
-  // Serial.println("Got an event!");
+  Serial.println("Got an event!");
 
   rc = sh2_decodeSensorEvent(_sensor_value, event);
   if (rc != SH2_OK) {
