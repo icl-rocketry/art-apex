@@ -39,20 +39,20 @@ void setup(void) {
   printI2CBusScan();
 
 
-  for (uint8_t addr = 0x00; addr <= 0x7F; addr++) {
-    auto i2c_dev = new Adafruit_I2CDevice(addr, &Wire1);
+  // for (uint8_t addr = 0x00; addr <= 0x7F; addr++) {
+  //   auto i2c_dev = new Adafruit_I2CDevice(addr, &Wire1);
 
-    if (i2c_dev->begin()) {
-      Serial.println(addr);
-      Serial.println("Success");
-    }
+  //   if (i2c_dev->begin()) {
+  //     Serial.println(addr);
+  //     Serial.println("Success");
+  //   }
 
-    delete i2c_dev;
-    delay(50);
-  }
+  //   delete i2c_dev;
+  //   delay(50);
+  // }
 
   // Try to initialize!
-  if (!bno08x.begin_I2C(0x4D, &Wire1, 0)) {
+  if (!bno08x.begin_I2C(0x4B, &Wire1, 0)) {
     Serial.println("Failed to find BNO08x chip");
     delay(50);
     while (1) {
