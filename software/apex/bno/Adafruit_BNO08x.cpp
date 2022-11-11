@@ -108,11 +108,16 @@ bool Adafruit_BNO08x::begin_I2C(uint8_t i2c_address, TwoWire *wire,
     delete i2c_dev; // remove old interface
   }
 
-  Serial.println(i2c_address);
-  Serial.println((long long unsigned int) wire);
+  auto i2c_dev1 = new Adafruit_I2CDevice(75, wire);
 
+  if (i2c_dev1->begin()) {
+    Serial.println(75);
+    Serial.println("Success");
+  }
 
-  Serial.println((long long unsigned int) &Wire1);
+  delete i2c_dev1;
+  delay(50);
+
 
   i2c_dev = new Adafruit_I2CDevice(i2c_address, wire);
 
