@@ -4,42 +4,26 @@
 Adafruit_BNO08x bno08x;
 sh2_SensorValue_t sensorValue;
 
-void check_i2c(void) {
-  byte error, address; //variable for error and I2C address
-  int nDevices;
+bool check_i2c(byte addr, uint8_t post_delay) {
+  Wire1.begin();
+  Wire1.beginTransmission(addr);
+  bool found = (Wire1.endTransmission() == 0);
+  delay(post_delay);
+  return found;
+}
 
-  Serial.println("Scanning...");
-
-  nDevices = 0;
-  for (address = 1; address < 127; address++ )
-  {
-    // The i2c_scanner uses the return value of
-    // the Write.endTransmisstion to see if
-    // a device did acknowledge to the address.
-    Wire1.beginTransmission(address);
-    error = Wire1.endTransmission();
-
-    if (error == 0)
-    {
-      Serial.print("I2C device found at address 0x");
-      if (address < 16)
-        Serial.print("0");
-      Serial.print(address, HEX);
-      Serial.println("  !");
-      nDevices++;
-    }
-    else if (error == 4)
-    {
-      Serial.print("Unknown error at address 0x");
-      if (address < 16)
-        Serial.print("0");
-      Serial.println(address, HEX);
+void printI2CBusScan(void) {
+  Wire1.begin();
+  Serial.print("I2C scan: ");
+  for (uint8_t addr = 0x00; addr <= 0x7F; addr++) {
+    Wire1.beginTransmission(addr);
+    if (Wire1.endTransmission() == 0) {
+      Serial.print("0x");
+      Serial.print(addr, HEX);
+      Serial.print(", ");
     }
   }
-  if (nDevices == 0)
-    Serial.println("No I2C devices found\n");
-  else
-    Serial.println("done\n");
+  Serial.println();
 }
 
 void setup(void) {
@@ -51,7 +35,7 @@ void setup(void) {
 
   delay(100);
 
-  check_i2c();
+  printI2CBusScan();
 
   // Try to initialize!
   if (!bno08x.begin_I2C(0x4D, &Wire1, 0)) {
