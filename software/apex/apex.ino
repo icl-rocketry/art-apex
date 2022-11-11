@@ -38,7 +38,7 @@ void setup(void) {
 
   delay(100);
 
-  printI2CBusScan();
+  // printI2CBusScan();
 
 
   // for (uint8_t addr = 0x00; addr <= 0x7F; addr++) {
