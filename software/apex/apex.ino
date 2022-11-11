@@ -5,6 +5,7 @@ Adafruit_BNO08x bno08x;
 sh2_SensorValue_t sensorValue;
 
 void setup(void) {
+  Wire1.begin();
   Serial.begin(9600);
   while (!Serial)
     delay(10); // will pause Zero, Leonardo, etc until serial console opens
