@@ -16,8 +16,8 @@ void check_i2c(void) {
     // The i2c_scanner uses the return value of
     // the Write.endTransmisstion to see if
     // a device did acknowledge to the address.
-    Wire.beginTransmission(address);
-    error = Wire.endTransmission();
+    Wire1.beginTransmission(address);
+    error = Wire1.endTransmission();
 
     if (error == 0)
     {
