@@ -652,9 +652,6 @@ static void hal_callback(void *cookie, sh2_AsyncEvent_t *pEvent) {
 // Handle sensor events.
 static void sensorHandler(void *cookie, sh2_SensorEvent_t *event) {
   int rc;
-
-  Serial.println("Got an event!");
-
   rc = sh2_decodeSensorEvent(_sensor_value, event);
   if (rc != SH2_OK) {
     Serial.println("BNO08x - Error decoding sensor event");
