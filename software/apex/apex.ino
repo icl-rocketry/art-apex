@@ -113,7 +113,8 @@ void fill(uint8_t flags) {
 #define TIME_IT(expr) start = micros(); \
                       expr; \
                       end = micros(); \
-                      Serial.printf("Took %d microseconds\n", end - start)
+                      Serial.printf("Took %d microseconds and wasted %d packets\n", end - start, n_msgs); \
+                      n_msgs = 0
 
 void loop() {
   uint8_t flags = 0;
