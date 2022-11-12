@@ -111,9 +111,9 @@ void fill(uint8_t flags) {
 }
 
 #define TIME_IT(expr) start = micros(); \
-                      expr; \
+                      for (int i = 0; i < 50; i++) { expr; } \
                       end = micros(); \
-                      Serial.printf("Took %d microseconds and wasted %d packets\n", end - start, n_msgs); \
+                      Serial.printf(" took %d microseconds and used %d packets\n", end - start, n_msgs); \
                       n_msgs = 0
 
 void loop() {
