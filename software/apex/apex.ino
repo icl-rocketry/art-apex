@@ -7,6 +7,16 @@
 Adafruit_BNO08x bno08x;
 sh2_SensorValue_t sensorValue;
 
+// Performance counters
+uint32_t n_msgs = 0;
+
+// Macros for sensor definitions
+#define ACCELEROMETER 0x01
+#define GYRO          0x02
+#define MAG           0x04
+#define LIN_ACC       0x08
+#define ROTATION      0x10
+#define GEOMAG_ROT    0x20
 
 void setup(void) {
   Serial.begin(9600);
@@ -40,108 +50,121 @@ void setup(void) {
     Serial.println(bno08x.prodIds.entry[n].swBuildNumber);
   }
 
-  setReports();
+  enable_reports(0);
 
   Serial.println("Reading events");
   delay(100);
 }
 
-// Here is where you define the sensor outputs you want to receive
-void setReports(void) {
-  Serial.println("Setting desired reports");
-  if (!bno08x.enableReport(SH2_ACCELEROMETER)) {
+void enable_reports(uint8_t flag) {
+  if ((flag & ACCELEROMETER) && !bno08x.enableReport(SH2_ACCELEROMETER)) {
     Serial.println("Could not enable accelerometer");
   }
-  if (!bno08x.enableReport(SH2_GYROSCOPE_CALIBRATED)) {
+  if ((flag & GYRO) && !bno08x.enableReport(SH2_GYROSCOPE_CALIBRATED)) {
     Serial.println("Could not enable gyroscope");
   }
-  if (!bno08x.enableReport(SH2_MAGNETIC_FIELD_CALIBRATED)) {
+  if ((flag & MAG) && !bno08x.enableReport(SH2_MAGNETIC_FIELD_CALIBRATED)) {
     Serial.println("Could not enable magnetic field calibrated");
   }
-  if (!bno08x.enableReport(SH2_LINEAR_ACCELERATION)) {
+  if ((flag & LIN_ACC) && !bno08x.enableReport(SH2_LINEAR_ACCELERATION)) {
     Serial.println("Could not enable linear acceleration");
   }
-  if (!bno08x.enableReport(SH2_GRAVITY)) {
-    Serial.println("Could not enable gravity vector");
-  }
-  if (!bno08x.enableReport(SH2_ROTATION_VECTOR)) {
+  if ((flag & ROTATION) && !bno08x.enableReport(SH2_ROTATION_VECTOR)) {
     Serial.println("Could not enable rotation vector");
   }
-  if (!bno08x.enableReport(SH2_GEOMAGNETIC_ROTATION_VECTOR)) {
+  if ((flag & GEOMAG_ROT) && !bno08x.enableReport(SH2_GEOMAGNETIC_ROTATION_VECTOR)) {
     Serial.println("Could not enable geomagnetic rotation vector");
   }
-  if (!bno08x.enableReport(SH2_GAME_ROTATION_VECTOR)) {
-    Serial.println("Could not enable game rotation vector");
-  }
-  if (!bno08x.enableReport(SH2_STEP_COUNTER)) {
-    Serial.println("Could not enable step counter");
-  }
-  if (!bno08x.enableReport(SH2_STABILITY_CLASSIFIER)) {
-    Serial.println("Could not enable stability classifier");
-  }
-  if (!bno08x.enableReport(SH2_RAW_ACCELEROMETER)) {
-    Serial.println("Could not enable raw accelerometer");
-  }
-  if (!bno08x.enableReport(SH2_RAW_GYROSCOPE)) {
-    Serial.println("Could not enable raw gyroscope");
-  }
-  if (!bno08x.enableReport(SH2_RAW_MAGNETOMETER)) {
-    Serial.println("Could not enable raw magnetometer");
-  }
-  if (!bno08x.enableReport(SH2_SHAKE_DETECTOR)) {
-    Serial.println("Could not enable shake detector");
-  }
-  if (!bno08x.enableReport(SH2_PERSONAL_ACTIVITY_CLASSIFIER)) {
-    Serial.println("Could not enable personal activity classifier");
-  }
 }
-void printActivity(uint8_t activity_id) {
-  switch (activity_id) {
-  case PAC_UNKNOWN:
-    Serial.print("Unknown");
-    break;
-  case PAC_IN_VEHICLE:
-    Serial.print("In Vehicle");
-    break;
-  case PAC_ON_BICYCLE:
-    Serial.print("On Bicycle");
-    break;
-  case PAC_ON_FOOT:
-    Serial.print("On Foot");
-    break;
-  case PAC_STILL:
-    Serial.print("Still");
-    break;
-  case PAC_TILTING:
-    Serial.print("Tilting");
-    break;
-  case PAC_WALKING:
-    Serial.print("Walking");
-    break;
-  case PAC_RUNNING:
-    Serial.print("Running");
-    break;
-  case PAC_ON_STAIRS:
-    Serial.print("On Stairs");
-    break;
-  default:
-    Serial.print("NOT LISTED");
-  }
-  Serial.print(" (");
-  Serial.print(activity_id);
-  Serial.print(")");
-}
-void loop() {
-  delay(10);
 
-  if (bno08x.wasReset()) {
-    Serial.print("sensor was reset ");
-    setReports();
+// Measure the time it takes to fill an array
+void fill(uint8_t flags) {
+  uint8_t temp_flags = 0;
+
+  while (temp_flags != flags) {
+    if (!bno08x.getSensorEvent(&sensorValue)) {
+      continue;
+    }
+
+    n_msgs++;
+    switch (sensorValue.sensorId) {
+      case SH2_ACCELEROMETER:
+        temp_flags |= ACCELEROMETER;
+        break;
+      case SH2_GYROSCOPE_CALIBRATED:
+        temp_flags |= GYRO;
+        break;
+      case SH2_MAGNETIC_FIELD_CALIBRATED:
+        temp_flags |= MAG;
+        break;
+      case SH2_LINEAR_ACCELERATION:
+        temp_flags |= LIN_ACC;
+        break;
+      case SH2_ROTATION_VECTOR:
+        temp_flags |= ROTATION;
+        break;
+      case SH2_GEOMAGNETIC_ROTATION_VECTOR:
+        temp_flags |= GEOMAG_ROT;
+        break;
+    }
   }
-  
-  Serial.println("+++++++++++++++++");
-  if (!bno08x.getSensorEvent(&sensorValue)) {
-    return;
-  }
-  Serial.println("-----------------");
+}
+
+#define TIME_IT(expr) start = micros(); \
+                      expr; \
+                      end = micros(); \
+                      Serial.printf("Took %d microseconds\n", end - start)
+
+void loop() {
+  uint8_t flags = 0;
+  unsigned long start = 0;
+  unsigned long end = 0;
+
+  flags |= ACCELEROMETER;
+  Serial.print("Accelerometer only");
+  enable_reports(flags);
+  delay(100);
+  TIME_IT(fill(flags));
+  bno08x.hardwareReset();
+  delay(1000);
+
+  flags |= GYRO;
+  Serial.print("+ Gyro");
+  enable_reports(flags);
+  delay(100);
+  TIME_IT(fill(flags));
+  bno08x.hardwareReset();
+  delay(1000);
+
+  flags |= MAG;
+  Serial.print("+ Mag");
+  enable_reports(flags);
+  delay(100);
+  TIME_IT(fill(flags));
+  bno08x.hardwareReset();
+  delay(1000);
+
+  flags |= LIN_ACC;
+  Serial.print("+ Linear accelerometer");
+  enable_reports(flags);
+  delay(100);
+  TIME_IT(fill(flags));
+  bno08x.hardwareReset();
+  delay(1000);
+
+  flags |= ROTATION;
+  Serial.print("+ Rotation");
+  enable_reports(flags);
+  delay(100);
+  TIME_IT(fill(flags));
+  bno08x.hardwareReset();
+  delay(1000);
+
+  flags |= GEOMAG_ROT;
+  Serial.print("+ Geomagnetic rotation");
+  enable_reports(flags);
+  delay(100);
+  TIME_IT(fill(flags));
+  bno08x.hardwareReset();
+  delay(1000);
 }
