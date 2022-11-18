@@ -98,12 +98,16 @@ private:
     priority_queue<TimedMessage<MSG>, vector<TimedMessage<MSG>>, compare<MSG>> msgs; // Queue of all messages, soonest first
 
     void deliver_messages() {
+        if (msgs.empty()) {
+            return;
+        }
+
         vector<TimedMessage<MSG>> this_tick_msgs;
         unordered_map<uint8_t, int> msgs_per_device;
 
         TimedMessage<MSG> msg = msgs.top();
         // Find all messages that would be delivered at this time
-        while (msg.time == time) {
+        while (msg.time == time && !msgs.empty()) {
             this_tick_msgs.push_back(msg);
             msgs_per_device[msg.recepient]++;
             msgs.pop();
