@@ -8,16 +8,12 @@ CC_FLAGS = -g # This lets you use debuggers like gdb
 all: sim
 
 # Compile other things you need
-# If you're adding a file, copy paste edit this
+# If you're adding a file, copy paste edit this and add the "bin/filename.o" to the list in "sim:"
 bin/lora.o: modules/lora.h modules/lora.cpp
 	${CC} ${CC_FLAGS} -c modules/lora.cpp -o bin/lora.o
 
-bin/device.o: modules/device.h modules/device.cpp
-	${CC} ${CC_FLAGS} -c modules/device.cpp -o bin/device.o
-
-
 # Compile the main file
-sim: main.cpp bin/lora.o
+sim: main.cpp bin/lora.o bin/device.o
 	${CC} ${CC_FLAGS} main.cpp bin/lora.o -o sim
 
 # Just in case someone makes the "clean" files

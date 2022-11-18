@@ -1,5 +1,6 @@
 #pragma once
 #include "lora.h"
+#include <stdint.h>
 
 // All known data about the rocket
 // Feel free to add more things
@@ -21,5 +22,13 @@ public:
         return rocket;
     }
 
-    void tick(uint64_t time);
+
+    //Every time the device "ticks", it'll:
+    //1. Receive some messages
+    //2. Do stuff
+    //3. Broadcast some messages
+    //4. Update its estimate of the rocket's position
+    void tick(uint64_t time) {
+        // TODO: Write this
+    }
 };
