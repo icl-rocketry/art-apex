@@ -26,10 +26,10 @@ struct SimDevice {
         z = 0.42;
     }
 
-    float distance_to(SimDevice<MSG>& other) {
-        return sqrt((x - other.x) * (x - other.x) + 
-                    (y - other.y) * (y - other.y) + 
-                    (z - other.z) * (z - other.z));
+    float distance_to(SimDevice<MSG>* other) {
+        return sqrt((x - other->x) * (x - other->x) + 
+                    (y - other->y) * (y - other->y) + 
+                    (z - other->z) * (z - other->z));
     }
 };
 
@@ -59,7 +59,7 @@ string to_string(MSG msg) {
 
 template <typename MSG>
 void log(TimedMessage<MSG> msg) {
-    std::cout << "{\"time\": " << msg.time << ", \"recepient\": " << msg.recepient << ", \"msg\": " << to_string(msg.msg) << "}" << std::endl ;
+    std::cout << "{\"time\": " << msg.time << ", \"recepient\": " << static_cast<int>(msg.recepient) << ", \"msg\": " << to_string(msg.msg) << "}" << std::endl ;
 }
 
 template <typename MSG>
@@ -67,13 +67,14 @@ class Simulation {
 public:
     Simulation(int n_devices, MSG rocket_msg) : time(0), rocket_msg(rocket_msg) {
         // Add the rocket first
-        SimDevice<MSG> rocket(10); //TODO: magic number
+        SimDevice<MSG>* rocket = new SimDevice<MSG>(10); //TODO: magic number
+        rocket->x = 0;
 
         devices.insert({0, rocket});
 
         // Add the other devices
         for (int i = 1; i <= n_devices; i++) {
-            SimDevice<MSG> device(i);
+            SimDevice<MSG>* device = new SimDevice<MSG>(i);
             devices.insert({i, device});
         }
     }
@@ -83,7 +84,7 @@ public:
         // TODO: make this configurable
         if (time % 100 == 0) {
             auto rocket = devices.at(0);
-            rocket.broadcast_q.push(rocket_msg);
+            rocket->broadcast_q.push(rocket_msg);
         }
 
 
@@ -93,7 +94,7 @@ public:
         for (auto const& device_pair : devices) {
             auto device = device_pair.second;
             auto id = device_pair.first;
-            device.device.tick(time);
+            device->device.tick(time);
         
             schedule_broadcast(id, device);
         }
@@ -104,7 +105,7 @@ public:
 private:
     uint64_t time;
     MSG rocket_msg; // It's annoying that this needs to be here, but c'est la vie
-    unordered_map<uint8_t, SimDevice<MSG>> devices; // Maps ids to devices
+    unordered_map<uint8_t, SimDevice<MSG>*> devices; // Maps ids to devices
     priority_queue<TimedMessage<MSG>, vector<TimedMessage<MSG>>, compare<MSG>> msgs; // Queue of all messages, soonest first
 
     void deliver_messages() {
@@ -121,13 +122,14 @@ private:
             this_tick_msgs.push_back(msg);
             msgs_per_device[msg.recepient]++;
             msgs.pop();
+            msg = msgs.top();
         }
 
         // Only send messages to devices which don't have conflicts
         // Conflicts occur when a device attempts to read 2 messages at once
         for (auto const& msg : this_tick_msgs) {
             if (msgs_per_device[msg.recepient] == 1) {
-                devices.at(msg.recepient).receive_q.push(msg.msg);
+                devices.at(msg.recepient)->receive_q.push(msg.msg);
                 std::cout << "DELIVERED ";
             } else {
                 std::cout << "CONFLICT ";
@@ -136,10 +138,10 @@ private:
         }
     }
 
-    void schedule_broadcast(uint64_t id, SimDevice<MSG> device) {
+    void schedule_broadcast(uint64_t id, SimDevice<MSG>* device) {
         // Collect each broadcast message
-        while (!device.broadcast_q.empty()) {
-            auto msg = device.broadcast_q.front();
+        while (!device->broadcast_q.empty()) {
+            auto msg = device->broadcast_q.front();
 
             // Schedule a message for each other device, within tx_range
             for (auto const& device_pair2 : devices) {
@@ -150,15 +152,15 @@ private:
                     continue;
                 }
 
-                float distance = ceil(device.distance_to(device2));
-                if (distance < device.tx_range) {
+                float distance = ceil(device->distance_to(device2));
+                if (distance < device->tx_range) {
                     uint64_t propagation_delay = static_cast<uint64_t>(distance);
                     msgs.push(TimedMessage<MSG>{time + propagation_delay, msg, id2});
                 }
             }
 
             std::cout << "BROADCAST " << "{\"msg\": " << to_string(msg) << "}" << std::endl;
-            device.broadcast_q.pop();
+            device->broadcast_q.pop();
         }
     }
 };
