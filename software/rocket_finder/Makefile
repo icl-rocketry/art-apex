@@ -5,6 +5,8 @@
 CC = g++
 CC_FLAGS = -g # This lets you use debuggers like gdb
 
+all: sim
+
 # Compile other things you need
 # If you're adding a file, copy paste edit this
 bin/lora.o: modules/lora.h modules/lora.cpp
@@ -20,8 +22,6 @@ sim: main.cpp bin/lora.o
 
 # Just in case someone makes the "clean" files
 .PHONY: clean
-
-all: sim
 
 clean:
 	rm sim
