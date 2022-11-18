@@ -25,14 +25,6 @@ struct SimDevice {
         y = 0.1;
         z = 0.42;
     }
-    
-    SimDevice(float tx_range, RocketData rocket_data) : tx_range(tx_range),
-                                                        device(Device<MSG>(rocket_data, SimLoRa<MSG>(receive_q, broadcast_q))) {
-        // TODO: Randomise
-        x = 0.5;
-        y = 0.1;
-        z = 0.42;
-    }
 
     float distance_to(SimDevice<MSG>& other) {
         return sqrt((x - other.x) * (x - other.x) + 
@@ -63,10 +55,9 @@ struct compare {
 template <typename MSG>
 class Simulation {
 public:
-    Simulation(int n_devices) : time(0) {
+    Simulation(int n_devices, MSG rocket_msg) : time(0), rocket_msg(rocket_msg) {
         // Add the rocket first
-        RocketData rocket_data{4, 65, 23}; // TODO: randomise this
-        SimDevice<MSG> rocket(3, rocket_data);
+        SimDevice<MSG> rocket(10); //TODO: magic number
 
         devices.insert({0, rocket});
 
@@ -78,6 +69,14 @@ public:
     }
 
     void tick() {
+        // Every 100 ticks, the rocket will broadcast its position
+        // TODO: make this configurable
+        if (time % 100 == 0) {
+            auto rocket = devices.at(0);
+            rocket.broadcast_q.push(rocket_msg);
+        }
+
+
         // Deliver every message, then tick every device and collect all messages
         deliver_messages();
 
@@ -94,6 +93,7 @@ public:
 
 private:
     uint64_t time;
+    MSG rocket_msg; // It's annoying that this needs to be here, but c'est la vie
     unordered_map<uint8_t, SimDevice<MSG>> devices; // Maps ids to devices
     priority_queue<TimedMessage<MSG>, vector<TimedMessage<MSG>>, compare<MSG>> msgs; // Queue of all messages, soonest first
 
@@ -156,7 +156,7 @@ int main() {
     const float depth = 50;
     const float tx_range = 10; // TODO config  
 
-    Simulation<int> sim(n_devices);
+    Simulation<int> sim(n_devices, 5);
 
     for (int i = 0; i < 100; i++) {
         sim.tick();
