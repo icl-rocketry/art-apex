@@ -3,8 +3,10 @@
 *.d#*
 *.job
 *.pro
+*.o
 PCB/APEX/eagle.epf
 PCB/APEX/bmp.scr
 copy
 
 software/bin/
+software/rocket_finder/sim
