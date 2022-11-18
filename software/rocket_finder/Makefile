@@ -7,12 +7,16 @@ CC_FLAGS = -g # This lets you use debuggers like gdb
 
 # Compile other things you need
 # If you're adding a file, copy paste edit this
-bin/test.o: modules/test.h modules/test.cpp
-	${CC} ${CC_FLAGS} -c modules/test.cpp -o bin/test.o
+bin/lora.o: modules/lora.h modules/lora.cpp
+	${CC} ${CC_FLAGS} -c modules/lora.cpp -o bin/lora.o
+
+bin/device.o: modules/device.h modules/device.cpp
+	${CC} ${CC_FLAGS} -c modules/device.cpp -o bin/device.o
+
 
 # Compile the main file
-sim: main.cpp bin/test.o
-	${CC} ${CC_FLAGS} main.cpp bin/test.o -o sim
+sim: main.cpp bin/lora.o
+	${CC} ${CC_FLAGS} main.cpp bin/lora.o -o sim
 
 # Just in case someone makes the "clean" files
 .PHONY: clean
