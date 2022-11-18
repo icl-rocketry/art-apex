@@ -51,6 +51,16 @@ struct compare {
     }
 };
 
+template <typename MSG>
+string to_string(MSG msg) {
+    // TODO - fill this in for pretty printing
+    return "Rick Roll";
+}
+
+template <typename MSG>
+void log(TimedMessage<MSG> msg) {
+    std::cout << "{\"time\": " << msg.time << ", \"recepient\": " << msg.recepient << ", \"msg\": " << to_string(msg.msg) << "}" << std::endl ;
+}
 
 template <typename MSG>
 class Simulation {
@@ -118,7 +128,11 @@ private:
         for (auto const& msg : this_tick_msgs) {
             if (msgs_per_device[msg.recepient] == 1) {
                 devices.at(msg.recepient).receive_q.push(msg.msg);
+                std::cout << "DELIVERED ";
+            } else {
+                std::cout << "CONFLICT ";
             }
+            log(msg);
         }
     }
 
@@ -138,12 +152,12 @@ private:
 
                 float distance = ceil(device.distance_to(device2));
                 if (distance < device.tx_range) {
-
-                uint64_t propagation_delay = static_cast<uint64_t>(distance);
-                msgs.push(TimedMessage<MSG>{time + propagation_delay, msg, id2});
+                    uint64_t propagation_delay = static_cast<uint64_t>(distance);
+                    msgs.push(TimedMessage<MSG>{time + propagation_delay, msg, id2});
                 }
             }
 
+            std::cout << "BROADCAST " << "{\"msg\": " << to_string(msg) << "}" << std::endl;
             device.broadcast_q.pop();
         }
     }
@@ -158,7 +172,7 @@ int main() {
 
     Simulation<int> sim(n_devices, 5);
 
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 200; i++) {
         sim.tick();
     }
 
