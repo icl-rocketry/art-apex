@@ -11,14 +11,15 @@ template <typename MSG>
 class Device {
 private:
     RocketData rocket;
-    LoRadio lora;    
+    const LoRadio<MSG>& lora;
 
 public:
-    Device(LoRadio lora) : rocket(RocketData{0, 0, 0}), lora(lora) {}
+    Device(RocketData data, const LoRadio<MSG>& lora) : rocket(data), lora(lora) {}
+    Device(const LoRadio<MSG>& lora) : Device<MSG>(RocketData{0, 0, 0}, lora) {}
 
     RocketData get_rocket_data() {
         return rocket;
     }
 
-    void tick();
+    void tick(uint64_t time);
 };
