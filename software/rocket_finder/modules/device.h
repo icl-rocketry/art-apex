@@ -1,6 +1,7 @@
 #pragma once
 #include "lora.h"
 #include <stdint.h>
+#include <memory>
 
 // All known data about the rocket
 // Feel free to add more things
@@ -12,11 +13,11 @@ template <typename MSG>
 class Device {
 private:
     RocketData rocket;
-    const LoRadio<MSG>& lora;
+    std::unique_ptr<LoRadio<MSG>> lora;
 
 public:
-    Device(RocketData data, const LoRadio<MSG>& lora) : rocket(data), lora(lora) {}
-    Device(const LoRadio<MSG>& lora) : Device<MSG>(RocketData{0, 0, 0}, lora) {}
+    Device(RocketData data, std::unique_ptr<LoRadio<MSG>> lora) : rocket(data), lora(std::move(lora)) {}
+    Device(std::unique_ptr<LoRadio<MSG>> lora) : Device<MSG>(RocketData{0, 0, 0}, std::move(lora)) {}
 
     RocketData get_rocket_data() {
         return rocket;
@@ -29,6 +30,9 @@ public:
     //3. Broadcast some messages
     //4. Update its estimate of the rocket's position
     void tick(uint64_t time) {
-        // TODO: Write this
+        MSG msg;
+        while (lora->receive(msg)) {
+            lora->broadcast(msg);
+        }
     }
 };

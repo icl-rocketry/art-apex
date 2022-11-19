@@ -6,10 +6,10 @@ template <typename MSG>
 class LoRadio {
 public:
     // Broadcast a message of type MSG
-    virtual bool broadcast(const MSG& msg) = 0;
+    virtual bool broadcast(const MSG& msg) const = 0;
 
     // Receive into a message of type MSG
-    virtual bool receive(MSG& msg) = 0;
+    virtual bool receive(MSG& msg) const = 0;
 };
 
 template <typename MSG>
@@ -24,7 +24,7 @@ public:
 
     // This will send the message to the underlying simulation
     // It will always succeed
-    bool broadcast(const MSG& msg) override {
+    bool broadcast(const MSG& msg) const override {
         broadcast_queue.push(msg);
         return true;
     }
@@ -32,7 +32,7 @@ public:
     // This will receive a message from the simulation
     // But it will fail if the queue is empty
     // It may also succeed but give you a corrupted message
-    bool receive(MSG& msg) override {
+    bool receive(MSG& msg) const override {
         if (receive_queue.empty()) {
             return false;
         }

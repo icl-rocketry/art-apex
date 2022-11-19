@@ -4,6 +4,7 @@
 #include <cmath>
 #include <stdint.h>
 #include <fstream>
+#include <memory>
 
 #include "../include/nlohmann/json.hpp"
 
@@ -27,7 +28,7 @@ struct SimDevice {
 
     SimDevice(DeviceConfig cfg) : x(cfg.x), y(cfg.y), z(cfg.z),
                                   tx_range(cfg.tx_range),
-                                  device(Device<MSG>(SimLoRa<MSG>(receive_q, broadcast_q))) {}
+                                  device(Device<MSG>(std::make_unique<SimLoRa<MSG>>(receive_q, broadcast_q))) {}
 
     float distance_to(SimDevice<MSG>* other) {
         return sqrt((x - other->x) * (x - other->x) + 
@@ -51,6 +52,7 @@ public:
 
         devices.insert({id, rocket});
 
+        id++;
         // Add the other devices
         for (auto const& device_cfg : cfg.devices) {
             SimDevice<MSG>* device = new SimDevice<MSG>(device_cfg);
