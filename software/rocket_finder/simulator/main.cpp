@@ -119,20 +119,20 @@ private:
             
             if (msgs_per_device[msg.recepient] != 1) {
                 corrupt(&msg_copy);
-                delivery_type = "CONFLICT ";
+                delivery_type = "CONFLICT";
             }
 
             if (rand_uniform() < p_corruption) {
                 corrupt(&msg_copy);
-                delivery_type = "CORRUPTED ";
+                delivery_type = "CORRUPTED";
             }
 
             if (rand_uniform() >= p_failure) {
                 devices.at(msg.recepient)->receive_q.push(msg_copy);
             } else {
-                delivery_type = "FAILED ";
+                delivery_type = "FAILED";
             }
-            std::cout << delivery_type;
+            std::cout << delivery_type << "\t";
             log(msg);
         }
     }
@@ -158,7 +158,7 @@ private:
                 }
             }
 
-            std::cout << "BROADCAST ";;
+            std::cout << "BROADCAST\t";;
             log(time, id, msg);
             device->broadcast_q.pop();
         }
