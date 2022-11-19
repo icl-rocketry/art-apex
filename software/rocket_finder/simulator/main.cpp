@@ -4,6 +4,8 @@
 #include <cmath>
 #include <stdint.h>
 
+#include "../include/nlohmann/json.hpp"
+
 #include "../modules/lora.h"
 #include "../modules/device.h"
 #include "util.h"
