@@ -1,0 +1,15 @@
+Be able to program sending and receiving packets
+Be able to test the program in conditions - transmission failure rate + rocket position + ground station position + devices each with ranges
+
+They should need to write code for the rocket and receivers, treating the ground station as a receiver
+They shouldn't need to worry about the underlying lora transmission, that'll come later
+The lora transmission class should have the same interface between simulation and not
+The simulation will load up all the devices, rocket and receivers and the lora classes
+Ignores movement, only cares about static position
+
+Simulation tick: 
+1. The rocket broadcasts its message, into a message queue in the simulator
+2. While loop through all devices, until none of them have anything to broadcast
+
+Broadcasts will fail if 2 happen at the same time and can hit the same devices.
+Each broadcast takes some transmission time t, proportional to the distance between the sender and receiver (in this case, exactly equal)
