@@ -1,4 +1,5 @@
 #pragma once
+#include <cstdlib>
 
 using namespace std;
 
@@ -33,4 +34,18 @@ void log(TimedMessage<MSG> msg) {
 template <typename MSG>
 void log(uint64_t time, uint8_t sender, MSG msg) {
     std::cout << "{\"time\": " << time << ", \"sender\": " << static_cast<int>(sender) << ", \"msg\": " << to_string(msg) << "}" << std::endl ;
+}
+
+template <typename MSG>
+void corrupt(MSG* msg) {
+    char* ptr = (char*)msg;
+    for (int i = 0; i < sizeof(MSG); i++) {
+        uint8_t byte = static_cast<unsigned char>(rand() % 0xff);
+        ptr[i] = byte;
+    }
+}
+
+// Gets you a number between 0 and 1 inclusive (technically not a pdf but shouldn't be a problem)
+float rand_uniform() {
+    return static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
 }

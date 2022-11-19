@@ -6,6 +6,7 @@
 #include <fstream>
 #include <memory>
 #include <string>
+#include <cstdlib>
 
 #include "../include/nlohmann/json.hpp"
 
@@ -86,7 +87,7 @@ public:
 private:
     uint64_t time;
     MSG rocket_msg; // It's annoying that this needs to be here, but c'est la vie
-    unordered_map<uint8_t, SimDevice<MSG>> devices; // Maps ids to devices
+    unordered_map<uint8_t, SimDevice<MSG>*> devices; // Maps ids to devices
     priority_queue<TimedMessage<MSG>, vector<TimedMessage<MSG>>, compare<MSG>> msgs; // Queue of all messages, soonest first
 
     uint64_t rocket_msg_ticks;
@@ -111,13 +112,27 @@ private:
 
         // Only send messages to devices which don't have conflicts
         // Conflicts occur when a device attempts to read 2 messages at once
-        for (auto const& msg : this_tick_msgs) {
-            if (msgs_per_device[msg.recepient] == 1) {
-                devices.at(msg.recepient)->receive_q.push(msg.msg);
-                std::cout << "DELIVERED ";
-            } else {
-                std::cout << "CONFLICT ";
+        for (auto msg : this_tick_msgs) {
+            std::string delivery_type = "DELIVERED";
+
+            MSG msg_copy = msg.msg;
+            
+            if (msgs_per_device[msg.recepient] != 1) {
+                corrupt(&msg_copy);
+                delivery_type = "CONFLICT ";
             }
+
+            if (rand_uniform() < p_corruption) {
+                corrupt(&msg_copy);
+                delivery_type = "CORRUPTED ";
+            }
+
+            if (rand_uniform() >= p_failure) {
+                devices.at(msg.recepient)->receive_q.push(msg_copy);
+            } else {
+                delivery_type = "FAILED ";
+            }
+            std::cout << delivery_type;
             log(msg);
         }
     }
@@ -155,6 +170,8 @@ int main(int argc, char** argv) {
         cout << "Expected 2 arguments - config file location and simulation duration" << endl;;
         return 1;
     }
+
+    srand(0); // Seed the randomness so results are reproducible
 
     std::string config_path = argv[1];
     uint64_t ticks = stoi(argv[2]);
