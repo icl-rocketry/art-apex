@@ -46,7 +46,7 @@ public:
         p_failure = cfg.p_failure;
         p_corruption = cfg.p_corruption;
         
-        // Add the rocket first
+        // Add the rocket first (technically a mem leak, but it'll live as long as the program so it's fine)
         SimDevice<MSG>* rocket = new SimDevice<MSG>(cfg.rocket);
 
         int id = 0;
@@ -86,7 +86,7 @@ public:
 private:
     uint64_t time;
     MSG rocket_msg; // It's annoying that this needs to be here, but c'est la vie
-    unordered_map<uint8_t, SimDevice<MSG>*> devices; // Maps ids to devices
+    unordered_map<uint8_t, SimDevice<MSG>> devices; // Maps ids to devices
     priority_queue<TimedMessage<MSG>, vector<TimedMessage<MSG>>, compare<MSG>> msgs; // Queue of all messages, soonest first
 
     uint64_t rocket_msg_ticks;
@@ -152,12 +152,12 @@ private:
 
 int main(int argc, char** argv) {
     if (argc < 3) {
-        std::cout << "Expected 2 arguments - config file location and simulation duration" << std::endl;;
+        cout << "Expected 2 arguments - config file location and simulation duration" << endl;;
         return 1;
     }
 
     std::string config_path = argv[1];
-    uint64_t ticks = std::stoi(argv[2]);
+    uint64_t ticks = stoi(argv[2]);
 
     ifstream f(argv[1]);
     json data = json::parse(f);
