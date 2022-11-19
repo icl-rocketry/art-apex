@@ -1,5 +1,6 @@
 #pragma once
 
+#include <stdint.h>
 #include <vector>
 
 #include "../include/nlohmann/json.hpp"
@@ -12,11 +13,10 @@ struct DeviceConfig {
 };
 
 struct Config {
-
     std::vector<DeviceConfig> devices;
     DeviceConfig rocket;
 
-    int rocket_msg_ticks;
+    uint64_t rocket_msg_ticks;
     float p_failure;
     float p_corruption;
 };

@@ -29,3 +29,8 @@ template <typename MSG>
 void log(TimedMessage<MSG> msg) {
     std::cout << "{\"time\": " << msg.time << ", \"recepient\": " << static_cast<int>(msg.recepient) << ", \"msg\": " << to_string(msg.msg) << "}" << std::endl ;
 }
+
+template <typename MSG>
+void log(uint64_t time, uint8_t sender, MSG msg) {
+    std::cout << "{\"time\": " << time << ", \"sender\": " << static_cast<int>(sender) << ", \"msg\": " << to_string(msg) << "}" << std::endl ;
+}
