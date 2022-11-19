@@ -5,6 +5,7 @@
 #include <stdint.h>
 #include <fstream>
 #include <memory>
+#include <string>
 
 #include "../include/nlohmann/json.hpp"
 
@@ -149,15 +150,23 @@ private:
     }
 };
 
-int main() {    
-    ifstream f("config.json");
+int main(int argc, char** argv) {
+    if (argc < 3) {
+        std::cout << "Expected 2 arguments - config file location and simulation duration" << std::endl;;
+        return 1;
+    }
+
+    std::string config_path = argv[1];
+    uint64_t ticks = std::stoi(argv[2]);
+
+    ifstream f(argv[1]);
     json data = json::parse(f);
     Config cfg;
     from_json(data, cfg);
 
     Simulation<int> sim(cfg, 5);
 
-    for (int i = 0; i < 200; i++) {
+    for (uint64_t i = 0; i < ticks; i++) {
         sim.tick();
     }
     return 0;

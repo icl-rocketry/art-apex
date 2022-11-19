@@ -10,20 +10,20 @@
     },
     "devices": [
         {
+            "x": 9,
+            "y": 0,
+            "z": 0,
+            "transmission_range": 10
+        },
+        {
             "x": 10,
-            "y": 0,
+            "y": 5,
             "z": 0,
             "transmission_range": 10
         },
         {
-            "x": 19,
-            "y": 0,
-            "z": 0,
-            "transmission_range": 10
-        },
-        {
-            "x": 5,
-            "y": 0,
+            "x": 10,
+            "y": -5,
             "z": 0,
             "transmission_range": 10
         }
