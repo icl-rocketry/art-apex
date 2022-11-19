@@ -1,0 +1,31 @@
+{
+    "rocket_msg_ticks": 100,
+    "p_failure": 0.1,
+    "p_corruption": 0.04,
+    "rocket": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "transmission_range": 10
+    },
+    "devices": [
+        {
+            "x": 10,
+            "y": 0,
+            "z": 0,
+            "transmission_range": 10
+        },
+        {
+            "x": 19,
+            "y": 0,
+            "z": 0,
+            "transmission_range": 10
+        },
+        {
+            "x": 5,
+            "y": 0,
+            "z": 0,
+            "transmission_range": 10
+        }
+    ]
+}

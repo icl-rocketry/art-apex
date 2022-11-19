@@ -13,7 +13,7 @@ bin/lora.o: modules/lora.h modules/lora.cpp
 	${CC} ${CC_FLAGS} -c modules/lora.cpp -o bin/lora.o
 
 # Compile the main file
-sim: simulator/main.cpp bin/lora.o bin/lora.o
+sim: simulator/main.cpp bin/lora.o
 	${CC} ${CC_FLAGS} simulator/main.cpp bin/lora.o -o sim
 
 # Just in case someone makes the "clean" files
