@@ -19,11 +19,17 @@ Messages take some time, proportional to the distance between the sender and rec
 
 ### Example trace
 `BROADCAST  {"time": 0, "sender": 0, "msg": 5}`
+
 `BROADCAST  {"time": 0, "sender": 1, "msg": 6}`
+
 `DELIVERED  {"time": 1, "recepient": 3, "msg": 5}`
+
 `CONFLICT   {"time": 1, "recepient": 2, "msg": 5}`
+
 `CONFLICT   {"time": 1, "recepient": 2, "msg": 6}`
+
 `CORRUPTED  {"time": 1, "recepient": 4, "msg": 6}`
+
 `FAILED     {"time": 1, "recepient": 5, "msg": 5}`
 
 In this (nonsensical) example devices 0 and 1 (the rocket and another) broadcast messages at time 0. Both messages are delivered to a device equidistant from them (2) causing a conflict. Whereas the other devices either receive the message or it fails.
