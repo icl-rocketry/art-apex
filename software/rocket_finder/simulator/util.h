@@ -47,7 +47,7 @@ int corrupt(MSG* msg, float p_corruption) {
     int n = 0;
     char* ptr = (char*)msg;
     for (int i = 0; i < sizeof(MSG); i++) {
-        for (int j = 0; i < sizeof(char); j++) {
+        for (int j = 0; j < sizeof(char); j++) {
             if (rand_uniform() < p_corruption) {
                 ptr[i] ^= 1 << j; //Flip the jth bit in the ith byte
                 n++;
