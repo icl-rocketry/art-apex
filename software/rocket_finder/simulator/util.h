@@ -3,6 +3,12 @@
 
 using namespace std;
 
+
+// Gets you a number between 0 and 1 inclusive (technically not a pdf but shouldn't be a problem)
+float rand_uniform() {
+    return static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+}
+
 // Wrap the message with a time, so we can work out a good delivery schedule
 // We have a recepient for each message, because a message can be delivered to different people at the same time
 template <typename MSG>
@@ -58,9 +64,4 @@ void collide(MSG* msg) {
         uint8_t byte = static_cast<unsigned char>(rand() % 0xff);
         ptr[i] = byte;
     }
-}
-
-// Gets you a number between 0 and 1 inclusive (technically not a pdf but shouldn't be a problem)
-float rand_uniform() {
-    return static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
 }
