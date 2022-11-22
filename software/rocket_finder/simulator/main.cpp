@@ -165,6 +165,11 @@ private:
     }
 };
 
+/* List of stupid things
+    1. Ticks aren't tied to any real life timing model
+    2. Conflicts aren't corrupted realistically I think
+    3. This doesn't corrupt messages in a realistic way
+*/
 int main(int argc, char** argv) {
     if (argc < 3) {
         cout << "Expected 2 arguments - config file location and simulation duration" << endl;;
