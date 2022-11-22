@@ -37,7 +37,22 @@ void log(uint64_t time, uint8_t sender, MSG msg) {
 }
 
 template <typename MSG>
-void corrupt(MSG* msg) {
+int corrupt(MSG* msg, float p_corruption) {
+    int n = 0;
+    char* ptr = (char*)msg;
+    for (int i = 0; i < sizeof(MSG); i++) {
+        for (int j = 0; i < sizeof(char); j++) {
+            if (rand_uniform() < p_corruption) {
+                ptr[i] ^= 1 << j; //Flip the jth bit in the ith byte
+                n++;
+            }
+        }
+    }
+    return n;
+}
+
+template <typename MSG>
+void collide(MSG* msg) {
     char* ptr = (char*)msg;
     for (int i = 0; i < sizeof(MSG); i++) {
         uint8_t byte = static_cast<unsigned char>(rand() % 0xff);

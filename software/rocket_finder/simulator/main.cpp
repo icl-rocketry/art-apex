@@ -118,12 +118,11 @@ private:
             MSG msg_copy = msg.msg;
             
             if (msgs_per_device[msg.recepient] != 1) {
-                corrupt(&msg_copy);
+                collide(&msg_copy);
                 delivery_type = "CONFLICT";
             }
 
-            if (rand_uniform() < p_corruption) {
-                corrupt(&msg_copy);
+            if (corrupt(&msg_copy, p_corruption) > 0) {
                 delivery_type = "CORRUPTED";
             }
 
@@ -168,7 +167,6 @@ private:
 /* List of stupid things
     1. Ticks aren't tied to any real life timing model
     2. Conflicts aren't corrupted realistically I think
-    3. This doesn't corrupt messages in a realistic way
 */
 int main(int argc, char** argv) {
     if (argc < 3) {
