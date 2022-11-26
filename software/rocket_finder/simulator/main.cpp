@@ -64,20 +64,19 @@ public:
     }
 
     void tick() {
-        // Every 100 ticks, the rocket will broadcast its position
+        // Every rocket_msg_ticks ticks, the rocket will broadcast its position
         if (time % rocket_msg_ticks == 0) {
             auto rocket = devices.at(0);
-            rocket->broadcast_q.push(rocket_msg);
+            rocket->broadcast_q.push(rocket_msg + time);
         }
 
         // Deliver every message, then tick every device and collect all messages
         deliver_messages();
 
         for (auto const& device_pair : devices) {
-	    auto device = device_pair.second;
+            auto device = device_pair.second;
             auto id = device_pair.first;
-	    device->device.tick(time);
-        
+            device->device.tick(time);
             schedule_broadcast(id, device);
         }
 
