@@ -74,9 +74,9 @@ public:
         deliver_messages();
 
         for (auto const& device_pair : devices) {
-            auto device = device_pair.second;
+	    auto device = device_pair.second;
             auto id = device_pair.first;
-            device->device.tick(time);
+	    device->device.tick(time);
         
             schedule_broadcast(id, device);
         }
@@ -146,7 +146,7 @@ private:
                 auto device2 = device_pair2.second;
                 auto id2 = device_pair2.first;
 
-                if (id == id2) {
+                if (id == id2 || id2 == 0) {
                     continue;
                 }
 
