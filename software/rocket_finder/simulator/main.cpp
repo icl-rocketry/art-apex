@@ -19,28 +19,27 @@ using namespace std; // So we don't need to keep typing std
 using json = nlohmann::json;
 
 
-template <typename MSG>
 struct SimDevice {
-    queue<MSG> broadcast_q;
-    queue<MSG> receive_q;
-    Device<MSG> device;
+    queue<RocketMessage> broadcast_q;
+    queue<RocketMessage> receive_q;
+    Device device;
     
     float x, y, z;
     float tx_range; //Assuming we transmit in a perfect sphere
 
     SimDevice(DeviceConfig cfg) : x(cfg.x), y(cfg.y), z(cfg.z),
                                   tx_range(cfg.tx_range),
-                                  device(Device<MSG>(std::make_unique<SimLoRa<MSG>>(receive_q, broadcast_q))) {}
+                                  device(Device(std::make_unique<SimLoRa<RocketMessage>>(receive_q, broadcast_q))) {}
 
-    float distance_to(SimDevice<MSG>* other) {
+    float distance_to(SimDevice* other) {
         return sqrt((x - other->x) * (x - other->x) + 
                     (y - other->y) * (y - other->y) + 
                     (z - other->z) * (z - other->z));
     }
 };
 
-template <typename MSG>
 class Simulation {
+using MSG = RocketMessage;
 public:
     Simulation(Config cfg, MSG rocket_msg) : time(0), rocket_msg(rocket_msg) {
         rocket_msg_ticks = cfg.rocket_msg_ticks;
@@ -48,7 +47,7 @@ public:
         p_corruption = cfg.p_corruption;
         
         // Add the rocket first (technically a mem leak, but it'll live as long as the program so it's fine)
-        SimDevice<MSG>* rocket = new SimDevice<MSG>(cfg.rocket);
+        SimDevice* rocket = new SimDevice(cfg.rocket);
 
         int id = 0;
 
@@ -57,7 +56,7 @@ public:
         id++;
         // Add the other devices
         for (auto const& device_cfg : cfg.devices) {
-            SimDevice<MSG>* device = new SimDevice<MSG>(device_cfg);
+            SimDevice* device = new SimDevice(device_cfg);
             devices.insert({id, device});
             id++;
         }
@@ -67,7 +66,8 @@ public:
         // Every rocket_msg_ticks ticks, the rocket will broadcast its position
         if (time % rocket_msg_ticks == 0) {
             auto rocket = devices.at(0);
-            rocket->broadcast_q.push(rocket_msg + time);
+            rocket_msg.number++;
+            rocket->broadcast_q.push(rocket_msg);
         }
 
         // Deliver every message, then tick every device and collect all messages
@@ -86,7 +86,7 @@ public:
 private:
     uint64_t time;
     MSG rocket_msg; // It's annoying that this needs to be here, but c'est la vie
-    unordered_map<uint8_t, SimDevice<MSG>*> devices; // Maps ids to devices
+    unordered_map<uint8_t, SimDevice*> devices; // Maps ids to devices
     priority_queue<TimedMessage<MSG>, vector<TimedMessage<MSG>>, compare<MSG>> msgs; // Queue of all messages, soonest first
 
     uint64_t rocket_msg_ticks;
@@ -135,7 +135,7 @@ private:
         }
     }
 
-    void schedule_broadcast(uint64_t id, SimDevice<MSG>* device) {
+    void schedule_broadcast(uint64_t id, SimDevice* device) {
         // Collect each broadcast message
         while (!device->broadcast_q.empty()) {
             auto msg = device->broadcast_q.front();
@@ -183,7 +183,7 @@ int main(int argc, char** argv) {
     Config cfg;
     from_json(data, cfg);
 
-    Simulation<int> sim(cfg, 5);
+    Simulation sim(cfg, RocketMessage{5});
 
     for (uint64_t i = 0; i < ticks; i++) {
         sim.tick();
