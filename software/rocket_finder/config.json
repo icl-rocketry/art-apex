@@ -1,5 +1,5 @@
 {
-    "rocket_msg_ticks": 100,
+    "rocket_msg_ticks": 5,
     "p_failure": 0.1,
     "p_corruption": 0.04,
     "rocket": {
@@ -10,20 +10,20 @@
     },
     "devices": [
         {
-            "x": 9,
+            "x": 5,
             "y": 0,
             "z": 0,
             "transmission_range": 10
         },
         {
-            "x": 10,
-            "y": 5,
+            "x": 3,
+            "y": 4,
             "z": 0,
             "transmission_range": 10
         },
         {
-            "x": 10,
-            "y": -5,
+            "x": -4,
+            "y": -3,
             "z": 0,
             "transmission_range": 10
         }

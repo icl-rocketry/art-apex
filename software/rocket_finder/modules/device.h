@@ -29,10 +29,9 @@ public:
     //2. Do stuff
     //3. Broadcast some messages
     //4. Update its estimate of the rocket's position
+
     void tick(uint64_t time) {
         MSG msg;
-        while (lora->receive(msg)) {
-            lora->broadcast(msg);
-        }
+        lora->receive(msg);
     }
 };
