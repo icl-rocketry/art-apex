@@ -84,7 +84,7 @@ public:
     }
 
 private:
-    uint64_t time;
+    uint64_t time; // In seconds
     MSG rocket_msg; // It's annoying that this needs to be here, but c'est la vie
     unordered_map<uint8_t, SimDevice*> devices; // Maps ids to devices
     priority_queue<TimedMessage<MSG>, vector<TimedMessage<MSG>>, compare<MSG>> msgs; // Queue of all messages, soonest first
@@ -151,8 +151,7 @@ private:
 
                 float distance = ceil(device->distance_to(device2));
                 if (distance < device->tx_range) {
-                    uint64_t propagation_delay = static_cast<uint64_t>(distance);
-                    msgs.push(TimedMessage<MSG>{time + propagation_delay, msg, id2});
+                    msgs.push(TimedMessage<MSG>{time + 1, msg, id2});
                 }
             }
 
@@ -164,8 +163,7 @@ private:
 };
 
 /* List of stupid things
-    1. Ticks aren't tied to any real life timing model
-    2. Conflicts aren't corrupted realistically I think
+    1. Conflicts aren't corrupted realistically I think
 */
 int main(int argc, char** argv) {
     if (argc < 3) {

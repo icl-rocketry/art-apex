@@ -12,4 +12,4 @@ Simulation tick:
 2. While loop through all devices, until none of them have anything to broadcast
 
 Broadcasts will fail if 2 happen at the same time and can hit the same devices.
-Each broadcast takes some transmission time t, proportional to the distance between the sender and receiver (in this case, exactly equal)
+Each broadcast takes some transmission time t, proportional to the distance between the sender and receiver (in this case, exactly equal) - Update 29/11/22 Nope that's dumb each message will take 1 tick, which corresponds to 1 second, the underlying lora implementation must guarantee this though 
