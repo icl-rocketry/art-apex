@@ -12,8 +12,12 @@ all: sim
 bin/lora.o: modules/lora.h modules/lora.cpp
 	${CC} ${CC_FLAGS} -c modules/lora.cpp -o bin/lora.o
 
+modules/%.h: ; # Do nothing for this, but we don't wanna have to make clean a bunch
+
+
+
 # Compile the main file
-sim: simulator/main.cpp bin/lora.o
+sim: simulator/main.cpp bin/lora.o modules/device.h 
 	${CC} ${CC_FLAGS} simulator/main.cpp bin/lora.o -o sim
 
 # Just in case someone makes the "clean" files
