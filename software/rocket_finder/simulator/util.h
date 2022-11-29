@@ -13,8 +13,9 @@ float rand_uniform() {
 // We have a recepient for each message, because a message can be delivered to different people at the same time
 template <typename MSG>
 struct TimedMessage {
-    uint64_t time;
     MSG msg;
+    uint64_t time;
+    int channel;
     uint8_t recepient;
 };
 
@@ -28,12 +29,12 @@ struct compare {
 
 template <typename MSG>
 void log(TimedMessage<MSG> msg) {
-    std::cout << "{\"time\": " << msg.time << ", \"recepient\": " << static_cast<int>(msg.recepient) << ", \"msg\": " << to_string(msg.msg) << "}" << std::endl ;
+    std::cout << "{\"time\": " << msg.time << ", \"channel\": " << msg.channel << ", \"recepient\": " << static_cast<int>(msg.recepient) << ", \"msg\": " << to_string(msg.msg) << "}" << std::endl ;
 }
 
 template <typename MSG>
-void log(uint64_t time, uint8_t sender, MSG msg) {
-    std::cout << "{\"time\": " << time << ", \"sender\": " << static_cast<int>(sender) << ", \"msg\": " << to_string(msg) << "}" << std::endl ;
+void log(uint64_t time, int channel, uint8_t sender, MSG msg) {
+    std::cout << "{\"time\": " << time << ", \"channel\": " << channel << ", \"sender\": " << static_cast<int>(sender) << ", \"msg\": " << to_string(msg) << "}" << std::endl ;
 }
 
 template <typename MSG>

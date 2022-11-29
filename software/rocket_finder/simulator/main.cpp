@@ -18,10 +18,11 @@
 using namespace std; // So we don't need to keep typing std
 using json = nlohmann::json;
 
+int channels = 0; // Global variable - fight me
 
 struct SimDevice {
-    queue<RocketMessage> broadcast_q;
-    queue<RocketMessage> receive_q;
+    vector<queue<RocketMessage>> broadcast_qs;
+    vector<queue<RocketMessage>> receive_qs;
     Device device;
     
     float x, y, z;
@@ -29,7 +30,9 @@ struct SimDevice {
 
     SimDevice(DeviceConfig cfg) : x(cfg.x), y(cfg.y), z(cfg.z),
                                   tx_range(cfg.tx_range),
-                                  device(Device(std::make_unique<SimLoRa<RocketMessage>>(receive_q, broadcast_q))) {}
+				  broadcast_qs(channels),
+				  receive_qs(channels),
+                                  device(Device(std::make_unique<SimLoRa<RocketMessage>>(receive_qs, broadcast_qs))) {}
 
     float distance_to(SimDevice* other) {
         return sqrt((x - other->x) * (x - other->x) + 
@@ -67,7 +70,7 @@ public:
         if (time % rocket_msg_ticks == 0) {
             auto rocket = devices.at(0);
             rocket_msg.number++;
-            rocket->broadcast_q.push(rocket_msg);
+	    rocket->broadcast_qs[0].push(rocket_msg);
         }
 
         // Deliver every message, then tick every device and collect all messages
@@ -98,13 +101,13 @@ private:
         }
 
         vector<TimedMessage<MSG>> this_tick_msgs;
-        unordered_map<uint8_t, int> msgs_per_device;
+        vector<unordered_map<uint8_t, int>> msgs_per_channel_per_device(channels);
 
         TimedMessage<MSG> msg = msgs.top();
         // Find all messages that would be delivered at this time
         while (msg.time == time && !msgs.empty()) {
             this_tick_msgs.push_back(msg);
-            msgs_per_device[msg.recepient]++;
+            msgs_per_channel_per_device[msg.channel][msg.recepient]++;
             msgs.pop();
             msg = msgs.top();
         }
@@ -116,7 +119,7 @@ private:
 
             MSG msg_copy = msg.msg;
             
-            if (msgs_per_device[msg.recepient] != 1) {
+            if (msgs_per_channel_per_device[msg.channel][msg.recepient] != 1) {
                 collide(&msg_copy);
                 delivery_type = "CONFLICT";
             }
@@ -126,7 +129,7 @@ private:
             }
 
             if (rand_uniform() >= p_failure) {
-                devices.at(msg.recepient)->receive_q.push(msg_copy);
+                devices.at(msg.recepient)->receive_qs[msg.channel].push(msg_copy);
             } else {
                 delivery_type = "FAILED";
             }
@@ -137,28 +140,31 @@ private:
 
     void schedule_broadcast(uint64_t id, SimDevice* device) {
         // Collect each broadcast message
-        while (!device->broadcast_q.empty()) {
-            auto msg = device->broadcast_q.front();
+        for (int channel = 0; channel < channels; channel++) {
+		auto& broadcast_q = device->broadcast_qs[channel];
+		while (!broadcast_q.empty()) {
+            		auto msg = broadcast_q.front();
 
-            // Schedule a message for each other device, within tx_range
-            for (auto const& device_pair2 : devices) {
-                auto device2 = device_pair2.second;
-                auto id2 = device_pair2.first;
+            		// Schedule a message for each other device, within tx_range
+           		for (auto const& device_pair2 : devices) {
+                		auto device2 = device_pair2.second;
+                		auto id2 = device_pair2.first;
 
-                if (id == id2 || id2 == 0) {
-                    continue;
-                }
+                		if (id == id2 || id2 == 0) {
+               				continue;
+                		}
 
-                float distance = ceil(device->distance_to(device2));
-                if (distance < device->tx_range) {
-                    msgs.push(TimedMessage<MSG>{time + 1, msg, id2});
-                }
-            }
+                		float distance = ceil(device->distance_to(device2));
+                		if (distance < device->tx_range) {
+                    			msgs.push(TimedMessage<MSG>{msg, time + 1, channel, id2}); // TODO maybe add channel number here?
+                		}
+           		}
 
-            std::cout << "BROADCAST\t";;
-            log(time, id, msg);
-            device->broadcast_q.pop();
-        }
+            		std::cout << "BROADCAST\t";;
+            		log(time, channel, id, msg);
+            		broadcast_q.pop();
+       		}
+    }
     }
 };
 
@@ -180,7 +186,8 @@ int main(int argc, char** argv) {
     json data = json::parse(f);
     Config cfg;
     from_json(data, cfg);
-
+    channels = cfg.channels;
+	
     Simulation sim(cfg, RocketMessage{5});
 
     for (uint64_t i = 0; i < ticks; i++) {

@@ -19,6 +19,7 @@ struct Config {
     uint64_t rocket_msg_ticks;
     float p_failure;
     float p_corruption;
+    int channels;
 };
 
 void from_json(const json& j, DeviceConfig& cfg) {
@@ -34,4 +35,5 @@ void from_json(const json& j, Config& cfg) {
     j.at("rocket_msg_ticks").get_to(cfg.rocket_msg_ticks);
     j.at("p_failure").get_to(cfg.p_failure);
     j.at("p_corruption").get_to(cfg.p_corruption);
+    j.at("channels").get_to(cfg.channels);
 }

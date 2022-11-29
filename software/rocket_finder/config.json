@@ -1,7 +1,8 @@
 {
     "rocket_msg_ticks": 5,
-    "p_failure": 0.1,
-    "p_corruption": 0.04,
+    "p_failure": 0.0,
+    "p_corruption": 0,
+    "channels": 5,
     "rocket": {
         "x": 0,
         "y": 0,

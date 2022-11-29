@@ -39,6 +39,8 @@ public:
 
     void tick(uint64_t time) {
         RocketMessage msg;
-        lora->receive(msg);
+        while (lora->receive(0, msg)) {
+    		lora->broadcast(1, msg);
+	}
     }
 };
